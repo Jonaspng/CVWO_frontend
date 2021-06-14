@@ -9,7 +9,7 @@ function Login(){
     const [error, setError] = useState([])
 
     useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/login",{ withCredentials: true, credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{ withCredentials: true, credentials: 'include'})
           .then((res) => res.json())
           .then((error) => setError(error.error));
       }, []);
@@ -40,7 +40,7 @@ function Login(){
 
             <div className="auth-content" style={{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth2
-                    route="http://localhost:5000/api/login"
+                    route="https://todolist-cvwo.herokuapp.com/api/login"
                     greetings="Welcome Back!"
                     google="Sign In With Google"
                     btn="Login"
