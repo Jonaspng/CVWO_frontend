@@ -17,6 +17,8 @@ function App(){
             .then((auth) => setAuth(auth.auth));        
       }, []);
 
+      
+
     return(
        <Router>
             <Switch>
