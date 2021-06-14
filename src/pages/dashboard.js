@@ -65,19 +65,19 @@ function Dashboard(){
       
       
     function updateCategory(){
-         fetch("http://localhost:5000/categories",{ credentials: 'include'})
+         fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
             .then((res) => res.json())
             .then((categories) => setCategories(categories.categories));
     }
 
     function updateData(){
-         fetch("http://localhost:5000/api/chart",{ credentials: 'include'})
+         fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
             .then((res) =>  res.json())
             .then((data) => setData(data.data));        
     }
 
     function updateListItems(){
-        fetch("http://localhost:5000/list_items",{ credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then((res) =>  res.json())
             .then((listItem) =>  setListItem(listItem.items));        
     }
@@ -99,7 +99,7 @@ function Dashboard(){
 
 
     function HandleAddItemClick(){
-        fetch("http://localhost:5000/list_items",{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
         method:"POST",
         mode: 'cors',
         credentials: 'include',
@@ -110,7 +110,7 @@ function Dashboard(){
     }
 
     function HandleAddCategoryClick(){
-        fetch("http://localhost:5000/categories",{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
         method:"POST",
         mode: 'cors',
         credentials: 'include',
@@ -122,7 +122,7 @@ function Dashboard(){
 
     function handleItemDeleteClick(event){
         let id = event.target.value
-        fetch("http://localhost:5000/list_items/"+id,{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
         method:"DELETE",
         mode: 'cors',
         credentials: 'include'
@@ -136,7 +136,7 @@ function Dashboard(){
 
       function handleCategoryDeleteClick(event){
         let id = event.currentTarget.value
-        fetch("http://localhost:5000/categories/"+id,{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/categories/"+id,{ 
         method:"DELETE",
         mode: 'cors',
         credentials: 'include',
@@ -149,7 +149,7 @@ function Dashboard(){
     function handleCategoryFilterClick(event){
         let filterValue = event.target.value;
         setTitle(filterValue);
-        fetch("http://localhost:5000/api/filter",{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
         method:"POST",
         body:JSON.stringify({
             filterValue: filterValue,
@@ -165,7 +165,7 @@ function Dashboard(){
 
     function handleShowAllClick(){
         setTitle("All Items")
-        fetch("http://localhost:5000/api/show_all",{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         method:"POST",
         mode: "cors",
         credentials: 'include',
@@ -180,7 +180,7 @@ function Dashboard(){
 
     function HandleUpdateItemClick(event){
         let id = event.target.value;
-        fetch("http://localhost:5000/list_items/"+id,{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
         method:"PATCH",
         mode: 'cors',
         credentials: 'include',
@@ -232,7 +232,7 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        fetch("http://localhost:5000/users",{ credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
         }, []);

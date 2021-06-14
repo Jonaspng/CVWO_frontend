@@ -22,20 +22,20 @@ function Profile(){
 
   
     useEffect(() => {
-        fetch("http://localhost:5000/register/error",{  credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{  credentials: 'include'})
           .then((res) => res.json())
           .then((error) => setError(error.error));
       }, []);
 
       useEffect(() => {
-        fetch("http://localhost:5000/register/success",{  credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{  credentials: 'include'})
           .then((res) => res.json())
           .then((success) => setSuccess(success.success));
       }, []);
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/users",{ credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((userDetails) => setUserDetails(userDetails.user));
         }, []);
@@ -74,19 +74,19 @@ function Profile(){
         if (click){
             event.preventDefault();
         }else{
-            fetch("http://localhost:5000/users/"+userDetails.id,{ 
+            fetch("https://todolist-backend-cvwo.herokuapp.com/users/"+userDetails.id,{ 
             method:"PATCH",
             mode: 'cors',
             credentials: 'include',
             body:new FormData(document.getElementById("edit-details-form"))});
             setTimeout(()=>{
-                fetch("http://localhost:5000/register/error",{credentials: 'include'})
+                fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
                     .then((res) => res.json())
                     .then((error) => setError(error.error));
-                fetch("http://localhost:5000/register/success",{credentials: 'include'})
+                fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{credentials: 'include'})
                     .then((res) => res.json())
                     .then((success) => setSuccess(success.success));
-                fetch("http://localhost:5000/users",{ credentials: 'include'})
+                fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
                     .then((res) => res.json())
                     .then((userDetails) => setUserDetails(userDetails.user));
             },1000);

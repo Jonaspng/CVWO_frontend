@@ -12,7 +12,7 @@ function App(){
     const [auth,setAuth] = useState(false);
 
     useEffect( () => {
-        fetch("http://localhost:5000/api/auth",{ credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
             .then((res) => res.json())
             .then((auth) => setAuth(auth.auth));        
       }, []);

@@ -9,7 +9,7 @@ function Register(){
 
   
     useEffect(() => {
-        fetch("http://localhost:5000/register/error",{ withCredentials: true, credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ withCredentials: true, credentials: 'include'})
           .then((res) => res.json())
           .then((error) => setError(error.error));
       }, []);
@@ -39,7 +39,7 @@ function Register(){
             
             <div className="auth-content" style={{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth
-                    route="http://localhost:5000/users"
+                    route="https://todolist-backend-cvwo.herokuapp.com/users"
                     greetings="Hello"
                     google="Sign up With Google"
                     name="form-floating"
