@@ -1,0 +1,237 @@
+html,body,#root,.home-page{
+    height: 100%;
+}
+
+
+.btn{
+    margin: 10px;
+}
+
+
+.home-content{  
+    text-align: center;
+    padding-top: 150px;
+ 
+}
+
+#home-description{
+    top: 150px;
+    width: 100%;
+
+}
+
+#home-hr{
+    width: 400px;
+    color: black;
+    margin: 0 auto 0 auto;
+}
+
+.home-content{
+    height: 96%;
+}
+
+.auth-page{
+    height: inherit;
+}
+
+.auth-content{
+    text-align: center;
+    padding: 50px;
+    min-height: 95%;
+}
+
+.form-floating{
+    margin-bottom: 10px;
+}
+
+.card{
+    width: 500px;   
+}
+
+.card-title{
+    margin-bottom: 40px;
+}
+
+.auth-card{
+    width: 100%;
+}
+
+.error-message{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    z-index: 2;
+    top: 56px;
+    background-color:pink;
+    width: 100%;
+    border-bottom: black solid;
+    border-bottom-width: 1px;
+}
+
+.success-message{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    z-index: 2;
+    top: 56px;
+    background-color:lightgreen;
+    width: 100%;
+    border-bottom: black solid;
+    border-bottom-width: 1px;
+}
+
+
+.validation-fail{
+    border-color: red;
+}
+
+.validation-pass{
+    border-color: green;
+}
+
+.loading{
+    text-align: center;
+}
+
+.content{
+    margin-left: 230px;
+}
+
+.row{
+    margin: 0;
+}
+
+
+#dashboard{
+    position: relative;
+    min-height: 100%;
+}
+
+.chart{
+    margin: 0;
+    width: 100%;
+    height: 150px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+}
+
+.chart-h1{
+    text-align: center;
+    padding: 20px;
+}
+
+.offcanvas-start{
+    position: absolute;
+    height: inherit;
+    top: 206px;
+    width:200px;
+    margin: 0;
+    z-index:1000;
+    transition: all 300ms ease-in-out;
+}
+
+.offcanvas-body{
+    padding: 0;
+}
+
+
+
+#list{
+    margin-left: 200px;
+    transition: all 300ms ease-in-out;
+}
+
+#to-left{
+    margin-left: 10px;
+    transition: all 300ms ease-in-out;
+}
+
+
+.btn-outline-danger{
+    padding:5px;
+    margin: auto 0 auto 0;
+    font-size: 15px;
+}
+
+.logout{
+   padding: 3px;
+}
+
+.div-add{
+    float: right;
+}
+
+.add-form{
+    background-color: white;
+    width: 500px;
+    position: absolute;
+    top: 50px;
+}
+
+.add-form-description{
+    margin: 10px 0 5px 3px;
+}
+
+.description{
+    height: 50px;
+}
+
+.delete-icon{
+    float: right;
+    background: transparent;
+    border-width: 0;
+}
+
+.add-icon{
+    background: transparent;
+    border-width: 0;
+}
+
+.category-list{
+    height: 30px;
+}
+
+
+.title{
+    margin: 0 10px 10px 15px;
+}
+
+.category-btn{
+    background-color: transparent;
+    border: 0;
+}
+
+.profile-page{
+    width: 100%;
+}
+
+.account-details{
+    width: 450px;
+    margin: 0 auto 0 auto;
+    text-align: center;    
+}
+
+#delete-form{
+    display: inline-block;
+}
+.edit-icon{
+    float: right;
+    border: 0;
+    background: transparent;
+}
+
+.show{
+    visibility: visible;
+
+}
+
+.hidden{
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+}
