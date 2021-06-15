@@ -40,7 +40,7 @@ function Login(){
 
             <div className="auth-content" style={{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth2
-                    route="https://todolist-cvwo.herokuapp.com/api/login"
+                    route="https://todolist-backend-cvwo.herokuapp.com/api/login"
                     greetings="Welcome Back!"
                     google="Sign In With Google"
                     btn="Login"

@@ -153,7 +153,6 @@ function Dashboard(){
 
     function handleCategoryFilterClick(event){
         let filterValue = event.target.value;
-        setTitle(filterValue);
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
         method:"POST",
         body:JSON.stringify({
@@ -166,18 +165,19 @@ function Dashboard(){
         credentials: 'include',
         });      
         setTimeout(()=>{
+            setTitle(filterValue);
             updateListItems();
         },1000);
     }
 
     function handleShowAllClick(){
-        setTitle("All Items")
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         method:"POST",
         mode: "cors",
         credentials: 'include',
         });
         setTimeout(()=>{
+            setTitle("All Items")
             updateListItems();
         },1000);   
     }
