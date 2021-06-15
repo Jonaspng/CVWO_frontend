@@ -107,7 +107,7 @@ function Dashboard(){
         setTimeout(()=>{
             updateListItems();
             updateData();
-        },1000);
+        },1300);
                 
     }
 
@@ -121,7 +121,7 @@ function Dashboard(){
         setTimeout(()=>{
             updateCategory();
             updateData();
-        },1000);         
+        },1300);         
     }
 
     function handleItemDeleteClick(event){
@@ -147,7 +147,7 @@ function Dashboard(){
         });
         setTimeout(()=>{
             updateCategory();
-        },1000);
+        },1300);
     }
 
     function handleCategoryFilterClick(event){
@@ -166,7 +166,7 @@ function Dashboard(){
         setTimeout(()=>{
             updateListItems();
             setTitle(filterValue);
-        },1000);
+        },1300);
     }
 
     function handleShowAllClick(){
