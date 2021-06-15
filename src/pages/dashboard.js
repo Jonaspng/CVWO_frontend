@@ -237,9 +237,9 @@ function Dashboard(){
             .then((username) => setUsername(username.user.username));
         }, []);
 
-    console.log(listItem.length)
+    console.log(username)
 
-    if (listItem.length==0){
+    if (username===""){
         return(
             <div>
                 <TopProgressBar />;
