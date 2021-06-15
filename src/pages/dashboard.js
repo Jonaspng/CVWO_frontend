@@ -34,7 +34,6 @@ function Dashboard(){
     const [result, setResult] = useState(["0"]);
 
     function appendLabel(){
-        console.log(data)
         label.push("Null");
         for (let i=0;i<categories.length;i++){
             label.push(categories[i].category)
@@ -201,6 +200,8 @@ function Dashboard(){
         },1300);
     }
 
+    console.log(listItem)
+
 
     function getItems(x){
         number +=1; 
@@ -246,7 +247,6 @@ function Dashboard(){
             .then((username) => setUsername(username.user.username));
         }, []);
 
-    console.log(username)
 
     if (username===""){
         return(
