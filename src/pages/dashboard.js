@@ -135,7 +135,7 @@ function Dashboard(){
         setTimeout(()=>{
             updateListItems();
             updateData();
-        },1000);
+        },1500);
       }
 
 
@@ -165,7 +165,9 @@ function Dashboard(){
         mode: "cors",
         credentials: 'include',
         });      
-        updateListItems();
+        setTimeout(()=>{
+            updateListItems();
+        },1000);
     }
 
     function handleShowAllClick(){
@@ -175,7 +177,9 @@ function Dashboard(){
         mode: "cors",
         credentials: 'include',
         });
-        updateListItems();   
+        setTimeout(()=>{
+            updateListItems();
+        },1000);   
     }
 
     function handleEditClick(event){
