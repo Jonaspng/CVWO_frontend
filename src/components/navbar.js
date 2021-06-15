@@ -21,7 +21,7 @@ function Navbar(props) {
                   <a className="nav-link active" href={props.link3} aria-current="page">{props.item3}</a>
                 </li>
                 <li className="nav-item">
-                  <form className={props.logout} action="http://localhost:5000/api/logout" method="POST">
+                  <form className={props.logout} action="https://todolist-backend-cvwo.herokuapp.com/api/logout" method="POST">
                     <button name="button" type="submit" className="btn btn-outline-danger">Logout</button>
                   </form>
                 </li>

@@ -104,9 +104,12 @@ function Dashboard(){
         mode: 'cors',
         credentials: 'include',
         body:new FormData(document.getElementById("add-form"))});
-        updateListItems();
-        updateData();
-        document.getElementById("add-form").reset();        
+        document.getElementById("add-form").reset();
+        setTimeout(()=>{
+            updateListItems();
+            updateData();
+        },1000);
+                
     }
 
     function HandleAddCategoryClick(){
@@ -115,9 +118,11 @@ function Dashboard(){
         mode: 'cors',
         credentials: 'include',
         body:new FormData(document.getElementById("add-cat-form"))});
-        updateCategory();
-        updateData();
-        document.getElementById("add-cat-form").reset();         
+        document.getElementById("add-cat-form").reset();
+        setTimeout(()=>{
+            updateCategory();
+            updateData();
+        },1000);         
     }
 
     function handleItemDeleteClick(event){
