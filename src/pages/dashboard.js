@@ -165,8 +165,8 @@ function Dashboard(){
         credentials: 'include',
         });      
         setTimeout(()=>{
-            setTitle(filterValue);
             updateListItems();
+            setTitle(filterValue);
         },1000);
     }
 
@@ -177,8 +177,8 @@ function Dashboard(){
         credentials: 'include',
         });
         setTimeout(()=>{
-            setTitle("All Items")
             updateListItems();
+            setTitle("All Items");
         },1000);   
     }
 
@@ -194,11 +194,11 @@ function Dashboard(){
         mode: 'cors',
         credentials: 'include',
         body:new FormData(document.getElementById("edit-form"))});
+        document.getElementById("edit-form").reset();
         setTimeout(()=>{
             updateListItems();
             updateData();
-        },1000);
-        document.getElementById("edit-form").reset();
+        },1300);
     }
 
 
