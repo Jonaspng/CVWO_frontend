@@ -8,9 +8,41 @@ html,body,#root,.home-page{
 }
 
 
-.home-content{  
+.carousel-section{
+    padding: 20px 70px;
+    text-align: center;
+    background-color: #A0937D;
+}
+
+#carouselExampleCaptions{
+    margin-top: 20px;
+}
+
+.carousel-item img{
+    height: 450px;
+    
+}
+.carousel-control-next-icon,.carousel-control-prev-icon{
+    background-color: grey
+}
+
+.carousel-caption{
+    background-color: grey;
+    opacity: 80%;
+}
+
+.carousel-caption h5{
+    
+    color: black;
+}
+
+.home-content{
+    width: 100%;
     text-align: center;
     padding-top: 150px;
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size: cover;
  
 }
 
@@ -30,6 +62,13 @@ html,body,#root,.home-page{
     height: 96%;
 }
 
+footer{
+    background-color: #212529;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
 .auth-page{
     height: inherit;
 }
@@ -38,6 +77,9 @@ html,body,#root,.home-page{
     text-align: center;
     padding: 50px;
     min-height: 95%;
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-floating{
