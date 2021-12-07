@@ -104,7 +104,7 @@ function Dashboard(){
         credentials: 'include',
         body:new FormData(document.getElementById("add-form"))});
         document.getElementById("add-form").reset();
-        setTimeout(()=>{
+        setTimeout(() => {
             updateListItems();
             updateData();
         },1300);
@@ -118,7 +118,7 @@ function Dashboard(){
         credentials: 'include',
         body:new FormData(document.getElementById("add-cat-form"))});
         document.getElementById("add-cat-form").reset();
-        setTimeout(()=>{
+        setTimeout(() => {
             updateCategory();
             updateData();
         },1300);         
@@ -126,12 +126,12 @@ function Dashboard(){
 
     function handleItemDeleteClick(event){
         let id = event.target.value
-        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
         method:"DELETE",
         mode: 'cors',
         credentials: 'include'
         });
-        setTimeout(()=>{
+        setTimeout(() => {
             updateListItems();
             updateData();
         },1500);
@@ -140,12 +140,12 @@ function Dashboard(){
 
       function handleCategoryDeleteClick(event){
         let id = event.currentTarget.value
-        fetch("https://todolist-backend-cvwo.herokuapp.com/categories/"+id,{ 
+        fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{ 
         method:"DELETE",
         mode: 'cors',
         credentials: 'include',
         });
-        setTimeout(()=>{
+        setTimeout(() => {
             updateCategory();
         },1300);
     }
@@ -163,7 +163,7 @@ function Dashboard(){
         mode: "cors",
         credentials: 'include',
         });      
-        setTimeout(()=>{
+        setTimeout(() => {
             updateListItems();
             setTitle(filterValue);
         },1300);
@@ -175,7 +175,7 @@ function Dashboard(){
         mode: "cors",
         credentials: 'include',
         });
-        setTimeout(()=>{
+        setTimeout(() => {
             updateListItems();
             setTitle("All Items");
         },1000);   
@@ -194,7 +194,7 @@ function Dashboard(){
         credentials: 'include',
         body:new FormData(document.getElementById("edit-form"))});
         document.getElementById("edit-form").reset();
-        setTimeout(()=>{
+        setTimeout(() => {
             updateListItems();
             updateData();
         },1300);
@@ -204,7 +204,7 @@ function Dashboard(){
 
 
     function getItems(x){
-        number +=1; 
+        number += 1; 
         return(
             <tr key={x.id} >
                 <td>{number}</td>
@@ -212,12 +212,12 @@ function Dashboard(){
                 <td>{x.category}</td>
                 <td>{x.deadline}</td>
                 <td>
-                <form id="delete-form">
-                    <div className="form-check form-switch">
-                        <input name="id" value={x.id} onClick={handleItemDeleteClick} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
+                <form id = "delete-form">
+                    <div className = "form-check form-switch">
+                        <input name = "id" value={x.id} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
                     </div>
                 </form>
-                    <button onClick={handleEditClick} value={x.id} className="edit-icon"data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><EditIcon /></button>
+                    <button onClick = {handleEditClick} value = {x.id} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
                 </td>
             </tr>
         )
@@ -225,16 +225,16 @@ function Dashboard(){
 
     function getCategories(x){
         return(
-            <li className="category-list" key={x.id}>
-                <button className="category-btn" onClick={handleCategoryFilterClick} value={x.category}>{x.category}</button>
-                <button type="button" value={x.id} onClick={handleCategoryDeleteClick} className="delete-icon"><DeleteIcon /></button>            
+            <li className = "category-list" key = {x.id}>
+                <button className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.category}>{x.category}</button>
+                <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
         );
     }
 
     function getCategoriesOption(x){
         return(
-            <option key={x.id} value={x.category}>{x.category}</option>
+            <option key = {x.id} value = {x.category}>{x.category}</option>
         );
     }
 
@@ -252,28 +252,28 @@ function Dashboard(){
         return(
             <div>
                 <TopProgressBar />;
-                 <h1 className="loading">Loading</h1>
+                 <h1 className = "loading">Loading</h1>
             </div>
            
         );
-    }else{
+    } else{
         return(
-            <div id="dashboard">
+            <div id = "dashboard">
                 <Navbar 
-                    brand="/dashboard"
-                    item1={username}
-                    item2="Profile"
-                    link2="/profile"
-                    logout="logout"
+                    brand = "/dashboard"
+                    item1 = {username}
+                    item2 = "Profile"
+                    link2 = "/profile"
+                    logout = "logout"
                 />
                 <div className="chart">
-                    {data.reduce((a,b)=>a+b,0)==0?<h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width={"100"} height={"100"} options={options}/>}
+                    {data.reduce((a,b) => a + b,0) == 0?<h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width={"100"} height={"100"} options={options}/>}
                 </div>
                 <div>
-                    <div className={tabStatus?"offcanvas offcanvas-start show":"offcanvas offcanvas-start"}>
-                        <div className="offcanvas-header">
-                            <h5 className="offcanvas-title" id="offcanvasScrollingLabel">Categories</h5>
-                            <button className="add-icon" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><AddIcon/></button>
+                    <div className = {tabStatus?"offcanvas offcanvas-start show":"offcanvas offcanvas-start"}>
+                        <div className ="offcanvas-header">
+                            <h5 className ="offcanvas-title" id = "offcanvasScrollingLabel">Categories</h5>
+                            <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
                         </div>
                         <div className="offcanvas-body">
                             <ul>
@@ -283,14 +283,14 @@ function Dashboard(){
                     </div>
                     
                     <div id={toLeft}>
-                        <button onClick= {handleClick} className={btnColor}>{btnName}</button>
-                        <div className="div-add">
-                            <button onClick={handleShowAllClick} type="button" className="btn btn-dark">Show All Items</button>
-                            <button type="button" className="btn btn-primary btn-add" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ New Item</button>
+                        <button onClick = {handleClick} className = {btnColor}>{btnName}</button>
+                        <div className = "div-add">
+                            <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All Items</button>
+                            <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
                         </div>
                         <div>
-                            <h3 className="title">{title}</h3>
-                            <table className="table table-striped table-hover">
+                            <h3 className = "title">{title}</h3>
+                            <table className = "table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -307,78 +307,78 @@ function Dashboard(){
                         </div>
     
                     </div>
-                    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="staticBackdropLabel">Add Item</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div className = "modal-dialog">
+                            <div className = "modal-content">
+                                <div className = "modal-header">
+                                    <h5 className = "modal-title" id = "staticBackdropLabel">Add Item</h5>
+                                    <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
-                                <div className="modal-body">
-                                    <form id="add-form">
-                                        <p className="add-form-description">Title</p>
-                                        <input className="form-control" name="item[title]" placeholder="Title"/>
-                                        <p className="add-form-description">Description</p>
-                                        <textarea name="item[description]" placeholder="Description" className="form-control"></textarea>
-                                        <p className="add-form-description">Deadline</p>
-                                        <input className= "form-control" name="item[deadline]" type="date"></input>
-                                        <p className="add-form-description">Category</p>
-                                        <select name="item[category]" className="form-select form-select-sm" aria-label=".form-select-sm example">
-                                            <option value="Null">Null</option>
+                                <div className = "modal-body">
+                                    <form id = "add-form">
+                                        <p className = "add-form-description">Title</p>
+                                        <input className = "form-control" name = "item[title]" placeholder = "Title"/>
+                                        <p className = "add-form-description">Description</p>
+                                        <textarea name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
+                                        <p className = "add-form-description">Deadline</p>
+                                        <input className = "form-control" name = "item[deadline]" type = "date"></input>
+                                        <p className = "add-form-description">Category</p>
+                                        <select name = "item[category]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                            <option value = "Null">Null</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
                                 </div>
-                                <div className="modal-footer">
-                                    <button onClick={HandleAddItemClick} type="button" className="btn btn-primary" data-bs-dismiss="modal">Add Item</button>
+                                <div className = "modal-footer">
+                                    <button onClick = {HandleAddItemClick} type = "button" className =" btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
                                 </div>
                             </div>
                         </div>
                     </div>                                    
-                    <div className="modal fade" id="exampleModalCenter" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-                        <div className="modal-dialog modal-dialog-centered">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="staticBackdropLabel">Add Category</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className = "modal fade" id = "exampleModalCenter" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = "-1" aria-labelledby = "exampleModalCenterTitle" aria-hidden="true" >
+                        <div className = "modal-dialog modal-dialog-centered">
+                            <div className = "modal-content">
+                                <div className = "modal-header">
+                                    <h5 className = "modal-title" id = "staticBackdropLabel">Add Category</h5>
+                                    <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
-                                <div className="modal-body">
-                                    <form id="add-cat-form">
-                                        <p className="add-form-description">Category Name</p>
-                                        <input className="form-control" name="category" placeholder="Category Name"/>                           
+                                <div className = "modal-body">
+                                    <form id = "add-cat-form">
+                                        <p className = "add-form-description">Category Name</p>
+                                        <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
                                     </form>
                                 </div>
-                                <div className="modal-footer">
-                                    <button onClick={HandleAddCategoryClick} type="button" className="btn btn-primary" data-bs-dismiss="modal">Add Category</button>
+                                <div className = "modal-footer">
+                                    <button onClick = {HandleAddCategoryClick} type = "button" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="staticBackdropLabel">Add Item</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex = "-1" aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
+                        <div className = "modal-dialog">
+                            <div className = "modal-content">
+                                <div className = "modal-header">
+                                    <h5 className = "modal-title" id = "staticBackdropLabel">Add Item</h5>
+                                    <button type =" button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
-                                <div className="modal-body">
-                                    <form id="edit-form">
-                                        <p className="add-form-description">Title</p>
-                                        <input defaultValue={result[0].title} className="form-control" name="item[title]" placeholder="Title"/>
-                                        <p className="add-form-description">Description</p>
-                                        <textarea defaultValue={result[0].description} name="item[description]" placeholder="Description" className="form-control"></textarea>
-                                        <p className="add-form-description">Deadline</p>
-                                        <input defaultValue={result[0].deadline} className= "form-control" name="item[deadline]" type="date"></input>
-                                        <p className="add-form-description">Category</p>
-                                        <select  name="item[category]" className="form-select form-select-sm" aria-label=".form-select-sm example">
-                                            <option value={result[0].category}>{result[0].category}</option>
-                                            <option value="Null">Null</option>
+                                <div className = "modal-body">
+                                    <form id = "edit-form">
+                                        <p className = "add-form-description">Title</p>
+                                        <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
+                                        <p className = "add-form-description">Description</p>
+                                        <textarea defaultValue = {result[0].description} name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
+                                        <p className = "add-form-description">Deadline</p>
+                                        <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
+                                        <p className = "add-form-description">Category</p>
+                                        <select  name = "item[category]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                            <option value = {result[0].category}>{result[0].category}</option>
+                                            <option value = "Null">Null</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
                                 </div>
-                                <div className="modal-footer">
-                                    <button value={result[0].id} onClick={HandleUpdateItemClick} type="reset" className="btn btn-primary" data-bs-dismiss="modal">Edit Item</button>
+                                <div className = "modal-footer">
+                                    <button value = {result[0].id} onClick = {HandleUpdateItemClick} type = "reset" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
                                 </div>
                             </div>
                         </div>

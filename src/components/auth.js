@@ -1,12 +1,12 @@
-import React, {useState,useEffect}from "react";
+import React, {useState, useEffect} from "react";
 
 function Auth(props){
 
-    const [name,setName] = useState("");
+    const [name, setName] = useState("");
 
-    const [password,setPassword] = useState("");
+    const [password, setPassword] = useState("");
 
-    const [confirmPassword,setConfirmPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const [validation, setValidation] = useState("form-control");
 
@@ -40,10 +40,10 @@ function Auth(props){
             setValidation("form-control"); 
             setClick(false);        
         }
-      }, [confirmPassword,password]);
+      }, [confirmPassword, password]);
    
     return(
-        <div className="auth-card ">
+        <div className="auth-card">
             <div className="card mx-auto">
                 <form action={props.route} method="POST">
                     <div className="card-body">

@@ -10,7 +10,7 @@ function Error(props){
     return(
         <div className={className}>
             {props.message}
-            <button onClick={handleClick} type="btn" className="btn-close"></button>
+            <button onClick = {handleClick} type = "btn" className = "btn-close"></button>
         </div>
     );
 }

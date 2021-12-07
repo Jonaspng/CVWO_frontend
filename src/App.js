@@ -7,6 +7,8 @@ import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 
 
+// use is_loading = true
+
 function App(){
 
     const [auth,setAuth] = useState(false);
@@ -20,6 +22,7 @@ function App(){
       
 
     return(
+        // router paths
        <Router>
             <Switch>
                 <Route path="/" exact>

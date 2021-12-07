@@ -1,4 +1,4 @@
-
+// color scheme for pie chart
 const colorScheme = [
     "#25CCF7","#FD7272","#54a0ff","#00d2d3",
     "#1abc9c","#2ecc71","#3498db","#9b59b6","#34495e",
