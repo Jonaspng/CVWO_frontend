@@ -143,6 +143,7 @@ function Dashboard(){
 
     function handleCategoryDeleteClick(event){
         setCategoryConfirmation(window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted."))
+        display(categoryConfirmation)
         if (categoryConfirmation) {
             let id = event.currentTarget.value
             fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
