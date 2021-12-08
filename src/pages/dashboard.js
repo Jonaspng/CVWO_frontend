@@ -245,7 +245,7 @@ function Dashboard(){
 
     function getCategoriesOption(x){
         return(
-            <option key = {x.id} value = {x.category}>{x.category}</option>
+            <option key = {x.id} value = {x.id}>{x.category}</option>
         );
     }
 
