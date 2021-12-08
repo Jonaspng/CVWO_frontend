@@ -383,7 +383,7 @@ function Dashboard(){
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
                                             <option value = {result[0].category}>{result[0].category}</option>
-                                            <option value = "Null">Null</option>
+                                            <option value = "0">Null</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
