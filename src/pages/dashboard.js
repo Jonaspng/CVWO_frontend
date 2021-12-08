@@ -26,6 +26,8 @@ function Dashboard(){
 
     const [categories, setCategories] = useState([]);
 
+    const [itemCategories, setItemCategories] = useState([]);
+
     const [data, setData] = useState([]);
 
     const [listItem, setListItem] = useState([]);
@@ -83,6 +85,12 @@ function Dashboard(){
             .then((res) =>  res.json())
             .then((listItem) =>  setListItem(listItem.items));        
     }
+
+    function updateItemCategories(){
+        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+            .then((res) =>  res.json())
+            .then((itemCategories) =>  setItemCategories(itemCategories.categories));
+    }
     
     function handleClick(){
         if (tabStatus){
@@ -110,6 +118,7 @@ function Dashboard(){
         document.getElementById("add-form").reset();
         setTimeout(() => {
             updateListItems();
+            updateItemCategories();
             updateData();
         },1300);
                 
@@ -137,6 +146,7 @@ function Dashboard(){
         });
         setTimeout(() => {
             updateListItems();
+            updateItemCategories();
             updateData();
         },1500);
       }
@@ -156,6 +166,7 @@ function Dashboard(){
                 updateCategory();
                 updateData();
                 updateListItems();
+                updateItemCategories();
             },1300);
         } else {
             event.preventDefault();
@@ -177,6 +188,7 @@ function Dashboard(){
         });      
         setTimeout(() => {
             updateListItems();
+            updateItemCategories();
             setTitle(filterValue);
         },1300);
     }
@@ -208,6 +220,7 @@ function Dashboard(){
         document.getElementById("edit-form").reset();
         setTimeout(() => {
             updateListItems();
+            updateItemCategories();
             updateData();
         },1300);
     }
@@ -218,10 +231,10 @@ function Dashboard(){
     function getItems(x){
         number += 1; 
         return(
-            <tr key={x.id} >
+            <tr key = {x.id} >
                 <td>{number}</td>
                 <td>{x.title}</td>
-                <td>{x.category}</td>
+                <td>{itemCategories[number - 1]}</td>
                 <td>{x.deadline}</td>
                 <td>
                 <form id = "delete-form">
@@ -238,7 +251,7 @@ function Dashboard(){
     function getCategories(x){
         return(
             <li className = "category-list" key = {x.id}>
-                <button className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.category}>{x.category}</button>
+                <button className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
                 <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
         );
