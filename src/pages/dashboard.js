@@ -82,14 +82,14 @@ function Dashboard(){
 
     function updateListItems(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then((res) =>  res.json())
-            .then((listItem) =>  setListItem(listItem.items));        
+            .then((res) => res.json())
+            .then((listItem) => setListItem(listItem.items));        
     }
 
     function updateItemCategories(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then((res) =>  res.json())
-            .then((itemCategories) =>  setItemCategories(itemCategories.categories));
+            .then((itemCategories) => setItemCategories(itemCategories.categories));
         console.log(itemCategories);
     }
     
@@ -265,6 +265,7 @@ function Dashboard(){
     }
 
     useEffect(() => {
+        updateItemCategories();
         updateCategory();
         updateData();
         updateListItems();
