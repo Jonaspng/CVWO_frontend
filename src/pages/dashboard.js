@@ -106,6 +106,7 @@ function Dashboard(){
         mode: 'cors',
         credentials: 'include',
         body:new FormData(document.getElementById("add-form"))});
+        console.log(document.getElementById("add-form"));
         document.getElementById("add-form").reset();
         setTimeout(() => {
             updateListItems();
