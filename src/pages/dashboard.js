@@ -334,8 +334,8 @@ function Dashboard(){
                                         <p className = "add-form-description">Deadline</p>
                                         <input className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
-                                        <select name = "item[category]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = "Null">Null</option>
+                                        <select name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                            <option value = "0">Null</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
@@ -381,7 +381,7 @@ function Dashboard(){
                                         <p className = "add-form-description">Deadline</p>
                                         <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
-                                        <select  name = "item[category]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                        <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
                                             <option value = {result[0].category}>{result[0].category}</option>
                                             <option value = "0">Null</option>
                                             {categories.map(getCategoriesOption)}
