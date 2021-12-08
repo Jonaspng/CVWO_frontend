@@ -62,7 +62,7 @@ function Dashboard(){
         animation:{
             duration:0
         },
-        maintainAspectRatio: false ,
+        maintainAspectRatio: false,
       };
       
       
@@ -142,7 +142,7 @@ function Dashboard(){
 
 
     function handleCategoryDeleteClick(event){
-        categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted.")
+        setCategoryConfirmation(window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted."))
         if (categoryConfirmation) {
             let id = event.currentTarget.value
             fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
