@@ -11,7 +11,7 @@ function Dashboard(){
 
     let label=[];
 
-    let number=0;
+    let number = 0;
     
 
     const [categoryConfirmation, setCategoryConfirmation] = useState([]);
@@ -351,7 +351,7 @@ function Dashboard(){
                                         <input className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = "0">Null</option>
+                                            <option value = {0}>Null</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
