@@ -13,6 +13,9 @@ function Dashboard(){
 
     let number=0;
     
+
+    const [categoryConfirmation, setCategoryConfirmation] = useState(false);
+
     const [tabStatus, setTabStatus] =  useState(true);
 
     const [btnName, setBtnName] = useState("Close Categories tab");
@@ -138,16 +141,23 @@ function Dashboard(){
       }
 
 
-      function handleCategoryDeleteClick(event){
-        let id = event.currentTarget.value
-        fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{ 
-        method:"DELETE",
-        mode: 'cors',
-        credentials: 'include',
-        });
-        setTimeout(() => {
-            updateCategory();
-        },1300);
+    function handleCategoryDeleteClick(event){
+        categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted.")
+        if (categoryConfirmation) {
+            let id = event.currentTarget.value
+            fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
+                method:"DELETE",
+                mode: 'cors',
+                credentials: 'include',
+            });
+            setTimeout(() => {
+                updateCategory();
+                updateData();
+                updateListItems();
+            },1300);
+        } else {
+            event.preventDefault();
+        }
     }
 
     function handleCategoryFilterClick(event){

@@ -7,16 +7,16 @@ import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 
 
-// use is_loading = true
+
 
 function App(){
 
-    const [auth,setAuth] = useState(false);
-
-    useEffect( () => {
+    const [auth, setAuth] = useState(false);
+    
+    useEffect(() => {
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
             .then((res) => res.json())
-            .then((auth) => setAuth(auth.auth));        
+            .then((auth) => setAuth(auth.auth));   
       }, []);
 
       
@@ -25,19 +25,19 @@ function App(){
         // router paths
        <Router>
             <Switch>
-                <Route path="/" exact>
+                <Route path = "/" exact>
                     <Home />
                 </Route>
-                <Route path="/login" exact>
+                <Route path = "/login" exact>
                     <Login />
                 </Route>
-                <Route path="/register" exact>
+                <Route path = "/register" exact>
                     <Register />
                 </Route>
-                {auth && <Route path="/dashboard" exact>
+                {auth && <Route path = "/dashboard" exact>
                     <Dashboard />
                 </Route>}
-                {auth && <Route path="/profile" exact>
+                {auth && <Route path = "/profile" exact>
                     <Profile />
                 </Route>}
             </Switch>
