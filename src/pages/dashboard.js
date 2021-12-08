@@ -90,6 +90,7 @@ function Dashboard(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then((res) =>  res.json())
             .then((itemCategories) =>  setItemCategories(itemCategories.categories));
+        console.log(itemCategories);
     }
     
     function handleClick(){
@@ -114,7 +115,6 @@ function Dashboard(){
         mode: 'cors',
         credentials: 'include',
         body:new FormData(document.getElementById("add-form"))});
-        console.log(new FormData(document.getElementById("add-form")));
         document.getElementById("add-form").reset();
         setTimeout(() => {
             updateListItems();
@@ -206,8 +206,8 @@ function Dashboard(){
     }
 
     function handleEditClick(event){
-        var id= event.currentTarget.value;
-        setResult(listItem.filter(item=>item.id==id));   
+        var id = event.currentTarget.value;
+        setResult(listItem.filter(item => item.id == id));   
     }
 
     function HandleUpdateItemClick(event){
@@ -226,6 +226,7 @@ function Dashboard(){
     }
 
     console.log(listItem)
+    console.log(itemCategories)
 
 
     function getItems(x){
