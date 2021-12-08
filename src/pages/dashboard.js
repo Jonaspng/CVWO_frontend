@@ -142,7 +142,7 @@ function Dashboard(){
 
 
     function handleCategoryDeleteClick(event){
-        setCategoryConfirmation(window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted."));
+        setCategoryConfirmation(window.confirm("Are you sure you want to delete the category? All list item in the category will be transferred to null category."));
         console.log(categoryConfirmation);
         if (categoryConfirmation) {
             let id = event.currentTarget.value
