@@ -210,6 +210,12 @@ function Dashboard(){
             updateData();
         },1300);
     }
+    
+    function getCategoriesSidebar(){
+        if (categories.filter(y => y.id == x.category_id).length !== 0){
+            return categories.filter(y => y.id == x.category_id)[0].category
+        }
+    }
 
     console.log(listItem);
     console.log(categories);
@@ -221,7 +227,7 @@ function Dashboard(){
             <tr key = {x.id} >
                 <td>{number}</td>
                 <td>{x.title}</td>
-                <td>{categories.filter(y => y.id == x.category_id)[0].category}</td>
+                <td>{getCategoriesSidebar()}</td>
                 <td>{x.deadline}</td>
                 <td>
                 <form id = "delete-form">
