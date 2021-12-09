@@ -205,7 +205,8 @@ function Dashboard(){
 
     function handleEditClick(event){
         var id = event.currentTarget.value;
-        setResult(listItem.filter(item => item.id == id));   
+        setResult(listItem.filter(item => item.id == id));
+        display(result); 
     }
 
     function HandleUpdateItemClick(event){
