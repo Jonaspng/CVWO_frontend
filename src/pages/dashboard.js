@@ -12,9 +12,8 @@ function Dashboard(){
     let label = [];
 
     let number = 0;
-    
 
-    const [categoryConfirmation, setCategoryConfirmation] = useState([]);
+    const [categoryConfirmation, setCategoryConfirmation] = useState(false);
 
     const [tabStatus, setTabStatus] =  useState(true);
 
