@@ -39,8 +39,7 @@ function Dashboard(){
     const [result, setResult] = useState(["0"]);
 
     function appendLabel(){
-        label.push("Null");
-        for (let i=0;i<categories.length;i++){
+        for (let i = 0; i < categories.length; i++){
             label.push(categories[i].category)
         }
         return label;
@@ -90,7 +89,6 @@ function Dashboard(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then((res) =>  res.json())
             .then((itemCategories) => setItemCategories(itemCategories.categories));
-        console.log(itemCategories);
     }
     
     function handleClick(){
@@ -227,6 +225,7 @@ function Dashboard(){
 
     console.log(listItem)
     console.log(itemCategories)
+    console.log(category.filter(x => x !== "Null"))
 
 
     function getItems(x){
