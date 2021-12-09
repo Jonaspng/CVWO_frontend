@@ -224,8 +224,7 @@ function Dashboard(){
     }
 
     console.log(listItem);
-    console.log(itemCategories);
-    console.log(categories.filter(x => x !== "Null"))
+    console.log(categories)
 
 
     function getItems(x){
