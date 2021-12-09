@@ -80,12 +80,6 @@ function Dashboard(){
             .then((res) => res.json())
             .then((listItem) => setListItem(listItem.items));        
     }
-
-    function updateItemCategories(){
-        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then((res) =>  res.json())
-            .then((itemCategories) => setItemCategories(itemCategories.categories));
-    }
     
     function handleClick(){
         if (tabStatus){
@@ -112,7 +106,6 @@ function Dashboard(){
         document.getElementById("add-form").reset();
         setTimeout(() => {
             updateListItems();
-            updateItemCategories();
             updateData();
         },1300);
                 
@@ -140,7 +133,6 @@ function Dashboard(){
         });
         setTimeout(() => {
             updateListItems();
-            updateItemCategories();
             updateData();
         },1500);
       }
@@ -161,7 +153,6 @@ function Dashboard(){
                 updateCategory();
                 updateData();
                 updateListItems();
-                updateItemCategories();
             },1300);
         } else {
             event.preventDefault();
@@ -183,7 +174,6 @@ function Dashboard(){
         });      
         setTimeout(() => {
             updateListItems();
-            updateItemCategories();
             setTitle(event.target.name);
         },1300);
     }
@@ -217,7 +207,6 @@ function Dashboard(){
         document.getElementById("edit-form").reset();
         setTimeout(() => {
             updateListItems();
-            updateItemCategories();
             updateData();
         },1300);
     }
@@ -268,7 +257,6 @@ function Dashboard(){
     }
 
     useEffect(() => {
-        updateItemCategories();
         updateCategory();
         updateData();
         updateListItems();
