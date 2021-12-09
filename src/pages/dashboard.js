@@ -159,6 +159,7 @@ function Dashboard(){
                 mode: 'cors',
                 credentials: 'include',
             });
+            categoryConfirmation = false;
             setTimeout(() => {
                 updateCategory();
                 updateData();
@@ -232,7 +233,7 @@ function Dashboard(){
             <tr key = {x.id} >
                 <td>{number}</td>
                 <td>{x.title}</td>
-                <td>{itemCategories[number - 1]}</td>
+                <td>{categories.filter(y => y.id == x.category_id)[0].category}</td>
                 <td>{x.deadline}</td>
                 <td>
                 <form id = "delete-form">
@@ -291,7 +292,7 @@ function Dashboard(){
                     logout = "logout"
                 />
                 <div className="chart">
-                    {data.reduce((a,b) => a + b,0) == 0?<h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width={"100"} height={"100"} options={options}/>}
+                    {data.reduce((a,b) => a + b,0) == 0?<h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
                 </div>
                 <div>
                     <div className = {tabStatus?"offcanvas offcanvas-start show":"offcanvas offcanvas-start"}>
@@ -299,7 +300,7 @@ function Dashboard(){
                             <h5 className ="offcanvas-title" id = "offcanvasScrollingLabel">Categories</h5>
                             <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
                         </div>
-                        <div className="offcanvas-body">
+                        <div className = "offcanvas-body">
                             <ul>
                                 {categories.filter(x => x.category !== "Null").map(getCategories)}
                             </ul>                      
@@ -394,7 +395,7 @@ function Dashboard(){
                                         <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = {result[0].category}>{result[0].category}</option>
+                                            <option value = {result[0].category_id}>{categories.filter(x =>  x.id == result[0].category_id)[0].category}</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
