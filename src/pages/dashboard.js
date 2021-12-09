@@ -35,8 +35,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState([{title: "ignore", id: "ignore", description: "ignore", category: "ignore", category_id: "ignore"}]);
-
+    const [result, setResult] = useState(["0"])
     function appendLabel(){
         for (let i = 0; i < categories.length; i++){
             label.push(categories[i].category)
@@ -265,8 +264,7 @@ function Dashboard(){
     }
 
     function getCategoriesEdit(){
-        if (JSON.stringify(result) !== ["0"]){
-            console.log(result[0].category_id);
+        if (JSON.stringify(result) !== JSON.stringify(["0"])){
             return categories.filter(x => x.id == result[0].category_id)[0].category;
         }
     }
@@ -282,7 +280,7 @@ function Dashboard(){
         }, []);
 
 
-    if (username===""){
+    if (username == ""){
         return(
             <div>
                 <TopProgressBar />;
