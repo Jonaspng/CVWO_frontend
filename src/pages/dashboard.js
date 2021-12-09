@@ -25,8 +25,6 @@ function Dashboard(){
 
     const [categories, setCategories] = useState([]);
 
-    const [itemCategories, setItemCategories] = useState([]);
-
     const [data, setData] = useState([]);
 
     const [listItem, setListItem] = useState([]);
@@ -186,7 +184,7 @@ function Dashboard(){
         setTimeout(() => {
             updateListItems();
             updateItemCategories();
-            setTitle(filterValue);
+            setTitle(event.target.name);
         },1300);
     }
 
@@ -251,7 +249,7 @@ function Dashboard(){
     function getCategories(x){
         return(
             <li className = "category-list" key = {x.id}>
-                <button className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
+                <button name = {x.category} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
                 <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
         );
