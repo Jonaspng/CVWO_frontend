@@ -224,7 +224,8 @@ function Dashboard(){
     }
 
     console.log(listItem);
-    console.log(categories)
+    console.log(categories);
+    console.log(categories.filter(x => x.id == result[0].category_id));
 
 
     function getItems(x){
