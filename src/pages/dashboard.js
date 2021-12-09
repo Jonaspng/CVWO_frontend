@@ -264,7 +264,7 @@ function Dashboard(){
     }
 
     function getCategoriesEdit(){
-        if (JSON.stringify(result) !== [0]){
+        if (JSON.stringify(result) !== ["0"]){
             return categories.filter(x => x.id == result[0].category_id)[0].category;
         }
     }
