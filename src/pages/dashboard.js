@@ -9,7 +9,7 @@ import colorScheme from "../components/color"
 
 function Dashboard(){
 
-    let label=[];
+    let label = [];
 
     let number = 0;
     
@@ -223,9 +223,9 @@ function Dashboard(){
         },1300);
     }
 
-    console.log(listItem)
-    console.log(itemCategories)
-    console.log(category.filter(x => x !== "Null"))
+    console.log(listItem);
+    console.log(itemCategories);
+    console.log(categories.filter(x => x !== "Null"))
 
 
     function getItems(x){
