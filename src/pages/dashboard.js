@@ -35,7 +35,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState({category: "ignore"});
+    const [result, setResult] = useState({category: "ignore", category_id: "ignore"});
 
     function appendLabel(){
         for (let i = 0; i < categories.length; i++){
@@ -225,7 +225,6 @@ function Dashboard(){
 
     console.log(listItem);
     console.log(categories);
-    console.log(categories.filter(x => x.id == result[0].category_id));
 
 
     function getItems(x){
