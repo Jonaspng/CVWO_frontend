@@ -302,7 +302,7 @@ function Dashboard(){
                         </div>
                         <div className="offcanvas-body">
                             <ul>
-                                {categories.filter(x => x !== "Null").map(getCategories)}
+                                {categories.filter(x => x.category !== "Null").map(getCategories)}
                             </ul>                      
                         </div>
                     </div>
