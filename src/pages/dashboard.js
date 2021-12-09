@@ -35,7 +35,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState({category: "ignore", category_id: "ignore"});
+    const [result, setResult] = useState({title: "ignore", id: "ignore", description: "ignore", category: "ignore", category_id: "ignore"});
 
     function appendLabel(){
         for (let i = 0; i < categories.length; i++){
