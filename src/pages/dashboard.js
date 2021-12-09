@@ -402,7 +402,7 @@ function Dashboard(){
                                         <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = {result[0].category_id}>{getCategoriesEdit}</option>
+                                            <option value = {result[0].category_id}>{getCategoriesEdit()}</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
