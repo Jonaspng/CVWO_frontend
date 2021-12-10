@@ -14,7 +14,7 @@ function App(){
     const [auth, setAuth] = useState(false);
     
     useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
+        async () => await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
             .then((res) => res.json())
             .then((auth) => setAuth(auth.auth));   
       }, []);

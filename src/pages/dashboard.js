@@ -66,14 +66,14 @@ function Dashboard(){
     async function updateCategory(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
             .then(res => res.json())
-            .then((categories) => setListItem(categories.categories));
+            .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
             .then(res => res.json())
-            .then((data) => setListItem(data.data));
+            .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
