@@ -63,21 +63,18 @@ function Dashboard(){
       };
       
       
-    function updateCategory(){
-        async () => {
+    const updateCategory = async () => {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
               .then(res => res.json())
               .then((categories) => setListItem(categories.categories));
         }
-    }
 
-    function updateData(){
-        async () => {
+
+    const updateData = async () => {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
               .then(res => res.json())
               .then((data) => setListItem(data.data));
         }
-    }
 
     function updateListItems(){
         async () => {
