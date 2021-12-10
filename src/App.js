@@ -17,7 +17,7 @@ function App(){
                         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
                             .then((res) => res.json())
                             .then((auth) => setAuth(auth.auth))};   
-    useEffect(() => {updateAuth}, []);
+    useEffect(() => {updateAuth()}, []);
     console.log(auth);
 
       
