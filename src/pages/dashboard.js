@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { Pie } from "react-chartjs-2";
+import {Pie} from "react-chartjs-2";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
 import colorScheme from "../components/color"
@@ -197,10 +197,6 @@ function Dashboard(){
             return categories.filter(y => y.id == x.category_id)[0].category
         }
     }
-
-    console.log(listItem);
-    console.log(categories);
-
 
     function getItems(x){
         number += 1; 
