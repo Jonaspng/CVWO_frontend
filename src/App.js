@@ -42,6 +42,7 @@ function App(){
                         <Route path = "/profile" exact>
                             <Profile />
                         </Route>
+                        <Redirect to ="/dashboard"/>
                     </Switch>
                 </Router>);
         } else {
@@ -57,6 +58,7 @@ function App(){
                         <Route path = "/register" exact>
                             <Register />
                         </Route>
+                        <Redirect to ="/" />
                     </Switch>
            </Router>)
         }
