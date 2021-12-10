@@ -76,13 +76,11 @@ function Dashboard(){
               .then((data) => setListItem(data.data));
         }
 
-    function updateListItems(){
-        async () => {
+    const updateListItems = async () => {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
               .then(res => res.json())
               .then((listItem) => setListItem(listItem.items));
-        }    
-    }
+        }
     
     function handleClick(){
         if (tabStatus){
