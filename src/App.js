@@ -11,18 +11,20 @@ import Profile from "./pages/profile";
 
 function App(){
 
-    const [auth, setAuth] = useState();
+    const [auth, setAuth] = useState("false");
     
     const updateAuth = async () => {
-                        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
+                        await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
                             .then((res) => res.json())
                             .then((auth) => setAuth(auth.auth))};   
 
-    useEffect(() => {updateAuth()}, []);
+    useEffect(() => {updateAuth()}, [auth]);
     
     console.log(auth);
 
     function routes(){
+        console.log("ok");
+        console.log(auth);
         if (auth){
             return (
                 <Router>
