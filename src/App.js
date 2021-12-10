@@ -18,13 +18,9 @@ function App(){
                             .then((res) => res.json())
                             .then((auth) => setAuth(auth.auth))};   
 
-    useEffect(() => {updateAuth()}, [auth]);
-    
-    console.log(auth);
+    useEffect(() => {updateAuth()}, []);
 
     function routes(){
-        console.log("ok");
-        console.log(auth);
         if (auth){
             return (
                 <Router>
