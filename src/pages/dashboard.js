@@ -64,21 +64,27 @@ function Dashboard(){
       
       
     function updateCategory(){
-         fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
-            .then((res) => res.json())
-            .then((categories) => setCategories(categories.categories));
+        async () => {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
+              .then(res => res.json())
+              .then((categories) => setListItem(categories.categories));
+        }
     }
 
     function updateData(){
-         fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
-            .then((res) =>  res.json())
-            .then((data) => setData(data.data));        
+        async () => {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
+              .then(res => res.json())
+              .then((data) => setListItem(data.data));
+        }
     }
 
     function updateListItems(){
-        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then((res) => res.json())
-            .then((listItem) => setListItem(listItem.items));        
+        async () => {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+              .then(res => res.json())
+              .then((listItem) => setListItem(listItem.items));
+        }    
     }
     
     function handleClick(){
@@ -98,62 +104,58 @@ function Dashboard(){
 
 
     function HandleAddItemClick(){
-        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
-        method:"POST",
-        mode: 'cors',
-        credentials: 'include',
-        body:new FormData(document.getElementById("add-form"))});
+        async () => {
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
+                method:"POST",
+                mode: 'cors',
+                credentials: 'include',
+                body:new FormData(document.getElementById("add-form"))});
         document.getElementById("add-form").reset();
-        setTimeout(() => {
-            updateListItems();
-            updateData();
-        },1300);
-                
+        updateListItems();
+        updateData();
+        }   
     }
 
     function HandleAddCategoryClick(){
-        fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
-        method:"POST",
-        mode: 'cors',
-        credentials: 'include',
-        body:new FormData(document.getElementById("add-cat-form"))});
-        document.getElementById("add-cat-form").reset();
-        setTimeout(() => {
+        async () => {
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
+                method:"POST",
+                mode: 'cors',
+                credentials: 'include',
+                body:new FormData(document.getElementById("add-cat-form"))});
             updateCategory();
             updateData();
-        },1300);         
+        }     
     }
 
     function handleItemDeleteClick(event){
         let id = event.target.value
-        fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
-        method:"DELETE",
-        mode: 'cors',
-        credentials: 'include'
-        });
-        setTimeout(() => {
+        async () => {
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
+                method:"DELETE",
+                mode: 'cors',
+                credentials: 'include'});
             updateListItems();
             updateData();
-        },1500);
+        }
       }
 
 
     function handleCategoryDeleteClick(event){
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
-        console.log(categoryConfirmation);
-        if (categoryConfirmation == true) {
+        if (categoryConfirmation) {
             let id = event.currentTarget.value
-            fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
-                method:"DELETE",
-                mode: 'cors',
-                credentials: 'include',
-            });
-            categoryConfirmation = false;
-            setTimeout(() => {
+            async () => {
+                await fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
+                    method:"DELETE",
+                    mode: 'cors',
+                    credentials: 'include',
+                });
+                categoryConfirmation = false;
                 updateCategory();
                 updateData();
                 updateListItems();
-            },1300);
+            }
         } else {
             event.preventDefault();
         }
@@ -161,40 +163,38 @@ function Dashboard(){
 
     function handleCategoryFilterClick(event){
         let filterValue = event.target.value;
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
-        method:"POST",
-        body:JSON.stringify({
-            filterValue: filterValue,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-        },
-        mode: "cors",
-        credentials: 'include',
-        });      
-        setTimeout(() => {
+        async () => {
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
+                method:"POST",
+                body:JSON.stringify({
+                    filterValue: filterValue,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                },
+                mode: "cors",
+                credentials: 'include',
+            });
             updateListItems();
             setTitle(event.target.name);
-        },1300);
+        }
     }
 
     function handleShowAllClick(){
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
-        method:"POST",
-        mode: "cors",
-        credentials: 'include',
-        });
-        setTimeout(() => {
+        async () => {
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
+                method:"POST",
+                mode: "cors",
+                credentials: 'include',
+            });
             updateListItems();
             setTitle("All Items");
-        },1000);   
+        }
     }
 
     function handleEditClick(event){
         var id = event.currentTarget.value;
         setResult(listItem.filter(item => item.id == id));
-        console.log("ok");
-        console.log(result); 
     }
 
     function HandleUpdateItemClick(event){
