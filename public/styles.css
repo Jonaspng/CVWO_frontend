@@ -2,6 +2,10 @@ html,body,#root,.home-page{
     height: 100%;
 }
 
+::-webkit-scrollbar {
+    width: 9px;
+  }
+
 .btn{
     margin: 10px;
 }
