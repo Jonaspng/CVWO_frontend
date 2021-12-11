@@ -274,7 +274,7 @@ function Dashboard(){
                     <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
                         <div className ="offcanvas1-header">
                             <h5 className="offcanvas1-title">Categories</h5>
-                            <button className = "add-icon"><AddIcon/></button>
+                            <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
                         </div>
                         <div className = "offcanvas1-body">
                             <ul>
@@ -354,7 +354,7 @@ function Dashboard(){
                             </div>
                         </div>
                     </div>
-                    <div className="modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex = "-1" aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
+                    <div className = "modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex = "-1" aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
                         <div className = "modal-dialog">
                             <div className = "modal-content">
                                 <div className = "modal-header">
