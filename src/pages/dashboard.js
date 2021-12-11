@@ -115,6 +115,7 @@ function Dashboard(){
             mode: 'cors',
             credentials: 'include',
             body:new FormData(document.getElementById("add-cat-form"))});
+        document.getElementById("add-cat-form").reset();
         updateCategory();
         updateData();
     }

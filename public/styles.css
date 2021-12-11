@@ -146,7 +146,7 @@ footer{
 
 #dashboard{
     position: relative;
-    min-height: 100%;
+    height: 100%;
 }
 
 .chart{
@@ -164,14 +164,14 @@ footer{
 }
 
 .below-chart{
-    height: 70%;
+    height: 63%;
+    overflow-y: scroll;
 }
 
 
 .offcanvas1.show{
     transform: none;
-    margin-left: 0;
-    
+    bottom: 0;
 }
 .offcanvas1{
     display: flex;
@@ -179,7 +179,6 @@ footer{
     border-right: 1px solid rgba(0,0,0,.2);
     background-clip: padding-box;
     outline: 0;
-    margin-left: -100px;
 }
 
 .offcanvas1-header{
@@ -190,13 +189,12 @@ footer{
 }
 
 .offcanvas-start1{
-    left: 0;
     visibility: hidden;
     position: absolute;
     height: inherit;
     width:200px;
     margin: 0;
-    z-index:1000;
+    z-index: 1000;
     transition: all 300ms ease-in-out;
     transform: translateX(-100%);
 }
