@@ -248,7 +248,7 @@ function Dashboard(){
             .then((username) => setUsername(username.user.username));
         }, []);
 
-
+    // to make sure that the page finishes fetching all information before rendering
     if (username == ""){
         return(
             <div>
@@ -267,23 +267,23 @@ function Dashboard(){
                     link2 = "/profile"
                     logout = "logout"
                 />
-                <div className="chart">
-                    {data.reduce((a,b) => a + b,0) == 0?<h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
+                <div className = "chart">
+                    {data.reduce((a, b) => a + b, 0) == 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
                 </div>
-                <div>
-                    <div className = {tabStatus?"offcanvas offcanvas-start show":"offcanvas offcanvas-start"}>
-                        <div className ="offcanvas-header">
-                            <h5 className ="offcanvas-title" id = "offcanvasScrollingLabel">Categories</h5>
-                            <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
+                <div className = "below-chart">
+                    <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
+                        <div className ="offcanvas1-header">
+                            <h5 className="offcanvas1-title">Categories</h5>
+                            <button className = "add-icon"><AddIcon/></button>
                         </div>
-                        <div className = "offcanvas-body">
+                        <div className = "offcanvas1-body">
                             <ul>
                                 {categories.filter(x => x.category !== "Null").map(getCategories)}
                             </ul>                      
                         </div>
                     </div>
                     
-                    <div id={toLeft}>
+                    <div id = {toLeft}>
                         <button onClick = {handleClick} className = {btnColor}>{btnName}</button>
                         <div className = "div-add">
                             <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All Items</button>
@@ -330,7 +330,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button onClick = {HandleAddItemClick} type = "button" className =" btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
+                                    <button onClick = {HandleAddItemClick} type = "button" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
                                 </div>
                             </div>
                         </div>
@@ -385,9 +385,7 @@ function Dashboard(){
                 </div>
             </div>
         );
-    }
-
-    
+    }    
 }
 
 export default Dashboard;
