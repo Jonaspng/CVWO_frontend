@@ -203,6 +203,7 @@ footer{
     visibility: hidden;
     position: absolute;
     height: inherit;
+    overflow-y: scroll;
     width:200px;
     margin: 0;
     z-index: 1000;
