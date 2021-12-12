@@ -13,10 +13,10 @@ function App(){
 
     const [auth, setAuth] = useState();
     
-    const updateAuth = async () => {
-                        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
-                            .then((res) => res.json())
-                            .then((auth) => setAuth(auth.auth))};   
+    async function updateAuth(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
+                    .then((res) => res.json())
+                    .then((auth) => setAuth(auth.auth))}; 
 
     useEffect(() => {updateAuth()}, []);
 
