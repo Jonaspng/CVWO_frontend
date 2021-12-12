@@ -185,7 +185,6 @@ footer{
 
 .offcanvas1.show{
     transform: none;
-    bottom: 0;
 }
 .offcanvas1{
     display: flex;

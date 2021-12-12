@@ -20,8 +20,6 @@ function App(){
 
     useEffect(() => {updateAuth()}, []);
 
-    console.log(auth);
-
     function routes(){
         if (auth){
             return (
