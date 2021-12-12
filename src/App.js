@@ -11,10 +11,10 @@ import Profile from "./pages/profile";
 
 function App(){
 
-    const [auth, setAuth] = useState("false");
+    const [auth, setAuth] = useState(false);
     
     const updateAuth = async () => {
-                        await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
+                        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
                             .then((res) => res.json())
                             .then((auth) => setAuth(auth.auth))};   
 
