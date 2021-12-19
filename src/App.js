@@ -18,7 +18,7 @@ function App(){
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))}; 
 
-    useEffect(() => {updateAuth()}, [updateAuth()]);
+    useEffect(() => {updateAuth()}, []);
     console.log(auth)
 
     function routes(){
