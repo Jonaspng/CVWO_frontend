@@ -19,6 +19,7 @@ function App(){
                     .then((auth) => setAuth(auth.auth))}; 
 
     useEffect(() => {updateAuth()}, []);
+    console.log(auth)
 
     function routes(){
         if (auth){
