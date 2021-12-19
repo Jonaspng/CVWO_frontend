@@ -7,7 +7,7 @@ function Register(){
     
     const [error,setError] = useState([]);
 
-  
+    // use to fetch possible errors from backend
     useEffect(()  => {
         fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ withCredentials: true, credentials: 'include'})
           .then((res)  => res.json())
@@ -20,8 +20,6 @@ function Register(){
         )
     }
  
-
-
     return(
         <div className = "auth-page">
             <Navbar 
