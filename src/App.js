@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from "react";
-import {BrowserRouter as Router, Route, Redirect,Switch} from "react-router-dom";
+import React, {useState,useEffect} from "react";
+import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import Home from "./pages/home"
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -22,6 +22,15 @@ function App(){
     console.log(auth)
 
     function routes(){
+        // with new version of react-router-dom
+        // below is the new syntax
+        // <BrowserRouter>
+        //         <Routes>
+        //         <Route path="/" element={<App />} />
+        //         <Route path="expenses" element={<Expenses />} />
+        //         <Route path="invoices" element={<Invoices />} />
+        //     </Routes>
+        // </BrowserRouter>
         if (auth){
             return (
                 <Router>
