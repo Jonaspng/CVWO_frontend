@@ -14,11 +14,8 @@ function App(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))}; 
-
-    useEffect(() => {updateAuth()}, []);
-    console.log(auth)
-
-    async function routes(){
+                    
+    function routes(){
         // with new version of react-router-dom
         // below is the new syntax
         // <BrowserRouter>
@@ -28,12 +25,8 @@ function App(){
         //         <Route path="/invoices" element={<Invoices />} />
         //     </Routes>
         // </BrowserRouter>
-        useEffect(() => {
-            await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
-                .then((res) => res.json())
-                .then((auth) => setAuth(auth.auth));
-        }, [])
-
+        useEffect(() => {updateAuth()}, []);
+        console.log(auth)
         if (auth == "true"){
             return (
                 <Router>
