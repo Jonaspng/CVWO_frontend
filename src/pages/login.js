@@ -19,7 +19,7 @@ function Login(){
     function getMessage(x){
     return(
         <Error 
-            message={x}/>
+            message = {x}/>
         )
     }
 
@@ -38,17 +38,14 @@ function Login(){
 
             {error.map(getMessage)}
 
-            <div className="auth-content" style={{backgroundImage: "url(/Clean-Desk.jpg)"}}>
+            <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth2
                     route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
                     greetings = "Welcome Back!"
-                    google = "Sign In With Google"
                     btn = "Login"
                  />
             </div>
-            
         </div>
-        
     );
 }
 

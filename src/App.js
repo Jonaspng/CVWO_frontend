@@ -6,15 +6,12 @@ import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 
-
-
-
 function App(){
 
-    const [auth, setAuth] = useState("false");
+    const [auth, setAuth] = useState();
     
     async function updateAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{ credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))}; 
 
@@ -27,8 +24,8 @@ function App(){
         // <BrowserRouter>
         //         <Routes>
         //         <Route path="/" element={<App />} />
-        //         <Route path="expenses" element={<Expenses />} />
-        //         <Route path="invoices" element={<Invoices />} />
+        //         <Route path="/expenses" element={<Expenses />} />
+        //         <Route path="/invoices" element={<Invoices />} />
         //     </Routes>
         // </BrowserRouter>
         if (auth){
@@ -71,8 +68,6 @@ function App(){
            </Router>)
         }
     }
-
-      
 
     return(
         // router paths
