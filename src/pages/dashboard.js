@@ -263,14 +263,7 @@ function Dashboard(){
     console.log(auth);
 
     // to make sure that the page finishes fetching all information before rendering
-    if  (auth == "true" && username == "") {
-        return(
-            <div>
-                <TopProgressBar />;
-                 <h1 className = "loading">Loading</h1>
-            </div>
-        );
-    } else if (auth == "true" && username != ""){
+    if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -319,7 +312,6 @@ function Dashboard(){
                                 </tbody>
                             </table>
                         </div>
-    
                     </div>
                     <div className="modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div className = "modal-dialog">
@@ -398,10 +390,11 @@ function Dashboard(){
                 </div>
             </div>
         );
-    } else{
-        return (
+    } else {
+        return(
             <div>
-                <p>testing</p>
+                <TopProgressBar />;
+                <h1 className = "loading">Loading User Information</h1>
             </div>
         );
     }
