@@ -251,10 +251,10 @@ function Dashboard(){
     }
 
     useEffect(() => {
+        getAuth();
         updateCategory();
         updateData();
         updateListItems();
-        getAuth();
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
@@ -390,6 +390,8 @@ function Dashboard(){
                 </div>
             </div>
         );
+    } else if (auth == "false"){
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
     } else {
         return(
             <div>
