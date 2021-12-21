@@ -6,7 +6,7 @@ import {Pie} from "react-chartjs-2";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
 import colorScheme from "../components/color";
-import Home from "./home.js";
+
 
 function Dashboard(){
 
@@ -36,7 +36,7 @@ function Dashboard(){
 
     const [result, setResult] = useState(["0"])
 
-    const [auth, setAuth] = useState("false")
+    const [auth, setAuth] = useState("")
 
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
@@ -260,10 +260,12 @@ function Dashboard(){
             .then((username) => setUsername(username.user.username));
     }, []);
 
+    console.log(auth);
+
     // to make sure that the page finishes fetching all information before rendering
     if (auth != "true") {
         window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    } else if  (username == "") {
+    } else if  (auth == "true" && username == "") {
         return(
             <div>
                 <TopProgressBar />;
