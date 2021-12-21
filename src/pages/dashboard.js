@@ -254,7 +254,9 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        getAuth();
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
+                    .then((res) => res.json())
+                    .then((auth) => setAuth(auth.auth))
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
