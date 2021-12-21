@@ -5,7 +5,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import {Pie} from "react-chartjs-2";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
-import colorScheme from "../components/color"
+import colorScheme from "../components/color";
+import Home from "./home.js";
 
 function Dashboard(){
 
@@ -34,6 +35,15 @@ function Dashboard(){
     const [username, setUsername] = useState("");
 
     const [result, setResult] = useState(["0"])
+
+    const [auth, setAuth] = useState("false")
+
+    async function getAuth(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
+                    .then((res) => res.json())
+                    .then((auth) => setAuth(auth.auth))
+    }
+
     function appendLabel(){
         for (let i = 0; i < categories.length; i++){
             label.push(categories[i].category)
@@ -244,21 +254,23 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
+        getAuth();
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
     }, []);
 
     // to make sure that the page finishes fetching all information before rendering
-    if (username == ""){
+    if (auth != "true") {
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    } else if  (username == "") {
         return(
             <div>
                 <TopProgressBar />;
                  <h1 className = "loading">Loading</h1>
             </div>
-           
         );
-    } else{
+    } else {
         return(
             <div id = "dashboard">
                 <Navbar 
