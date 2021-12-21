@@ -263,16 +263,14 @@ function Dashboard(){
     console.log(auth);
 
     // to make sure that the page finishes fetching all information before rendering
-    if (auth != "true") {
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    } else if  (auth == "true" && username == "") {
+    if  (auth == "true" && username == "") {
         return(
             <div>
                 <TopProgressBar />;
                  <h1 className = "loading">Loading</h1>
             </div>
         );
-    } else {
+    } else if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -400,7 +398,9 @@ function Dashboard(){
                 </div>
             </div>
         );
-    }    
+    } else{
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    }
 }
 
 export default Dashboard;
