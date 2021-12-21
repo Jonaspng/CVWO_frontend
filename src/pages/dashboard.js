@@ -247,7 +247,7 @@ function Dashboard(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
-        }, []);
+    }, []);
 
     // to make sure that the page finishes fetching all information before rendering
     if (username == ""){
