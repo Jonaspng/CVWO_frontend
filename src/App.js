@@ -8,7 +8,7 @@ import Profile from "./pages/profile";
 
 function App(){
 
-    const [auth, setAuth] = useState();
+    const [auth, setAuth] = useState("false");
     
     async function updateAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
@@ -28,8 +28,7 @@ function App(){
         //         <Route path="/invoices" element={<Invoices />} />
         //     </Routes>
         // </BrowserRouter>
-        if (auth == "true"){
-            console.log(auth)
+        if (auth){
             return (
                 <Router>
                     <Switch>
