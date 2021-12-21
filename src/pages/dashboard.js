@@ -255,8 +255,8 @@ function Dashboard(){
         updateData();
         updateListItems();
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
-                    .then((res) => res.json())
-                    .then((auth) => setAuth(auth.auth))
+                .then((res) => res.json())
+                .then((auth) => setAuth(auth.auth))
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
@@ -401,7 +401,7 @@ function Dashboard(){
             </div>
         );
     } else{
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+        
     }
 }
 

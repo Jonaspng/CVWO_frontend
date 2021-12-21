@@ -6,7 +6,7 @@ import Error from "../components/error"
 
 function Login(){
 
-    const [error, setError] = useState([])
+    const [error, setError] = useState()
 
     useEffect(() => {
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{withCredentials: true, credentials: 'include'})
@@ -14,13 +14,12 @@ function Login(){
           .then((error) => setError(error.error));
       }, []);
 
-    console.log(error)
 
     function getMessage(x){
-    return(
-        <Error 
-            message = {x}/>
-        )
+        return(
+            <Error 
+                message = {x}/>
+            )
     }
 
     return(
