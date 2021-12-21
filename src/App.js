@@ -14,7 +14,10 @@ function App(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))}; 
-                    
+
+    useEffect(() => {updateAuth()}, []);
+    console.log(auth)
+
     function routes(){
         // with new version of react-router-dom
         // below is the new syntax
@@ -25,9 +28,8 @@ function App(){
         //         <Route path="/invoices" element={<Invoices />} />
         //     </Routes>
         // </BrowserRouter>
-        useEffect(() => {updateAuth()}, []);
-        console.log(auth)
         if (auth == "true"){
+            console.log(auth)
             return (
                 <Router>
                     <Switch>
