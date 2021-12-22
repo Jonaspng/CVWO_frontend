@@ -9,13 +9,16 @@ import colorScheme from "../components/color";
 
 
 function Dashboard(){
-
+    
+    // Used to store category label for pie chart
     let label = [];
-
+    
+    // number variable helps in labeling of table
     let number = 0;
 
     let categoryConfirmation = false;
-
+    
+    // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
 
     const [btnName, setBtnName] = useState("Close Categories tab");
@@ -71,8 +74,9 @@ function Dashboard(){
         },
         maintainAspectRatio: false,
       };
-      
-      
+    
+    // fetch is used here to parse data to backend and fetch data from backend
+    // async functions below with await help make sure it finish fetching information before moving on
     async function updateCategory(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
             .then(res => res.json())
@@ -92,6 +96,7 @@ function Dashboard(){
             .then((listItem) => setListItem(listItem.items));
     }
     
+    // this function settles the category side bar
     function handleClick(){
         if (tabStatus){
             setTabStatus(false);
@@ -106,7 +111,6 @@ function Dashboard(){
             setBtnColor("btn btn-danger");
         }  
     }
-
 
     async function HandleAddItemClick(){
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
@@ -250,6 +254,7 @@ function Dashboard(){
         }
     }
 
+    // updates auth, category, data and list items
     useEffect(() => {
         getAuth();
         updateCategory();
@@ -259,10 +264,10 @@ function Dashboard(){
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
     }, []);
-
-    console.log(auth);
-
-    // to make sure that the page finishes fetching all information before rendering
+    
+    // It checks with backend to see whether the user is logged in 
+    // If auth == "false" the user will be redirected to the home page
+    // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
     if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
