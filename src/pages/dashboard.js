@@ -278,9 +278,8 @@ function Dashboard(){
                     {data.reduce((a, b) => a + b, 0) == 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
                 </div>
                 <div className = "below-chart">
-                    
                     <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
-                        <button className = "sidebar-btn2" onClick = {handleSidebarClick}><i className = {btnsymbol}></i></button>
+                        <button className = "sidebar-btn" onClick = {handleSidebarClick}><i className = {btnsymbol}></i></button>
                         <div className ="offcanvas1-header">
                             <h5 className="offcanvas1-title">Categories</h5>
                             <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
