@@ -21,11 +21,9 @@ function Dashboard(){
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
 
-    const [btnName, setBtnName] = useState("Close Categories tab");
+    const [btnsymbol, setBtnSymbol] = useState("fas fa-chevron-left");
 
     const [toLeft, setToLeft] = useState("list");
-
-    const [btnColor, setBtnColor] = useState("btn btn-danger");
 
     const [categories, setCategories] = useState([]);
 
@@ -97,18 +95,16 @@ function Dashboard(){
     }
     
     // this function settles the category side bar
-    function handleClick(){
+    function handleSidebarClick(){
         if (tabStatus){
             setTabStatus(false);
-            setBtnName("Open Categories tab");
-            setToLeft("to-left");
-            setBtnColor("btn btn-success");
+            setToLeft("to-left")
+            setBtnSymbol("fas fa-chevron-right");
         }
         else{
             setTabStatus(true);
-            setBtnName("Close Categories tab");
-            setToLeft("list");
-            setBtnColor("btn btn-danger");
+            setToLeft("list")
+            setBtnSymbol("fas fa-chevron-left");
         }  
     }
 
@@ -268,7 +264,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    if (auth == "true" && username != ""){
+    // if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -282,7 +278,9 @@ function Dashboard(){
                     {data.reduce((a, b) => a + b, 0) == 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
                 </div>
                 <div className = "below-chart">
+                    
                     <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
+                        <button className = "sidebar-btn" onClick = {handleSidebarClick}><i className = {btnsymbol}></i></button>
                         <div className ="offcanvas1-header">
                             <h5 className="offcanvas1-title">Categories</h5>
                             <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
@@ -295,7 +293,6 @@ function Dashboard(){
                     </div>
                     
                     <div id = {toLeft}>
-                        <button onClick = {handleClick} className = {btnColor}>{btnName}</button>
                         <div className = "div-add">
                             <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All Items</button>
                             <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
@@ -395,16 +392,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    } else if (auth == "false"){
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    } else {
-        return(
-            <div>
-                <TopProgressBar />;
-                <h1 className = "loading">Loading User Information</h1>
-            </div>
-        );
-    }
+    // } else if (auth == "false"){
+    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    // } else {
+    //     return(
+    //         <div>
+    //             <TopProgressBar />
+    //             <h1 className = "loading">Loading User Information</h1>
+    //         </div>
+    //     );
+    // }
 }
 
 export default Dashboard;

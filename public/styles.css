@@ -182,9 +182,27 @@ footer{
     overflow-y: scroll;
 }
 
+/* symbol: > */
+
+.sidebar-btn{
+    border-radius: 50%;
+    color: #777;
+    text-align: center;
+    background-color: white;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    border: .5px solid hsla(0,0%,60%,.4);
+    bottom: 10px;
+    left: 185px;
+    z-index: 5;
+    transition: all 300ms ease-in-out;
+}
+
 .offcanvas1.show{
     transform: none;
 }
+
 .offcanvas1{
     display: flex;
     flex-direction: column;
@@ -201,26 +219,18 @@ footer{
 }
 
 .offcanvas-start1{
-    visibility: hidden;
     position: absolute;
     height: inherit;
-    overflow-y: scroll;
-    width:200px;
+    width: 200px;
     margin: 0;
-    z-index: 1000;
+    z-index: 2;
     transition: all 300ms ease-in-out;
-    transform: translateX(-100%);
+    transform: translateX(-95%);
+    background-color: white;
 }
 
 .offcanvas-body{
     padding: 0;
-}
-
-
-
-#list{
-    margin-left: 200px;
-    transition: all 300ms ease-in-out;
 }
 
 #to-left{
@@ -228,6 +238,23 @@ footer{
     transition: all 300ms ease-in-out;
 }
 
+#list{
+    z-index: 0;
+    margin-left: 200px;
+    transition: all 300ms ease-in-out;
+}
+
+/* to make sure the sidebar overlaps list when screen size is too small */
+@media (max-width: 400px) {
+    #to-left {
+        z-index: 0;
+        margin-left: 20px;
+    }
+    #list{
+        z-index: 0;
+        margin-left: 20px;
+    }
+}
 
 .btn-outline-danger{
     padding:5px;
@@ -275,7 +302,7 @@ footer{
 
 
 .title{
-    margin: 0 10px 10px 15px;
+    margin: 10px 10px 10px 15px;
 }
 
 .category-btn{
