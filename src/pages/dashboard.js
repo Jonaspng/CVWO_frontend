@@ -94,7 +94,7 @@ function Dashboard(){
             .then((listItem) => setListItem(listItem.items));
     }
     
-    // this function settles the category side bar
+    // this function settles the category side bar                                                                                                                                      
     function handleSidebarClick(){
         if (tabStatus){
             setTabStatus(false);
@@ -264,7 +264,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    // if (auth == "true" && username != ""){
+    if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -392,16 +392,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    // } else if (auth == "false"){
-    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    // } else {
-    //     return(
-    //         <div>
-    //             <TopProgressBar />
-    //             <h1 className = "loading">Loading User Information</h1>
-    //         </div>
-    //     );
-    // }
+    } else if (auth == "false"){
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    } else {
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
+            </div>
+        );
+    }
 }
 
 export default Dashboard;
