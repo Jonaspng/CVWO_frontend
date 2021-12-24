@@ -158,6 +158,8 @@ function Dashboard(){
             method:"DELETE",
             mode: 'cors',
             credentials: 'include'});
+        console.log("this one")
+        console.log(isInCategory)
         updateListItems();
         updateData();
       }
