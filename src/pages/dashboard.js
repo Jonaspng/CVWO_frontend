@@ -322,7 +322,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-form">
+                                    <form id = "add-form" onSubmit = {HandleAddItemClick}>
                                         <p className = "add-form-description">Title</p>
                                         <input className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -349,7 +349,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-cat-form">
+                                    <form id = "add-cat-form" onSubmit = {HandleAddCategoryClick}>
                                         <p className = "add-form-description">Category Name</p>
                                         <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
                                     </form>
@@ -368,7 +368,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "edit-form">
+                                    <form id = "edit-form" onSubmit = {HandleUpdateItemClick}>
                                         <p className = "add-form-description">Title</p>
                                         <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -377,7 +377,7 @@ function Dashboard(){
                                         <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = {result[0].category_id}>{getCategoriesEdit()}</option>
+                                            <option value = {result[0].category_id}>{getCategoriesEdit}</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
