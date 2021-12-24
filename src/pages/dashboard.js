@@ -18,6 +18,10 @@ function Dashboard(){
 
     let categoryConfirmation = false;
     
+    let isInCategory = false;
+
+    let filterValue = "";
+
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
 
@@ -89,9 +93,15 @@ function Dashboard(){
     }
 
     async function updateListItems(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+        if (isInCategory) {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+            .then(res => res.json())
+            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(filterValue))));
+        } else {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
             .then((listItem) => setListItem(listItem.items));
+        }
     }
     
     // this function settles the category side bar                                                                                                                                      
@@ -152,7 +162,6 @@ function Dashboard(){
         updateData();
       }
 
-
     async function handleCategoryDeleteClick(event){
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
         if (categoryConfirmation) {
@@ -172,28 +181,31 @@ function Dashboard(){
     }
 
     async function handleCategoryFilterClick(event){
-        let filterValue = event.target.value;
-        await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
-            method:"POST",
-            body:JSON.stringify({
-                filterValue: filterValue,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8'
-            },
-            mode: "cors",
-            credentials: 'include',
-        });
-        updateListItems();
+        filterValue = event.target.value;
+        isInCategory = true;
+        // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
+        //     method:"POST",
+        //     body:JSON.stringify({
+        //         filterValue: filterValue,
+        //     }),
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8'
+        //     },
+        //     mode: "cors",
+        //     credentials: 'include',
+        // });
+
+        setListItem(listItem.filter(x => x.category_id == parseInt(filterValue)));
         setTitle(event.target.name);
     }
 
     async function handleShowAllClick(){
-        await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
-            method:"POST",
-            mode: "cors",
-            credentials: 'include',
-        });
+        isInCategory = false;
+        // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
+        //     method:"POST",
+        //     mode: "cors",
+        //     credentials: 'include',
+        // });
         updateListItems();
         setTitle("All Items");
     }
