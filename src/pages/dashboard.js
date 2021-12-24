@@ -267,7 +267,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    // if (auth == "true" && username != ""){
+    if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -325,7 +325,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-form" onSubmit = {() => document.getElementById("add-item-btn").click()}>
+                                    <form id = "add-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("add-item-btn").click();}}>
                                         <p className = "add-form-description">Title</p>
                                         <input className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -352,7 +352,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-cat-form" onSubmit = {() => document.getElementById("add-cat-btn").click()}>
+                                    <form id = "add-cat-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("add-cat-btn").click();}}>
                                         <p className = "add-form-description">Category Name</p>
                                         <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
                                     </form>
@@ -371,7 +371,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "edit-form" onSubmit = {() => document.getElementById("edit-item-btn").click()} value = {result[0].id} >
+                                    <form id = "edit-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("edit-item-btn").click();}} value = {result[0].id} >
                                         <p className = "add-form-description">Title</p>
                                         <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -394,16 +394,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    // } else if (auth == "false"){
-    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    // } else {
-    //     return(
-    //         <div>
-    //             <TopProgressBar />
-    //             <h1 className = "loading">Loading User Information</h1>
-    //         </div>
-    //     );
-    // }
+    } else if (auth == "false"){
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    } else {
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
+            </div>
+        );
+    }
 }
 
 export default Dashboard;
