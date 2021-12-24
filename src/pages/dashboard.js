@@ -96,7 +96,7 @@ function Dashboard(){
         if (isInCategory) {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
-            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(filterValue))));
+            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue))));
         } else {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
@@ -196,7 +196,7 @@ function Dashboard(){
         //     mode: "cors",
         //     credentials: 'include',
         // });
-        setListItem(listItem.filter(x => x.category_id == parseInt(filterValue)));
+        setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
         setTitle(event.target.name);
     }
 
