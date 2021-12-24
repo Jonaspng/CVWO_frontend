@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import $ from 'jquery';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -111,7 +110,6 @@ function Dashboard(){
 
     async function HandleAddItemClick(event){
         event.preventDefault();
-        $("#staticBackdrop").modal("hide");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
             method:"POST",
             mode: 'cors',
@@ -124,7 +122,6 @@ function Dashboard(){
 
     async function HandleAddCategoryClick(event){
         event.preventDefault();
-        $("#exampleModalCenter").modal("hide");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
             mode: 'cors',
@@ -198,7 +195,6 @@ function Dashboard(){
 
     async function HandleUpdateItemClick(event){
         event.preventDefault();
-        $("staticBackdrop2").modal("hide")
         let id = event.target.value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
@@ -271,7 +267,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    if (auth == "true" && username != ""){
+    // if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -329,7 +325,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-form" onSubmit = {HandleAddItemClick}>
+                                    <form id = "add-form" onSubmit = {() => document.getElementById("add-item-btn").click()}>
                                         <p className = "add-form-description">Title</p>
                                         <input className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -343,7 +339,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button onClick = {HandleAddItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
+                                    <button id = "add-item-btn" onClick = {HandleAddItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
                                 </div>
                             </div>
                         </div>
@@ -356,13 +352,13 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-cat-form" onSubmit = {HandleAddCategoryClick}>
+                                    <form id = "add-cat-form" onSubmit = {() => document.getElementById("add-cat-btn").click()}>
                                         <p className = "add-form-description">Category Name</p>
                                         <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+                                    <button id = "add-cat-btn"onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
                                 </div>
                             </div>
                         </div>
@@ -375,7 +371,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "edit-form" onSubmit = {HandleUpdateItemClick} value = {result[0].id} >
+                                    <form id = "edit-form" onSubmit = {() => document.getElementById("edit-item-btn").click()} value = {result[0].id} >
                                         <p className = "add-form-description">Title</p>
                                         <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -390,7 +386,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button value = {result[0].id} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
+                                    <button id = "edit-item-btn" value = {result[0].id} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
                                 </div>
                             </div>
                         </div>
@@ -398,16 +394,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    } else if (auth == "false"){
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    } else {
-        return(
-            <div>
-                <TopProgressBar />
-                <h1 className = "loading">Loading User Information</h1>
-            </div>
-        );
-    }
+    // } else if (auth == "false"){
+    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    // } else {
+    //     return(
+    //         <div>
+    //             <TopProgressBar />
+    //             <h1 className = "loading">Loading User Information</h1>
+    //         </div>
+    //     );
+    // }
 }
 
 export default Dashboard;
