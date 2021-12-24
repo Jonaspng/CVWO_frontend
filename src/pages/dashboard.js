@@ -183,8 +183,13 @@ function Dashboard(){
     }
 
     async function handleCategoryFilterClick(event){
-        setCategoryFilterValue(event.target.value);
-        setIsInCategory(true);
+        useEffect(() => {
+            setCategoryFilterValue(event.target.value);
+            setIsInCategory(true);
+            setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
+            setTitle(event.target.name);
+        }, []);
+       
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
         //     method:"POST",
         //     body:JSON.stringify({
@@ -196,12 +201,14 @@ function Dashboard(){
         //     mode: "cors",
         //     credentials: 'include',
         // });
-        setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
-        setTitle(event.target.name);
+        
     }
 
     async function handleShowAllClick(){
-        setIsInCategory(false);
+        useEffect(() => {
+            setIsInCategory(false);
+        }, []);
+        
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         //     method:"POST",
         //     mode: "cors",
