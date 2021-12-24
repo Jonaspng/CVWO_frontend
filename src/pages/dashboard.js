@@ -183,7 +183,7 @@ function Dashboard(){
     function handleCategoryFilterClick(event){
         setCategoryFilterValue(event.target.value);
         setIsInCategory(true);
-        setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
+        updateListItems();
         setTitle(event.target.name);
 
        
@@ -208,8 +208,8 @@ function Dashboard(){
         //     mode: "cors",
         //     credentials: 'include',
         // });
-        console.log("this one")
-        console.log(isInCategory)
+        console.log("this one");
+        console.log(isInCategory);
         updateListItems();
         setTitle("All Items");
     }
