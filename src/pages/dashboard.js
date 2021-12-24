@@ -108,7 +108,8 @@ function Dashboard(){
         }  
     }
 
-    async function HandleAddItemClick(){
+    async function HandleAddItemClick(event){
+        event.preventDefault();
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
             method:"POST",
             mode: 'cors',
@@ -119,7 +120,8 @@ function Dashboard(){
         updateData();
     }
 
-    async function HandleAddCategoryClick(){
+    async function HandleAddCategoryClick(event){
+        event.preventDefault();
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
             mode: 'cors',
@@ -192,6 +194,7 @@ function Dashboard(){
     }
 
     async function HandleUpdateItemClick(event){
+        event.preventDefault();
         let id = event.target.value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
