@@ -110,6 +110,7 @@ function Dashboard(){
 
     async function HandleAddItemClick(event){
         event.preventDefault();
+        document.getElementById("add-form").classList.remove("show");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
             method:"POST",
             mode: 'cors',
@@ -122,6 +123,7 @@ function Dashboard(){
 
     async function HandleAddCategoryClick(event){
         event.preventDefault();
+        document.getElementById("add-cat-form").classList.remove("show");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
             mode: 'cors',
@@ -195,6 +197,7 @@ function Dashboard(){
 
     async function HandleUpdateItemClick(event){
         event.preventDefault();
+        document.getElementById("edit-form").classList.remove("show");
         let id = event.target.value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
@@ -371,7 +374,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "edit-form" onSubmit = {HandleUpdateItemClick}>
+                                    <form id = "edit-form" onSubmit = {HandleUpdateItemClick} value = {result[0].id} >
                                         <p className = "add-form-description">Title</p>
                                         <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -380,7 +383,7 @@ function Dashboard(){
                                         <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = {result[0].category_id}>{getCategoriesEdit}</option>
+                                            <option value = {result[0].category_id}>{getCategoriesEdit()}</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
