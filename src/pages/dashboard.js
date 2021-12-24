@@ -336,7 +336,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button onClick = {HandleAddItemClick} type = "button" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
+                                    <button onClick = {HandleAddItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
                                 </div>
                             </div>
                         </div>
@@ -355,7 +355,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button onClick = {HandleAddCategoryClick} type = "button" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+                                    <button onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
                                 </div>
                             </div>
                         </div>
@@ -365,7 +365,7 @@ function Dashboard(){
                             <div className = "modal-content">
                                 <div className = "modal-header">
                                     <h5 className = "modal-title" id = "staticBackdropLabel">Add Item</h5>
-                                    <button type =" button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                    <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
                                     <form id = "edit-form">
@@ -383,7 +383,7 @@ function Dashboard(){
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button value = {result[0].id} onClick = {HandleUpdateItemClick} type = "reset" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
+                                    <button value = {result[0].id} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
                                 </div>
                             </div>
                         </div>

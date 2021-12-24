@@ -21,9 +21,7 @@ function Auth(props){
     }
 
     function getConfirmPassword(event){
-            
         setConfirmPassword(event.target.value);
-       
     }
     
     function handleClick(event){
