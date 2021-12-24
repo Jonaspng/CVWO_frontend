@@ -120,6 +120,11 @@ function Dashboard(){
         updateData();
     }
 
+    function HandleAddItemForm(event){
+        event.preventDefault();
+        document.getElementById("add-item-click").click();
+    }
+
     async function HandleAddCategoryClick(event){
         event.preventDefault();
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
@@ -130,6 +135,11 @@ function Dashboard(){
         document.getElementById("add-cat-form").reset();
         updateCategory();
         updateData();
+    }
+
+    function HandleAddCategoryForm(event){
+        event.preventDefault();
+        document.getElementById("add-cat-click").click();
     }
 
     async function handleItemDeleteClick(event){
@@ -204,6 +214,11 @@ function Dashboard(){
         document.getElementById("edit-form").reset();
         updateListItems();
         updateData();
+    }
+
+    function HandleUpdateItemForm(event){
+        event.preventDefault();
+        document.getElementById("edit-item-click").click();
     }
     
     function getCategoriesSidebar(x){
@@ -325,7 +340,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("add-item-btn").click();}}>
+                                    <form id = "add-form" onSubmit = {HandleAddItemForm}>
                                         <p className = "add-form-description">Title</p>
                                         <input className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
@@ -352,13 +367,13 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "add-cat-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("add-cat-btn").click();}}>
+                                    <form id = "add-cat-form" onSubmit = {HandleAddCategoryForm}>
                                         <p className = "add-form-description">Category Name</p>
                                         <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button id = "add-cat-btn"onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+                                    <button id = "add-cat-btn"onClick = {HandleAddCategoryClick}     type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
                                 </div>
                             </div>
                         </div>
@@ -371,7 +386,7 @@ function Dashboard(){
                                     <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                                 </div>
                                 <div className = "modal-body">
-                                    <form id = "edit-form" onSubmit = {(event) => {event.preventDefault; document.getElementById("edit-item-btn").click();}} value = {result[0].id} >
+                                    <form id = "edit-form" onSubmit = {HandleUpdateItemForm} >
                                         <p className = "add-form-description">Title</p>
                                         <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
