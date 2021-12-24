@@ -122,7 +122,7 @@ function Dashboard(){
 
     function HandleAddItemForm(event){
         event.preventDefault();
-        document.getElementById("add-item-click").click();
+        document.getElementById("add-item-btn").click();
     }
 
     async function HandleAddCategoryClick(event){
@@ -139,7 +139,7 @@ function Dashboard(){
 
     function HandleAddCategoryForm(event){
         event.preventDefault();
-        document.getElementById("add-cat-click").click();
+        document.getElementById("add-cat-btn").click();
     }
 
     async function handleItemDeleteClick(event){
@@ -218,7 +218,7 @@ function Dashboard(){
 
     function HandleUpdateItemForm(event){
         event.preventDefault();
-        document.getElementById("edit-item-click").click();
+        document.getElementById("edit-item-btn").click();
     }
     
     function getCategoriesSidebar(x){
