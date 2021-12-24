@@ -201,7 +201,7 @@ function Dashboard(){
     }
 
     async function handleShowAllClick(){
-        setCategoryFilterValue(false);
+        setIsInCategory(false);
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         //     method:"POST",
         //     mode: "cors",
