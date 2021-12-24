@@ -18,12 +18,12 @@ function Dashboard(){
 
     let categoryConfirmation = false;
     
-    let isInCategory = false;
-
-    let filterValue = "";
-
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
+
+    const [isInCategory, setIsInCategory] = useState(false)
+
+    const [CategoryFilterValue, setCategoryFilterValue] = useState("")
 
     const [btnsymbol, setBtnSymbol] = useState("fas fa-chevron-left");
 
@@ -183,8 +183,8 @@ function Dashboard(){
     }
 
     async function handleCategoryFilterClick(event){
-        filterValue = event.target.value;
-        isInCategory = true;
+        setCategoryFilterValue(event.target.value);
+        setIsInCategory(true);
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
         //     method:"POST",
         //     body:JSON.stringify({
@@ -196,13 +196,12 @@ function Dashboard(){
         //     mode: "cors",
         //     credentials: 'include',
         // });
-
         setListItem(listItem.filter(x => x.category_id == parseInt(filterValue)));
         setTitle(event.target.name);
     }
 
     async function handleShowAllClick(){
-        isInCategory = false;
+        setCategoryFilterValue(false);
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         //     method:"POST",
         //     mode: "cors",
