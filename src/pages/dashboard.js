@@ -185,31 +185,10 @@ function Dashboard(){
         setIsInCategory(true);
         updateListItems();
         setTitle(event.target.name);
-
-       
-        // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
-        //     method:"POST",
-        //     body:JSON.stringify({
-        //         filterValue: filterValue,
-        //     }),
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8'
-        //     },
-        //     mode: "cors",
-        //     credentials: 'include',
-        // });
-        
     }
 
     function handleShowAllClick(){
         setIsInCategory(false);
-        // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
-        //     method:"POST",
-        //     mode: "cors",
-        //     credentials: 'include',
-        // });
-        console.log("this one");
-        console.log(isInCategory);
         updateListItems();
         setTitle("All Items");
     }
@@ -290,7 +269,6 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
