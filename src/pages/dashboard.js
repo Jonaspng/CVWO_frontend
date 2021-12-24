@@ -158,8 +158,6 @@ function Dashboard(){
             method:"DELETE",
             mode: 'cors',
             credentials: 'include'});
-        console.log("this one")
-        console.log(isInCategory)
         updateListItems();
         updateData();
       }
@@ -182,13 +180,12 @@ function Dashboard(){
         }
     }
 
-    async function handleCategoryFilterClick(event){
-        useEffect(() => {
-            setCategoryFilterValue(event.target.value);
-            setIsInCategory(true);
-            setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
-            setTitle(event.target.name);
-        }, []);
+    function handleCategoryFilterClick(event){
+        setCategoryFilterValue(event.target.value);
+        setIsInCategory(true);
+        setListItem(listItem.filter(x => x.category_id == parseInt(CategoryFilterValue)));
+        setTitle(event.target.name);
+
        
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/filter",{ 
         //     method:"POST",
@@ -204,16 +201,15 @@ function Dashboard(){
         
     }
 
-    async function handleShowAllClick(){
-        useEffect(() => {
-            setIsInCategory(false);
-        }, []);
-        
+    function handleShowAllClick(){
+        setIsInCategory(false);
         // await fetch("https://todolist-backend-cvwo.herokuapp.com/api/show_all",{ 
         //     method:"POST",
         //     mode: "cors",
         //     credentials: 'include',
         // });
+        console.log("this one")
+        console.log(isInCategory)
         updateListItems();
         setTitle("All Items");
     }
