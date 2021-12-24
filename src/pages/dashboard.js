@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import $ from 'jquery';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -110,7 +111,7 @@ function Dashboard(){
 
     async function HandleAddItemClick(event){
         event.preventDefault();
-        document.getElementById("add-form").classList.remove("show");
+        $("#staticBackdrop").modal("hide");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
             method:"POST",
             mode: 'cors',
@@ -123,7 +124,7 @@ function Dashboard(){
 
     async function HandleAddCategoryClick(event){
         event.preventDefault();
-        document.getElementById("add-cat-form").classList.remove("show");
+        $("#exampleModalCenter").modal("hide");
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
             mode: 'cors',
@@ -197,7 +198,7 @@ function Dashboard(){
 
     async function HandleUpdateItemClick(event){
         event.preventDefault();
-        document.getElementById("edit-form").classList.remove("show");
+        $("staticBackdrop2").modal("hide")
         let id = event.target.value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
