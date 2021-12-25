@@ -278,9 +278,9 @@ function Dashboard(){
         updateListItems();
         if (isInCategory) {
             setListItem((listItem.items).filter(item => item.category_id == parseInt(CategoryFilterValue)));
-            setListItem(setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))));
+            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         } else {
-            setListItem(setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))));
+            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         }
         console.log(listItem);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
