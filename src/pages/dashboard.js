@@ -283,6 +283,7 @@ function Dashboard(){
         updateListItems();
         const filtered = listItem.filter(item => {return item.title.toLowerCase().includes(search.toLowerCase())});
         setListItem(filtered);
+        console.log(filtered);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
