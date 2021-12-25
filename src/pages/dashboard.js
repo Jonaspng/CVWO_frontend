@@ -297,8 +297,8 @@ function Dashboard(){
     }, [isInCategory]);
 
     useEffect(() => {
-        if (search = ""){
-            setListItem(originalListItem);
+        if (search == ""){
+            updateListItems();
         } else {
             setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         }
