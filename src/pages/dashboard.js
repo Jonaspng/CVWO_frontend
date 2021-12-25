@@ -283,11 +283,12 @@ function Dashboard(){
         if (isInCategory) {
             console.log("Ok");
             setListItem(listItem.filter(item => item.category_id == parseInt(categoryFilterValue)));
-            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-        } else {
-            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-        }
-    }, [listItem, categoryFilterValue, isInCategory]);
+
+        } 
+        // else {
+        //     setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+        // }
+    }, [categoryFilterValue, isInCategory]);
     
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
