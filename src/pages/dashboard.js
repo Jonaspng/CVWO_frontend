@@ -291,7 +291,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    // if (auth == "true" && username != ""){
+    if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -325,7 +325,7 @@ function Dashboard(){
                                     <h3 className = "title">{title}</h3>
                                 </div>
                                 <div className="col-sm-5 above-table">
-                                    <input value = {search} onchange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                    <input value = {search} onChange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                                 </div>
                                 <div className="col-sm-2 above-table">
                                     <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
@@ -430,16 +430,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    // } else if (auth == "false"){
-    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    // } else {
-    //     return(
-    //         <div>
-    //             <TopProgressBar />
-    //             <h1 className = "loading">Loading User Information</h1>
-    //         </div>
-    //     );
-    // }
+    } else if (auth == "false"){
+        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    } else {
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
+            </div>
+        );
+    }
 }
 
 export default Dashboard;
