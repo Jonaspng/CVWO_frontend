@@ -25,7 +25,7 @@ function Dashboard(){
 
     const [isInCategory, setIsInCategory] = useState(false);
 
-    const [categoryFilterValue, setCategoryFilterValue] = useState("");
+    const [CategoryFilterValue, setCategoryFilterValue] = useState("");
 
     const [btnsymbol, setBtnSymbol] = useState("fas fa-chevron-left");
 
@@ -45,16 +45,10 @@ function Dashboard(){
 
     const [auth, setAuth] = useState("");
 
-    async function getUsername(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
-            .then((res) => res.json())
-            .then((username) => setUsername(username.user.username));
-    }
-
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
                     .then((res) => res.json())
-                    .then((auth) => setAuth(auth.auth));
+                    .then((auth) => setAuth(auth.auth))
     }
 
     function appendLabel(){
@@ -101,9 +95,15 @@ function Dashboard(){
     }
 
     async function updateListItems(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+        if (isInCategory) {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+            .then(res => res.json())
+            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue))));
+        } else {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
             .then((listItem) => setListItem(listItem.items));
+        }
     }
     
     // this function settles the category side bar movements                                                                                                                                      
@@ -195,11 +195,13 @@ function Dashboard(){
     function handleCategoryFilterClick(event){
         setCategoryFilterValue(event.target.value);
         setIsInCategory(true);
+        updateListItems();
         setTitle(event.target.name);
     }
 
     function handleShowAllClick(){
         setIsInCategory(false);
+        updateListItems();
         setTitle("All Items");
     }
 
@@ -276,22 +278,20 @@ function Dashboard(){
     // updates auth, category, data and list items
     useEffect(() => {
         getAuth();
-        getUsername()
         updateCategory();
         updateData();
         updateListItems();
-    }, []);
-    
-    useEffect(() => {
-        if (isInCategory) {
-            console.log("Ok");
-            setListItem(listItem.filter(item => item.category_id == parseInt(categoryFilterValue)));
-            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-        } else {
-            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-        }
-    }, [categoryFilterValue, isInCategory, search]);
+        
+        console.log(listItem);
+        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
+            .then((res) => res.json())
+            .then((username) => setUsername(username.user.username));
+    }, [isInCategory]);
 
+    useEffect(() => {
+        setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+    }, [search]);
+    
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
