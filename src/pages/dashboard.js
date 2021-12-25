@@ -122,7 +122,8 @@ function Dashboard(){
 
     function getSearchValue(event){
         setSearch(event.target.value);
-        const filtered = listItem.filter(item => {return item.title.toLowerCase().includes(search.toLowerCase())});
+        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+        console.log(filtered);
         setListItem(filtered);
     }
 
