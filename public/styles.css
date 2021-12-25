@@ -270,9 +270,7 @@ footer{
    padding: 3px;
 }
 
-.div-add{
-    float: right;
-}
+
 
 .add-form{
     background-color: white;
@@ -307,6 +305,12 @@ footer{
 
 .title{
     margin: 10px 10px 10px 15px;
+}
+
+.above-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .category-btn{

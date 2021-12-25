@@ -21,9 +21,11 @@ function Dashboard(){
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
 
-    const [isInCategory, setIsInCategory] = useState(false)
+    const [search, setSearch] = useState("");
 
-    const [CategoryFilterValue, setCategoryFilterValue] = useState("")
+    const [isInCategory, setIsInCategory] = useState(false);
+
+    const [CategoryFilterValue, setCategoryFilterValue] = useState("");
 
     const [btnsymbol, setBtnSymbol] = useState("fas fa-chevron-left");
 
@@ -39,9 +41,9 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState(["0"])
+    const [result, setResult] = useState(["0"]);
 
-    const [auth, setAuth] = useState("")
+    const [auth, setAuth] = useState("");
 
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
@@ -104,7 +106,7 @@ function Dashboard(){
         }
     }
     
-    // this function settles the category side bar                                                                                                                                      
+    // this function settles the category side bar movements                                                                                                                                      
     function handleSidebarClick(){
         if (tabStatus){
             setTabStatus(false);
@@ -118,13 +120,20 @@ function Dashboard(){
         }  
     }
 
+    function getSearchValue(event){
+        setSearch(event.target.value);
+    }
+
     async function HandleAddItemClick(event){
+        // prevent page from reloading after clicking the button
         event.preventDefault();
+        // post new item to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
             method:"POST",
             mode: 'cors',
             credentials: 'include',
             body:new FormData(document.getElementById("add-form"))});
+        // resets the form for next use
         document.getElementById("add-form").reset();
         updateListItems();
         updateData();
@@ -136,12 +145,15 @@ function Dashboard(){
     }
 
     async function HandleAddCategoryClick(event){
+        // prevent page from reloading after clicking the button
         event.preventDefault();
+        // post new category to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
             mode: 'cors',
             credentials: 'include',
             body:new FormData(document.getElementById("add-cat-form"))});
+        // resets the form for next use
         document.getElementById("add-cat-form").reset();
         updateCategory();
         updateData();
@@ -269,6 +281,8 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
+        const filtered = listItem.filter(item => item.toLowerCase().includes(search.toLowerCase()));
+        setListItem(filtered);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
@@ -277,7 +291,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    if (auth == "true" && username != ""){
+    // if (auth == "true" && username != ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -305,12 +319,24 @@ function Dashboard(){
                     </div>
                     
                     <div id = {toLeft}>
-                        <div className = "div-add">
-                            <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All Items</button>
-                            <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
+                        <div>
+                            <div className="row">
+                                <div className="col-3">
+                                    <h3 className = "title">{title}</h3>
+                                </div>
+                                <div className="col-sm-5 above-table">
+                                    <input onchange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                </div>
+                                <div className="col-sm-2 above-table">
+                                    <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
+                                </div>
+                                <div className="col-sm-2 above-table">
+                                    <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
+                                </div>
+                            </div>
                         </div>
                         <div>
-                            <h3 className = "title">{title}</h3>
+                            
                             <table className = "table table-striped table-hover">
                                 <thead>
                                     <tr>
@@ -404,16 +430,16 @@ function Dashboard(){
                 </div>
             </div>
         );
-    } else if (auth == "false"){
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
-    } else {
-        return(
-            <div>
-                <TopProgressBar />
-                <h1 className = "loading">Loading User Information</h1>
-            </div>
-        );
-    }
+    // } else if (auth == "false"){
+    //     window.location.replace("https://todolist-cvwo.herokuapp.com/");
+    // } else {
+    //     return(
+    //         <div>
+    //             <TopProgressBar />
+    //             <h1 className = "loading">Loading User Information</h1>
+    //         </div>
+    //     );
+    // }
 }
 
 export default Dashboard;
