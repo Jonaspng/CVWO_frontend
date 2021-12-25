@@ -281,8 +281,8 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
-        setListItem(filtered);
+        setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+        console.log(listItem);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
