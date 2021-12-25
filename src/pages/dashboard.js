@@ -194,7 +194,6 @@ function Dashboard(){
 
     function handleShowAllClick(){
         setIsInCategory(false);
-        updateListItems();
         setTitle("All Items");
     }
 
