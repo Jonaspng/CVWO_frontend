@@ -35,6 +35,8 @@ function Dashboard(){
 
     const [data, setData] = useState([]);
 
+    const [originalListItem, setOriginalListItem] = useState([]);
+
     const [listItem, setListItem] = useState([]);
 
     const [title, setTitle] = useState("All Items");
@@ -98,11 +100,17 @@ function Dashboard(){
         if (isInCategory) {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
-            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue))));
+            .then((listItem) => {
+                setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue)));
+                setOriginalListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue)));
+            });
         } else {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
-            .then((listItem) => setListItem(listItem.items));
+            .then((listItem) => {
+                setListItem(listItem.items);
+                setOriginalListItem(listItem.items);
+            });
         }
     }
     
@@ -292,7 +300,8 @@ function Dashboard(){
         if (search == ""){
             updateListItems()
         } else{
-            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+            const filtered = originalListItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+            setListItem(filtered);
         }
     }, [search]);
     
