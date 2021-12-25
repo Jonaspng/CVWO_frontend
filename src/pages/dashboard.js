@@ -325,7 +325,7 @@ function Dashboard(){
                                     <h3 className = "title">{title}</h3>
                                 </div>
                                 <div className="col-sm-5 above-table">
-                                    <input onchange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                    <input value = {search} onchange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                                 </div>
                                 <div className="col-sm-2 above-table">
                                     <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
