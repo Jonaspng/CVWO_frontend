@@ -45,10 +45,16 @@ function Dashboard(){
 
     const [auth, setAuth] = useState("");
 
+    async function getUsername(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
+            .then((res) => res.json())
+            .then((username) => setUsername(username.user.username));
+    }
+
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
                     .then((res) => res.json())
-                    .then((auth) => setAuth(auth.auth))
+                    .then((auth) => setAuth(auth.auth));
     }
 
     function appendLabel(){
@@ -270,12 +276,10 @@ function Dashboard(){
     // updates auth, category, data and list items
     useEffect(() => {
         getAuth();
+        getUsername()
         updateCategory();
         updateData();
         updateListItems();
-        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
-        .then((res) => res.json())
-        .then((username) => setUsername(username.user.username));
         if (isInCategory) {
             console.log("Ok");
             setListItem(listItem.filter(item => item.category_id == parseInt(categoryFilterValue)));
