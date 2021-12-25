@@ -288,7 +288,7 @@ function Dashboard(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
-    }, [isInCategory]);
+    }, [isInCategory, search]);
     
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
