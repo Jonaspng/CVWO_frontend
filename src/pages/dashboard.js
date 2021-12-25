@@ -122,9 +122,6 @@ function Dashboard(){
 
     function getSearchValue(event){
         setSearch(event.target.value);
-        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
-        console.log(filtered);
-        setListItem(filtered);
     }
 
     async function HandleAddItemClick(event){
@@ -284,6 +281,8 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
+        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+        setListItem(filtered);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
