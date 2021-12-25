@@ -122,6 +122,10 @@ function Dashboard(){
 
     function getSearchValue(event){
         setSearch(event.target.value);
+        console.log(search)
+        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+        setListItem(filtered);
+        console.log(filtered);
     }
 
     async function HandleAddItemClick(event){
@@ -281,13 +285,10 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        const filtered = listItem.filter(item => {return item.title.toLowerCase().includes(search.toLowerCase())});
-        setListItem(filtered);
-        console.log(filtered);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
-    }, [isInCategory, search]);
+    }, [isInCategory]);
     
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
