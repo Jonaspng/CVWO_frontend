@@ -119,12 +119,19 @@ function Dashboard(){
             setBtnSymbol("fas fa-chevron-left");
         }  
     }
-   
+    const updateInput = async (input) => {
+        const filtered = countryListDefault.filter(country => {
+         return country.name.toLowerCase().includes(input.toLowerCase())
+        })
+        setInput(input);
+        setCountryList(filtered);
+     }
+
     async function getSearchValue(input){
         
         setSearch(input)
-        console.log(search)
-        const filtered = listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+        
+        const filtered = listItem.filter(item => {return item.title.toLowerCase().includes(search.toLowerCase())});
         setListItem(filtered);
         console.log(filtered);
     }
