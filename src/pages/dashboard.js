@@ -290,8 +290,8 @@ function Dashboard(){
         } else {
             setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         }
-    }, [categoryFilterValue, isInCategory]);
-    
+    }, [categoryFilterValue, isInCategory, search]);
+
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
