@@ -189,7 +189,6 @@ function Dashboard(){
     function handleCategoryFilterClick(event){
         setCategoryFilterValue(event.target.value);
         setIsInCategory(true);
-        updateListItems();
         setTitle(event.target.name);
     }
 
