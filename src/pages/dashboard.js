@@ -280,14 +280,16 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
+    }, []);
+    
+    useEffect(() => {
         if (isInCategory) {
             console.log("Ok");
             setListItem(listItem.filter(item => item.category_id == parseInt(categoryFilterValue)));
-
-        } 
-        // else {
-        //     setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
-        // }
+            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+        } else {
+            setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+        }
     }, [categoryFilterValue, isInCategory]);
     
     // It checks with backend to see whether the user is logged in 
