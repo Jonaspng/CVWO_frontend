@@ -95,15 +95,10 @@ function Dashboard(){
     }
 
     async function updateListItems(){
-        if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then(res => res.json())
-            .then((listItem) => setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue))));
-        } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then(res => res.json())
-            .then((listItem) => setListItem(listItem.items));
-        }
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+        .then(res => res.json())
+        .then((listItem) => setListItem(listItem.items));
+
     }
     
     // this function settles the category side bar movements                                                                                                                                      
@@ -281,7 +276,12 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
+        if (isInCategory) {
+            setListItem((listItem.items).filter(item => item.category_id == parseInt(CategoryFilterValue)));
+            setListItem(setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))));
+        } else {
+            setListItem(setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))));
+        }
         console.log(listItem);
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
