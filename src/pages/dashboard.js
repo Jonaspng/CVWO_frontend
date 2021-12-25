@@ -276,7 +276,7 @@ function Dashboard(){
         updateData();
         updateListItems();
         if (isInCategory) {
-            setListItem((listItem.items).filter(item => item.category_id == parseInt(categoryFilterValue)));
+            setListItem(listItem.filter(item => item.category_id == parseInt(categoryFilterValue)));
             setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         } else {
             setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
