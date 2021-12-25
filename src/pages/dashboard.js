@@ -102,8 +102,8 @@ function Dashboard(){
 
     async function updateListItems(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-        .then(res => res.json())
-        .then((listItem) => setListItem(listItem.items));
+            .then(res => res.json())
+            .then((listItem) => setListItem(listItem.items));
     }
     
     // this function settles the category side bar movements                                                                                                                                      
@@ -287,7 +287,7 @@ function Dashboard(){
         } else {
             setListItem(listItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase())));
         }
-    }, [categoryFilterValue, isInCategory]);
+    }, [listItem, categoryFilterValue, isInCategory]);
     
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page
