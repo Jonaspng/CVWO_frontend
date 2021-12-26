@@ -1,4 +1,5 @@
 import React from "react";
+import Typewriter from "typewriter-effect";
 import Navbar from "../components/navbar";
 import Carousel from "../components/carousel";
 
@@ -22,7 +23,18 @@ function Home(){
                 <div id = "home-description" className = "mx-auto">
                     <h1>Express ToDoList</h1>
                     <hr id = "home-hr"></hr>
-                    <p>A quick and easy solution to a digital to do list.</p>
+                    <p>
+                        <Typewriter
+                            options = {{
+                                cursor: '',
+                                autoStart: true,
+                                loop: true,
+                            }}
+                            onInit = {(typewriter) => {
+                                typewriter.changeDelay(80).typeString("Quick and easy solution to a digital to do list.").start().pauseFor(3500);
+                            }}
+                        />
+                    </p>
                     <a className = "btn btn-dark" href = "/login">Login</a>
                     <a className = "btn btn-light" href = "/register">Register</a>
                 </div>          

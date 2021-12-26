@@ -102,12 +102,14 @@ footer{
     width: 500px;   
 }
 
-.card-title{
-    margin-bottom: 40px;
+@media (max-width: 600px) {
+    .card{
+        width: inherit;
+    }
 }
 
-.auth-card{
-    width: 100%;
+.card-title{
+    margin-bottom: 40px;
 }
 
 .error-message{
