@@ -1,17 +1,21 @@
 # CVWO Task Management Application (Frontend)
 
-<<<<<<< HEAD
-# CVWO Task Management Application (Frontend)
+<p align = "center">
+  <a href = "https://todolist-cvwo.herokuapp.com/">
+    <img src="https://raw.githubusercontent.com/Jonaspng/CVWO_frontend/main/public/homepage.png"/>    
+  </a>
+</p>
+<p align = "center">
+  <img src = "https://img.shields.io/github/last-commit/Jonaspng/CVWO_frontend?logo=Github"/>
+  <img src = "https://img.shields.io/github/forks/Jonaspng/cvwo_frontend?logo=Github"/>
+  <img src = "https://img.shields.io/github/repo-size/Jonaspng/cvwo_frontend?logo=Github"/>
+</p>
 
-=======
->>>>>>> 59aab1cf050f740ab8d70c9f9a705dc53a744476
 Name: **Png Yi Wei Jonas**
 
 Matriculation Number: **A0233271N**
 
 ## Reports
-<<<<<<< HEAD
+
 Coming Soon!
-=======
-Coming Soon!
->>>>>>> 59aab1cf050f740ab8d70c9f9a705dc53a744476
+
