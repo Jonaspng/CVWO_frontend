@@ -294,7 +294,7 @@ function Dashboard(){
         fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
             .then((res) => res.json())
             .then((username) => setUsername(username.user.username));
-    }, [isInCategory]);
+    }, [isInCategory, CategoryFilterValue]);
 
     useEffect(() => {
         if (search == ""){
