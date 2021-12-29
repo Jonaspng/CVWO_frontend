@@ -32,35 +32,23 @@ function Profile(){
 
     const [click, setClick] = useState(false);
 
-  
-    useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{  credentials: 'include'})
-          .then((res) => res.json())
-          .then((error) => setError(error.error));
-      }, []);
+    async function updateUserDetails(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{credentials: 'include'})
+                        .then((res) => res.json())
+                        .then((userDetails) => setUserDetails(userDetails.user));
+    }
 
-      useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{  credentials: 'include'})
-          .then((res) => res.json())
-          .then((success) => setSuccess(success.success));
-      }, []);
+    async function updateErrors(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
+                        .then((res) => res.json())
+                        .then((error) => setError(error.error));
+    }
 
-
-    useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
-            .then((res) => res.json())
-            .then((userDetails) => setUserDetails(userDetails.user));
-        }, []);
-
-    useEffect(() => {
-        if (password !== confirmPassword){
-            setValidation("form-control validation-fail");
-            setClick(true);
-        }else{
-            setValidation("form-control"); 
-            setClick(false);        
+    async function updateSuccess(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{credentials: 'include'})
+                        .then((res) => res.json())
+                        .then((success) => setSuccess(success.success));
         }
-        }, [confirmPassword, password]);
 
     function getError(x: string){
         return(
@@ -82,29 +70,37 @@ function Profile(){
         setConfirmPassword(event.target.value);
     }
     
-    function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    async function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         if (click){
             event.preventDefault();
-        }else{
-            fetch("https://todolist-backend-cvwo.herokuapp.com/users/" + userDetails.id,{ 
-            method:"PATCH",
-            mode: 'cors',
-            credentials: 'include',
-            body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
-            setTimeout(() => {
-                fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
-                    .then((res) => res.json())
-                    .then((error) => setError(error.error));
-                fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{credentials: 'include'})
-                    .then((res) => res.json())
-                    .then((success) => setSuccess(success.success));
-                fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
-                    .then((res) => res.json())
-                    .then((userDetails) => setUserDetails(userDetails.user));
-            },1000);
+        } else{
+            await fetch("https://todolist-backend-cvwo.herokuapp.com/users/" + userDetails.id,{ 
+                method:"PATCH",
+                mode: 'cors',
+                credentials: 'include',
+                body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
+            updateUserDetails();
+            updateErrors();
+            updateSuccess();
             (document.getElementById("edit-details-form") as HTMLFormElement).reset();
         }
     }
+
+    useEffect(() => {
+        updateUserDetails();
+        updateErrors();
+        updateSuccess();
+    }, []);
+
+    useEffect(() => {
+        if (password !== confirmPassword){
+            setValidation("form-control validation-fail");
+            setClick(true);
+        }else{
+            setValidation("form-control"); 
+            setClick(false);        
+        }
+        }, [confirmPassword, password]);
 
     return(
         <div className = "profile-page">
