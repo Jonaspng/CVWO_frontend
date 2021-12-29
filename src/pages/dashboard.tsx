@@ -26,6 +26,13 @@ function Dashboard(){
         updated_at?: string;
     }
 
+    const emptyCategory:Categories[] = [{
+        id: null,
+        category: null,
+        user_id: null
+    }];
+
+
     interface List{
         id?: number;
         title?: string;
@@ -36,6 +43,17 @@ function Dashboard(){
         created_at?: string;
         updated_at?: string;
     }
+
+    const emptyList:List[] = [{
+        id: null,
+        title: null,
+        deadline: null,
+        description: null,
+        user_id: null,
+        category_id: null
+    }];
+
+    
 
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
@@ -50,7 +68,7 @@ function Dashboard(){
 
     const [toLeft, setToLeft] = useState("list");
 
-    const [categories, setCategories] = useState<Categories[]>([]);
+    const [categories, setCategories] = useState<Categories[]>(emptyCategory);
 
     const [data, setData] = useState([]);
 
@@ -62,7 +80,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState<List[]>([]);
+    const [result, setResult] = useState<List[]>(emptyList);
 
     const [auth, setAuth] = useState("");
 
