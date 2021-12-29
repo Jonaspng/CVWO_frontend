@@ -1,6 +1,14 @@
 import React, {useState, useEffect} from "react";
 
-function Auth(props){
+interface AuthProps{
+    route: string;
+    greetings: string;
+    usernameInput: string;
+    passwordValidation: string;
+    btn: string;
+}
+
+function Auth({route, greetings, usernameInput, passwordValidation, btn}: AuthProps){
 
     const [name, setName]  =  useState("");
 
@@ -10,21 +18,21 @@ function Auth(props){
 
     const [validation, setValidation]  =  useState("form-control");
 
-    const [click, setClick]  =  useState(false);
+    const [click, setClick]  =  useState<boolean>(false);
 
-    function getName(event){
+    function getName(event: React.ChangeEvent<HTMLInputElement>){
         setName(event.target.value);
     }
 
-    function getPassword(event){
+    function getPassword(event: React.ChangeEvent<HTMLInputElement>){
         setPassword(event.target.value);
     }
 
-    function getConfirmPassword(event){
+    function getConfirmPassword(event: React.ChangeEvent<HTMLInputElement>){
         setConfirmPassword(event.target.value);
     }
     
-    function handleClick(event){
+    function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         if (click){
             event.preventDefault();
         }
@@ -42,26 +50,26 @@ function Auth(props){
    
     return(
         <div className = "card mx-auto">
-            <form action = {props.route} method = "POST">
+            <form action = {route} method = "POST">
                 <div className = "card-body">
-                    <h3 className = "card-title">{props.greetings} {name}</h3>
-                    <div className = {props.name}>
+                    <h3 className = "card-title">{greetings} {name}</h3>
+                    <div className = {usernameInput}>
                         <input value = {name} onChange = {getName} name = "user[username]" type = "text" className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "off" />
                         <label htmlFor = "floatingInput">Username</label>
                     </div>
                     <div className = "form-floating">
                         <input name = "user[email]" type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "off"/>
-                        <label hmtlFor = "floatingInput">Email address</label>
+                        <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">
                         <input name = "user[password]"  onChange = {getPassword} type = "password" className = {validation} placeholder = "Password" id = "floatingPassword" />
-                        <label hmtlFor = "floatingPassword">Password</label>
+                        <label htmlFor = "floatingPassword">Password</label>
                     </div>
-                    <div className = {props.confirmPassword}>
+                    <div className = {passwordValidation}>
                         <input name = "user[password2]" onChange = {getConfirmPassword} type = "password" className = {validation} placeholder = "Confirm Password" id = "floatingPassword" />
-                        <label hmtlFor = "floatingPassword">Confirm Password</label>
+                        <label htmlFor = "floatingPassword">Confirm Password</label>
                     </div>
-                    <button onClick = {handleClick} className = "btn btn-primary" type = "submit" name = "button">{props.btn}</button>
+                    <button onClick = {handleClick} className = "btn btn-primary" type = "submit" name = "button">{btn}</button>
                 </div>
             </form>
         </div>

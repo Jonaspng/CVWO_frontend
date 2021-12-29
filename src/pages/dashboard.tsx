@@ -11,12 +11,31 @@ import colorScheme from "../components/color";
 function Dashboard(){
     
     // Used to store category label for pie chart
-    let label = [];
+    let label:string[] = [];
     
     // number variable helps in labeling of table
     let number = 0;
 
     let categoryConfirmation = false;
+
+    interface Categories {
+        category: string;
+        user_id: string;
+        created_at: string;
+        updated_at: string;
+    }
+
+    interface List{
+        id: number;
+        title: string;
+        deadline: string;
+        description: string;
+        user_id: number;
+        category_id: number;
+        created_at: string;
+        updated_at: string;
+    }
+
     
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
@@ -31,7 +50,7 @@ function Dashboard(){
 
     const [toLeft, setToLeft] = useState("list");
 
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<any[] | null>();
 
     const [data, setData] = useState([]);
 
@@ -43,7 +62,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState(["0"]);
+    const [result, setResult] = useState<any[]| null>();
 
     const [auth, setAuth] = useState("");
 
@@ -101,8 +120,8 @@ function Dashboard(){
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
             .then(res => res.json())
             .then((listItem) => {
-                setListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue)));
-                setOriginalListItem((listItem.items).filter(x => x.category_id == parseInt(CategoryFilterValue)));
+                setListItem((listItem.items).filter((x: any) => x.category_id == parseInt(CategoryFilterValue)));
+                setOriginalListItem((listItem.items).filter((x: any)  => x.category_id == parseInt(CategoryFilterValue)));
             });
         } else {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
@@ -128,11 +147,11 @@ function Dashboard(){
         }  
     }
 
-    function getSearchValue(event){
+    function getSearchValue(event: React.ChangeEvent<HTMLInputElement>){
         setSearch(event.target.value);
     }
 
-    async function HandleAddItemClick(event){
+    async function HandleAddItemClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
         // post new item to database which then save it 
@@ -140,19 +159,19 @@ function Dashboard(){
             method:"POST",
             mode: 'cors',
             credentials: 'include',
-            body:new FormData(document.getElementById("add-form"))});
+            body:new FormData((document.getElementById("add-form") as HTMLFormElement))});
         // resets the form for next use
-        document.getElementById("add-form").reset();
+        (document.getElementById("add-form") as HTMLFormElement).reset();
         updateListItems();
         updateData();
     }
 
-    function HandleAddItemForm(event){
+    function HandleAddItemForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         document.getElementById("add-item-btn").click();
     }
 
-    async function HandleAddCategoryClick(event){
+    async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
         // post new category to database which then save it 
@@ -160,20 +179,20 @@ function Dashboard(){
             method:"POST",
             mode: 'cors',
             credentials: 'include',
-            body:new FormData(document.getElementById("add-cat-form"))});
+            body:new FormData((document.getElementById("add-cat-form") as HTMLFormElement))});
         // resets the form for next use
-        document.getElementById("add-cat-form").reset();
+        (document.getElementById("add-cat-form") as HTMLFormElement).reset();
         updateCategory();
         updateData();
     }
 
-    function HandleAddCategoryForm(event){
+    function HandleAddCategoryForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         document.getElementById("add-cat-btn").click();
     }
 
-    async function handleItemDeleteClick(event){
-        let id = event.target.value
+    async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+        let id = (event.target as HTMLTextAreaElement).value
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
             method:"DELETE",
             mode: 'cors',
@@ -182,7 +201,7 @@ function Dashboard(){
         updateData();
       }
 
-    async function handleCategoryDeleteClick(event){
+    async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
         if (categoryConfirmation) {
             let id = event.currentTarget.value
@@ -200,11 +219,11 @@ function Dashboard(){
         }
     }
 
-    function handleCategoryFilterClick(event){
-        setCategoryFilterValue(event.target.value);
+    function handleCategoryFilterClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+        setCategoryFilterValue((event.target as HTMLTextAreaElement).value);
         setIsInCategory(true);
         updateListItems();
-        setTitle(event.target.name);
+        setTitle((event.target as HTMLTextAreaElement).name);
     }
 
     function handleShowAllClick(){
@@ -213,36 +232,36 @@ function Dashboard(){
         setTitle("All Items");
     }
 
-    function handleEditClick(event){
+    function handleEditClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
         var id = event.currentTarget.value;
-        setResult(listItem.filter(item => item.id == id));
+        setResult(listItem.filter((item: any) => item.id == id));
     }
 
-    async function HandleUpdateItemClick(event){
+    async function HandleUpdateItemClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
         event.preventDefault();
-        let id = event.target.value;
+        let id = (event.target as HTMLTextAreaElement).value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
             mode: 'cors',
             credentials: 'include',
-            body:new FormData(document.getElementById("edit-form"))});
-        document.getElementById("edit-form").reset();
+            body:new FormData((document.getElementById("edit-form") as HTMLFormElement))});
+        (document.getElementById("edit-form") as HTMLFormElement).reset();
         updateListItems();
         updateData();
     }
 
-    function HandleUpdateItemForm(event){
+    function HandleUpdateItemForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         document.getElementById("edit-item-btn").click();
     }
     
-    function getCategoriesSidebar(x){
+    function getCategoriesSidebar(x: any){
         if (categories.filter(y => y.id == x.category_id).length !== 0){
             return categories.filter(y => y.id == x.category_id)[0].category
         }
     }
 
-    function getItems(x){
+    function getItems(x: any){
         number += 1; 
         return(
             <tr key = {x.id} >
@@ -253,7 +272,7 @@ function Dashboard(){
                 <td>
                 <form id = "delete-form">
                     <div className = "form-check form-switch">
-                        <input name = "id" value={x.id} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
+                        <input name = "id" value = {x.id} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
                     </div>
                 </form>
                     <button onClick = {handleEditClick} value = {x.id} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
@@ -262,7 +281,7 @@ function Dashboard(){
         )
     }
 
-    function getCategories(x){
+    function getCategories(x: any){
         return(
             <li className = "category-list" key = {x.id}>
                 <button name = {x.category} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
@@ -271,7 +290,7 @@ function Dashboard(){
         );
     }
 
-    function getCategoriesOption(x){
+    function getCategoriesOption(x: any){
         return(
             <option key = {x.id} value = {x.id}>{x.category}</option>
         );
@@ -342,7 +361,7 @@ function Dashboard(){
                                     <h3 className = "title">{title}</h3>
                                 </div>
                                 <div className="col-sm-5 above-table">
-                                    <input value = {search} onChange = {getSearchValue} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                                    <input value = {search} onChange = {getSearchValue} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
                                 </div>
                                 <div className="col-sm-2 above-table">
                                     <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
@@ -370,7 +389,7 @@ function Dashboard(){
                             </table>
                         </div>
                     </div>
-                    <div className="modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className = "modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel" aria-hidden = "true">
                         <div className = "modal-dialog">
                             <div className = "modal-content">
                                 <div className = "modal-header">
@@ -397,7 +416,7 @@ function Dashboard(){
                             </div>
                         </div>
                     </div>                                    
-                    <div className = "modal fade" id = "exampleModalCenter" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = "-1" aria-labelledby = "exampleModalCenterTitle" aria-hidden="true" >
+                    <div className = "modal fade" id = "exampleModalCenter" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "exampleModalCenterTitle" aria-hidden="true" >
                         <div className = "modal-dialog modal-dialog-centered">
                             <div className = "modal-content">
                                 <div className = "modal-header">
@@ -416,7 +435,7 @@ function Dashboard(){
                             </div>
                         </div>
                     </div>
-                    <div className = "modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabindex = "-1" aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
+                    <div className = "modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
                         <div className = "modal-dialog">
                             <div className = "modal-content">
                                 <div className = "modal-header">

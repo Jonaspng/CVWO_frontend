@@ -1,20 +1,24 @@
-import React from "react";
+interface Auth2Props{
+    route: string;
+    greetings: string;
+    btn: string;
+}
 
-function Auth2(props){
+function Auth2({route, greetings, btn}: Auth2Props){
     return(
         <div className = "card mx-auto">
-            <form action = {props.route} method = "POST">
+            <form action = {route} method = "POST">
                 <div className = "card-body">
-                    <h3 className = "card-title">{props.greetings}</h3>
+                    <h3 className = "card-title">{greetings}</h3>
                     <div className = "form-floating">
                         <input name = "email" type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
-                        <label hmtlFor = "floatingInput">Email address</label>
+                        <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">
                         <input name = "password" type = "password" className = "form-control" placeholder = "Password" id = "floatingPassword" />
-                        <label hmtlFor = "floatingPassword">Password</label>
+                        <label htmlFor = "floatingPassword">Password</label>
                     </div>
-                    <button className = "btn btn-primary" type = "submit" name = "button">{props.btn}</button>
+                    <button className = "btn btn-primary" type = "submit" name = "button">{btn}</button>
                 </div>
             </form>
         </div>

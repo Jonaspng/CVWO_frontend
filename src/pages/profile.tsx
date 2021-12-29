@@ -6,7 +6,13 @@ import Success from "../components/success"
 
 function Profile(){
 
-    const [userDetails, setUserDetails] = useState("")
+    interface UserDetails{
+        id: number;
+        username: string;
+        email: string;
+    }
+
+    const [userDetails, setUserDetails] = useState<UserDetails | null>(null)
 
     const [error,setError] = useState([]);
 
@@ -50,27 +56,27 @@ function Profile(){
         }
         }, [confirmPassword, password]);
 
-    function getError(x){
+    function getError(x: string){
         return(
             <Error message = {x}/>
         )
     }
 
-    function getSuccess(x){
+    function getSuccess(x: string){
         return(
             <Success message = {x}/>
         )
     }
 
-    function getPassword(event){
+    function getPassword(event: React.ChangeEvent<HTMLInputElement>){
         setPassword(event.target.value);
     }
 
-    function getConfirmPassword(event){
+    function getConfirmPassword(event: React.ChangeEvent<HTMLInputElement>){
         setConfirmPassword(event.target.value);
     }
     
-    function handleClick(event){
+    function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         if (click){
             event.preventDefault();
         }else{
@@ -78,7 +84,7 @@ function Profile(){
             method:"PATCH",
             mode: 'cors',
             credentials: 'include',
-            body:new FormData(document.getElementById("edit-details-form"))});
+            body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
             setTimeout(() => {
                 fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
                     .then((res) => res.json())
@@ -90,7 +96,7 @@ function Profile(){
                     .then((res) => res.json())
                     .then((userDetails) => setUserDetails(userDetails.user));
             },1000);
-            document.getElementById("edit-details-form").reset();
+            (document.getElementById("edit-details-form") as HTMLFormElement).reset();
         }
     }
 
@@ -112,19 +118,19 @@ function Profile(){
                 <form id = "edit-details-form" >
                     <div className = "form-floating">
                         <input name = "user[username]" type = "text" defaultValue = {userDetails.username} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
-                        <label hmtlFor = "floatingInput">Username</label>
+                        <label htmlFor = "floatingInput">Username</label>
                     </div> 
                     <div className = "form-floating">
                         <input name = "user[email]" type = "email" defaultValue = {userDetails.email} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
-                        <label hmtlFor = "floatingInput">Email address</label>
+                        <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">
                         <input name = "user[password]" onChange = {getPassword} type = "password" className = {validation} placeholder = "New Password" id = "floatingPassword" />
-                        <label hmtlFor = "floatingPassword">New Password</label>
+                        <label htmlFor = "floatingPassword">New Password</label>
                     </div>
                     <div className="form-floating">
                         <input name = "user[password2]" onChange = {getConfirmPassword} type="password" className = {validation} placeholder = "Confirm New Password" id = "floatingPassword" />
-                        <label hmtlFor = "floatingPassword">Confirm New Password</label>
+                        <label htmlFor = "floatingPassword">Confirm New Password</label>
                     </div>
                 </form>
                 <button type = "button" onClick = {handleClick} className = "btn btn-primary">Change Account details</button>                              

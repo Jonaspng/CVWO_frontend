@@ -9,13 +9,13 @@ function Login(){
     const [error, setError] = useState([])
 
     useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{withCredentials: true, credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{credentials: 'include'})
           .then((res) => res.json())
           .then((error) => setError(error.error));
       }, []);
 
 
-    function getMessage(x){
+    function getMessage(x: string){
         return(
             <Error 
                 message = {x}/>

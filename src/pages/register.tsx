@@ -9,12 +9,12 @@ function Register(){
 
     // use to fetch possible errors from backend
     useEffect(()  => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ withCredentials: true, credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
           .then((res)  => res.json())
           .then((error)  => setError(error.error));
       }, []);
 
-    function getMessage(x){
+    function getMessage(x: string){
         return(
             <Error message = {x}/>
         )
@@ -39,9 +39,8 @@ function Register(){
                 <Auth
                     route = "https://todolist-backend-cvwo.herokuapp.com/users"
                     greetings = "Hello"
-                    google = "Sign up With Google"
-                    name = "form-floating"
-                    confirmPassword = "form-floating"
+                    usernameInput = "form-floating"
+                    passwordValidation = "form-floating"
                     btn = "Register"
                  />
             </div>
