@@ -19,24 +19,24 @@ function Dashboard(){
     let categoryConfirmation = false;
 
     interface Categories {
-        category: string;
-        user_id: string;
-        created_at: string;
-        updated_at: string;
+        id?: number,
+        category?: string;
+        user_id?: string;
+        created_at?: string;
+        updated_at?: string;
     }
 
     interface List{
-        id: number;
-        title: string;
-        deadline: string;
-        description: string;
-        user_id: number;
-        category_id: number;
-        created_at: string;
-        updated_at: string;
+        id?: number;
+        title?: string;
+        deadline?: string;
+        description?: string;
+        user_id?: number;
+        category_id?: number;
+        created_at?: string;
+        updated_at?: string;
     }
 
-    
     // react hooks
     const [tabStatus, setTabStatus] =  useState(true);
 
@@ -50,7 +50,7 @@ function Dashboard(){
 
     const [toLeft, setToLeft] = useState("list");
 
-    const [categories, setCategories] = useState<any[]>([""]);
+    const [categories, setCategories] = useState<Categories[]>([]);
 
     const [data, setData] = useState([]);
 
@@ -62,7 +62,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState<any[]>([""]);
+    const [result, setResult] = useState<List[]>([]);
 
     const [auth, setAuth] = useState("");
 
