@@ -50,7 +50,7 @@ function Dashboard(){
 
     const [toLeft, setToLeft] = useState("list");
 
-    const [categories, setCategories] = useState<any[] | null>();
+    const [categories, setCategories] = useState<any[]>([""]);
 
     const [data, setData] = useState([]);
 
@@ -62,7 +62,7 @@ function Dashboard(){
 
     const [username, setUsername] = useState("");
 
-    const [result, setResult] = useState<any[]| null>();
+    const [result, setResult] = useState<any[]>([""]);
 
     const [auth, setAuth] = useState("");
 
