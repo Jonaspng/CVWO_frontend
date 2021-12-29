@@ -12,7 +12,13 @@ function Profile(){
         email: string;
     }
 
-    const [userDetails, setUserDetails] = useState<UserDetails | null>(null)
+    const emptyUserDetails: UserDetails = {
+        id: null,
+        username: null,
+        email:null
+    }
+
+    const [userDetails, setUserDetails] = useState<UserDetails>(emptyUserDetails);
 
     const [error,setError] = useState([]);
 

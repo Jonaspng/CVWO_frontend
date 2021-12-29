@@ -19,7 +19,7 @@ function Dashboard(){
     let categoryConfirmation = false;
 
     interface Categories {
-        id?: number,
+        id?: number;
         category?: string;
         user_id?: string;
         created_at?: string;
