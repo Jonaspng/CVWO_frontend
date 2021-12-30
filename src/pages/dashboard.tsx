@@ -285,7 +285,7 @@ function Dashboard(){
 
     function getItems(x: any){
         number += 1; 
-        return<>(
+        return(
             <tr key = {x.id} >
                 <td>{number}</td>
                 <td>{x.title}</td>
@@ -300,22 +300,22 @@ function Dashboard(){
                     <button onClick = {handleEditClick} value = {x.id} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
                 </td>
             </tr>
-        )</>
+        )
     }
 
     function getCategories(x: any){
-        return <>(
+        return(
             <li className = "category-list" key = {x.id}>
                 <button name = {x.category} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
                 <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
-        )</>;
+        );
     }
 
     function getCategoriesOption(x: Categories){
-        return <>(
+        return(
             <option key = {x.id} value = {x.id!}>{x.category}</option>
-        )</>;
+        );
     }
 
     function getCategoriesEdit(){
