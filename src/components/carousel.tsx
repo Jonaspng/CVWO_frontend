@@ -1,5 +1,3 @@
-import React from "react";
-
 function Carousel(){
     return(
         <div id = "carouselExampleCaptions" className = "carousel slide" data-bs-ride = "carousel">

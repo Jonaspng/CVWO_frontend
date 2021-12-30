@@ -1,4 +1,3 @@
-import React from "react";
 import Typewriter from "typewriter-effect";
 import Navbar from "../components/navbar";
 import Carousel from "../components/carousel";

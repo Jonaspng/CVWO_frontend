@@ -10,13 +10,13 @@ interface AuthProps{
 
 function Auth({route, greetings, usernameInput, passwordValidation, btn}: AuthProps){
 
-    const [name, setName]  =  useState("");
+    const [name, setName]  =  useState<string>("");
 
-    const [password, setPassword]  =  useState("");
+    const [password, setPassword]  =  useState<string>("");
 
-    const [confirmPassword, setConfirmPassword]  =  useState("");
+    const [confirmPassword, setConfirmPassword]  =  useState<string>("");
 
-    const [validation, setValidation]  =  useState("form-control");
+    const [validation, setValidation]  =  useState<string>("form-control");
 
     const [click, setClick]  =  useState<boolean>(false);
 

@@ -7,9 +7,9 @@ import Success from "../components/success"
 function Profile(){
 
     interface UserDetails{
-        id: number;
-        username: string;
-        email: string;
+        id: number | null;
+        username: string | null;
+        email: string | null;
     }
 
     const emptyUserDetails: UserDetails = {
@@ -20,17 +20,17 @@ function Profile(){
 
     const [userDetails, setUserDetails] = useState<UserDetails>(emptyUserDetails);
 
-    const [error,setError] = useState([]);
+    const [error,setError] = useState<string[]>([]);
 
-    const [success,setSuccess] = useState([])
+    const [success,setSuccess] = useState<string[]>([])
 
-    const [password,setPassword] = useState("");
+    const [password,setPassword] = useState<string>("");
 
-    const [confirmPassword,setConfirmPassword] = useState("");
+    const [confirmPassword,setConfirmPassword] = useState<string>("");
 
-    const [validation, setValidation] = useState("form-control");
+    const [validation, setValidation] = useState<string>("form-control");
 
-    const [click, setClick] = useState(false);
+    const [click, setClick] = useState<boolean>(false);
 
     async function updateUserDetails(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{credentials: 'include'})
@@ -106,7 +106,7 @@ function Profile(){
         <div className = "profile-page">
             <Navbar 
             brand = "/dashboard"
-            item1 = {userDetails.username}
+            item1 = {userDetails.username!}
             item2 = "Dashboard"
             link2 = "/dashboard"
             logout = "logout"
@@ -119,11 +119,11 @@ function Profile(){
                 <h1>Edit Account Details</h1>
                 <form id = "edit-details-form" >
                     <div className = "form-floating">
-                        <input name = "user[username]" type = "text" defaultValue = {userDetails.username} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
+                        <input name = "user[username]" type = "text" defaultValue = {userDetails.username!} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
                         <label htmlFor = "floatingInput">Username</label>
                     </div> 
                     <div className = "form-floating">
-                        <input name = "user[email]" type = "email" defaultValue = {userDetails.email} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
+                        <input name = "user[email]" type = "email" defaultValue = {userDetails.email!} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
                         <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../components/navbar"
 import Auth2 from "../components/auth2"
 import Error from "../components/error"

@@ -19,29 +19,31 @@ function Dashboard(){
     let categoryConfirmation = false;
 
     interface Categories {
-        id?: number;
-        category?: string;
-        user_id?: string;
-        created_at?: string;
-        updated_at?: string;
+        id: number | null;
+        category: string | null;
+        user_id: string | null;
+        created_at: string | null;
+        updated_at: string | null;
     }
 
     const emptyCategory:Categories[] = [{
         id: null,
         category: null,
-        user_id: null
+        user_id: null,
+        created_at: null,
+        updated_at: null
     }];
 
 
     interface List{
-        id?: number;
-        title?: string;
-        deadline?: string;
-        description?: string;
-        user_id?: number;
-        category_id?: number;
-        created_at?: string;
-        updated_at?: string;
+        id: number | null;
+        title: string | null;
+        deadline: string | null;
+        description: string | null;
+        user_id: number | null;
+        category_id: number | null;
+        created_at: string | null;
+        updated_at: string | null;
     }
 
     const emptyList:List[] = [{
@@ -50,7 +52,9 @@ function Dashboard(){
         deadline: null,
         description: null,
         user_id: null,
-        category_id: null
+        category_id: null,
+        created_at: null,
+        updated_at: null
     }];
 
     
@@ -92,7 +96,7 @@ function Dashboard(){
 
     function appendLabel(){
         for (let i = 0; i < categories.length; i++){
-            label.push(categories[i].category)
+            label.push(categories[i].category!)
         }
         return label;
     }
@@ -186,7 +190,7 @@ function Dashboard(){
 
     function HandleAddItemForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        document.getElementById("add-item-btn").click();
+        document.getElementById("add-item-btn")!.click();
     }
 
     async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
@@ -206,7 +210,7 @@ function Dashboard(){
 
     function HandleAddCategoryForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        document.getElementById("add-cat-btn").click();
+        document.getElementById("add-cat-btn")!.click();
     }
 
     async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
@@ -219,7 +223,7 @@ function Dashboard(){
         updateData();
       }
 
-    async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+    async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
         if (categoryConfirmation) {
             let id = event.currentTarget.value
@@ -237,7 +241,7 @@ function Dashboard(){
         }
     }
 
-    function handleCategoryFilterClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+    function handleCategoryFilterClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         setCategoryFilterValue((event.target as HTMLTextAreaElement).value);
         setIsInCategory(true);
         updateListItems();
@@ -250,12 +254,12 @@ function Dashboard(){
         setTitle("All Items");
     }
 
-    function handleEditClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+    function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         var id = event.currentTarget.value;
         setResult(listItem.filter((item: any) => item.id == id));
     }
 
-    async function HandleUpdateItemClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+    async function HandleUpdateItemClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         event.preventDefault();
         let id = (event.target as HTMLTextAreaElement).value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
@@ -270,7 +274,7 @@ function Dashboard(){
 
     function HandleUpdateItemForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        document.getElementById("edit-item-btn").click();
+        document.getElementById("edit-item-btn")!.click();
     }
     
     function getCategoriesSidebar(x: any){
@@ -281,7 +285,7 @@ function Dashboard(){
 
     function getItems(x: any){
         number += 1; 
-        return(
+        return<>(
             <tr key = {x.id} >
                 <td>{number}</td>
                 <td>{x.title}</td>
@@ -296,22 +300,22 @@ function Dashboard(){
                     <button onClick = {handleEditClick} value = {x.id} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
                 </td>
             </tr>
-        )
+        )</>
     }
 
     function getCategories(x: any){
-        return(
+        return <>(
             <li className = "category-list" key = {x.id}>
                 <button name = {x.category} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
                 <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
-        );
+        )</>;
     }
 
-    function getCategoriesOption(x: any){
-        return(
-            <option key = {x.id} value = {x.id}>{x.category}</option>
-        );
+    function getCategoriesOption(x: Categories){
+        return <>(
+            <option key = {x.id} value = {x.id!}>{x.category}</option>
+        )</>;
     }
 
     function getCategoriesEdit(){
@@ -337,7 +341,7 @@ function Dashboard(){
         if (search == ""){
             updateListItems()
         } else{
-            const filtered = originalListItem.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+            const filtered = originalListItem.filter((item: List)=> item.title!.toLowerCase().includes(search.toLowerCase()));
             setListItem(filtered);
         }
     }, [search]);
@@ -463,20 +467,20 @@ function Dashboard(){
                                 <div className = "modal-body">
                                     <form id = "edit-form" onSubmit = {HandleUpdateItemForm} >
                                         <p className = "add-form-description">Title</p>
-                                        <input defaultValue = {result[0].title} className = "form-control" name = "item[title]" placeholder = "Title"/>
+                                        <input defaultValue = {result[0].title!} className = "form-control" name = "item[title]" placeholder = "Title"/>
                                         <p className = "add-form-description">Description</p>
-                                        <textarea defaultValue = {result[0].description} name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
+                                        <textarea defaultValue = {result[0].description!} name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
                                         <p className = "add-form-description">Deadline</p>
-                                        <input defaultValue = {result[0].deadline} className = "form-control" name = "item[deadline]" type = "date"></input>
+                                        <input defaultValue = {result[0].deadline!} className = "form-control" name = "item[deadline]" type = "date"></input>
                                         <p className = "add-form-description">Category</p>
                                         <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                            <option value = {result[0].category_id}>{getCategoriesEdit()}</option>
+                                            <option value = {result[0].category_id!}>{getCategoriesEdit()}</option>
                                             {categories.map(getCategoriesOption)}
                                         </select>                             
                                     </form>
                                 </div>
                                 <div className = "modal-footer">
-                                    <button id = "edit-item-btn" value = {result[0].id} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
+                                    <button id = "edit-item-btn" value = {result[0].id!} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
                                 </div>
                             </div>
                         </div>
@@ -485,7 +489,9 @@ function Dashboard(){
             </div>
         );
     } else if (auth == "false"){
-        window.location.replace("https://todolist-cvwo.herokuapp.com/");
+        return <>(
+            window.location.replace("https://todolist-cvwo.herokuapp.com/")
+        )</>;
     } else {
         return(
             <div>
