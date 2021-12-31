@@ -1,30 +1,28 @@
+import { Dispatch, SetStateAction } from "react";
 import {useState} from "react"
-import {List, Categories, emptyList} from "./interface"
+import {List, Categories} from "./interface"
 import EditIcon from "@material-ui/icons/Edit";
-import AddItem from "./addItem";
-import EditItem from "./editItem"
 
 interface TableProps{
     categories: Categories[];
     categoryFilterValue: string;
+    isInCategory: boolean;
     tableId: string;
+    setListItem: Dispatch<SetStateAction<List[]>>;
+    setOriginalListItem: Dispatch<SetStateAction<List[]>>;
+    setIsInCategory: Dispatch<SetStateAction<boolean>>;
+    setTitle: Dispatch<SetStateAction<string>>;
+    setResult: Dispatch<SetStateAction<List[]>>;
+    setData:  Dispatch<SetStateAction<number[]>>;
+    setSearch: Dispatch<SetStateAction<string>>;
+    listItem: List[];
+    title: string;
+    search: string;
 }
 
-function Table({categories, categoryFilterValue, tableId}: TableProps){
+function Table({categories, categoryFilterValue, isInCategory, tableId, setListItem, setOriginalListItem, setIsInCategory, setTitle, setResult, setData, setSearch, listItem, title, search}: TableProps){
     
     let number = 1;
-
-    const [search, setSearch] = useState<string>("");
-
-    const [title, setTitle] = useState<string>("All Items");
-
-    const [isInCategory, setIsInCategory] = useState<boolean>(false);
-
-    const [result, setResult] = useState<List[]>(emptyList);
-
-    const [originalListItem, setOriginalListItem] = useState<List[]>([]);
-
-    const [listItem, setListItem] = useState<List[]>([]);
 
     async function updateListItems(){
         if (isInCategory) {
@@ -42,6 +40,12 @@ function Table({categories, categoryFilterValue, tableId}: TableProps){
                 setOriginalListItem(listItem.items);
             });
         }
+    }
+
+    async function updateData(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+            .then(res => res.json())
+            .then((data) => setData(data.data));
     }
 
     function getSearchValue(event: React.ChangeEvent<HTMLInputElement>){
@@ -67,6 +71,7 @@ function Table({categories, categoryFilterValue, tableId}: TableProps){
             mode: 'cors',
             credentials: 'include'});
         updateListItems();
+        updateData();
     }
 
     function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
@@ -127,10 +132,6 @@ function Table({categories, categoryFilterValue, tableId}: TableProps){
                     </tbody>
                 </table>
             </div>
-            <AddItem categories = {categories}/>
-            <EditItem 
-                result = {result}
-            />
         </div>
     )
 }
