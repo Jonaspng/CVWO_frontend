@@ -27,7 +27,7 @@ function Dashboard(){
 
     const [isInCategory, setIsInCategory] = useState<boolean>(false);
 
-    const [CategoryFilterValue, setCategoryFilterValue] = useState<string>("");
+    const [categoryFilterValue, setCategoryFilterValue] = useState<string>("");
 
     const [btnsymbol, setBtnSymbol] = useState<string>("fas fa-chevron-left");
 
@@ -111,8 +111,8 @@ function Dashboard(){
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: any) => x.category_id == parseInt(CategoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: any)  => x.category_id == parseInt(CategoryFilterValue)));
+                    setListItem((listItem.items).filter((x: List) => x.category_id == parseInt(categoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id == parseInt(categoryFilterValue)));
                 });
         } else {
             return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
@@ -190,7 +190,7 @@ function Dashboard(){
             credentials: 'include'});
         updateListItems();
         updateData();
-      }
+    }
 
     async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
@@ -224,8 +224,8 @@ function Dashboard(){
     }
 
     function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        var id = event.currentTarget.value;
-        setResult(listItem.filter((item: any) => item.id == id));
+        let id:number = parseInt(event.currentTarget.value);
+        setResult(listItem.filter((item: List) => item.id == id));
     }
 
     async function HandleUpdateItemClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
@@ -246,13 +246,13 @@ function Dashboard(){
         document.getElementById("edit-item-btn")!.click();
     }
     
-    function getCategoriesSidebar(x: any){
-        if (categories.filter(y => y.id == x.category_id).length !== 0){
-            return categories.filter(y => y.id == x.category_id)[0].category
+    function getCategoriesSidebar(x: List){
+        if (categories.filter((y: Categories) => y.id == x.category_id).length !== 0){
+            return categories.filter((y: Categories)=> y.id == x.category_id)[0].category
         }
     }
 
-    function getItems(x: any){
+    function getItems(x: List){
         number += 1; 
         return(
             <tr key = {x.id} >
@@ -263,10 +263,10 @@ function Dashboard(){
                 <td>
                 <form id = "delete-form">
                     <div className = "form-check form-switch">
-                        <input name = "id" value = {x.id} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
+                        <input name = "id" value = {x.id!} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
                     </div>
                 </form>
-                    <button onClick = {handleEditClick} value = {x.id} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
+                    <button onClick = {handleEditClick} value = {x.id!} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
                 </td>
             </tr>
         )
@@ -300,7 +300,7 @@ function Dashboard(){
         updateData();
         updateListItems();
         updateUsername();
-    }, [isInCategory, CategoryFilterValue]);
+    }, [isInCategory, categoryFilterValue]);
     
     // helps to filter list based on input in search bar
     useEffect(() => {
@@ -360,7 +360,6 @@ function Dashboard(){
                             </div>
                         </div>
                         <div>
-                            
                             <table className = "table table-striped table-hover">
                                 <thead>
                                     <tr>
