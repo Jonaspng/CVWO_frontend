@@ -5,7 +5,7 @@ import Error from "../components/error"
 
 function Register(){
     
-    const [error,setError] = useState([]);
+    const [error,setError] = useState<string[]>([]);
 
     // use to fetch possible errors from backend
     useEffect(()  => {

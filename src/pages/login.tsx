@@ -6,7 +6,7 @@ import Error from "../components/error"
 
 function Login(){
 
-    const [error, setError] = useState([])
+    const [error, setError] = useState<string[]>([])
 
     useEffect(() => {
         fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{credentials: 'include'})

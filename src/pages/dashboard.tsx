@@ -6,6 +6,7 @@ import {Pie} from "react-chartjs-2";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
 import colorScheme from "../components/color";
+import {Categories, emptyCategory, List, emptyList} from "../components/interface"
 
 
 function Dashboard(){
@@ -14,79 +15,39 @@ function Dashboard(){
     let label:string[] = [];
     
     // number variable helps in labeling of table
-    let number = 0;
+    let number:number = 0;
 
-    let categoryConfirmation = false;
-
-    interface Categories {
-        id: number | null;
-        category: string | null;
-        user_id: string | null;
-        created_at: string | null;
-        updated_at: string | null;
-    }
-
-    const emptyCategory:Categories[] = [{
-        id: null,
-        category: null,
-        user_id: null,
-        created_at: null,
-        updated_at: null
-    }];
-
-
-    interface List{
-        id: number | null;
-        title: string | null;
-        deadline: string | null;
-        description: string | null;
-        user_id: number | null;
-        category_id: number | null;
-        created_at: string | null;
-        updated_at: string | null;
-    }
-
-    const emptyList:List[] = [{
-        id: null,
-        title: null,
-        deadline: null,
-        description: null,
-        user_id: null,
-        category_id: null,
-        created_at: null,
-        updated_at: null
-    }];
-
+    let categoryConfirmation:boolean = false;
     
 
     // react hooks
-    const [tabStatus, setTabStatus] =  useState(true);
+    const [tabStatus, setTabStatus] =  useState<boolean>(true);
 
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState<string>("");
 
-    const [isInCategory, setIsInCategory] = useState(false);
+    const [isInCategory, setIsInCategory] = useState<boolean>(false);
 
-    const [CategoryFilterValue, setCategoryFilterValue] = useState("");
+    const [CategoryFilterValue, setCategoryFilterValue] = useState<string>("");
 
-    const [btnsymbol, setBtnSymbol] = useState("fas fa-chevron-left");
+    const [btnsymbol, setBtnSymbol] = useState<string>("fas fa-chevron-left");
 
-    const [toLeft, setToLeft] = useState("list");
+    const [toLeft, setToLeft] = useState<string>("list");
 
     const [categories, setCategories] = useState<Categories[]>(emptyCategory);
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<number[]>([]);
 
-    const [originalListItem, setOriginalListItem] = useState([]);
+    const [originalListItem, setOriginalListItem] = useState<List[]>([]);
 
-    const [listItem, setListItem] = useState([]);
+    const [listItem, setListItem] = useState<List[]>([]);
 
-    const [title, setTitle] = useState("All Items");
+    const [title, setTitle] = useState<string>("All Items");
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState<string>("");
 
     const [result, setResult] = useState<List[]>(emptyList);
 
-    const [auth, setAuth] = useState("");
+    const [auth, setAuth] = useState<string>("");
 
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
@@ -124,29 +85,37 @@ function Dashboard(){
     
     // fetch is used here to parse data to backend and fetch data from backend
     // async functions below with await help make sure it finish fetching information before moving on
+
+    async function updateUsername(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
+                .then((res) => res.json())
+                .then((username) => setUsername(username.user.username));
+    }
+
+
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: 'include'})
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
-            .then(res => res.json())
-            .then((listItem) => {
-                setListItem((listItem.items).filter((x: any) => x.category_id == parseInt(CategoryFilterValue)));
-                setOriginalListItem((listItem.items).filter((x: any)  => x.category_id == parseInt(CategoryFilterValue)));
-            });
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+                .then(res => res.json())
+                .then((listItem) => {
+                    setListItem((listItem.items).filter((x: any) => x.category_id == parseInt(CategoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: any)  => x.category_id == parseInt(CategoryFilterValue)));
+                });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -303,11 +272,11 @@ function Dashboard(){
         )
     }
 
-    function getCategories(x: any){
+    function getCategories(x: Categories){
         return(
             <li className = "category-list" key = {x.id}>
-                <button name = {x.category} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id}>{x.category}</button>
-                <button type = "button" value = {x.id} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
+                <button name = {x.category!} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id!}>{x.category}</button>
+                <button type = "button" value = {x.id!} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
             </li>
         );
     }
@@ -330,13 +299,10 @@ function Dashboard(){
         updateCategory();
         updateData();
         updateListItems();
-        
-        console.log(listItem);
-        fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
-            .then((res) => res.json())
-            .then((username) => setUsername(username.user.username));
+        updateUsername();
     }, [isInCategory, CategoryFilterValue]);
-
+    
+    // helps to filter list based on input in search bar
     useEffect(() => {
         if (search == ""){
             updateListItems()
