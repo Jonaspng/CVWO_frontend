@@ -489,9 +489,9 @@ function Dashboard(){
             </div>
         );
     } else if (auth == "false"){
-        return <>(
+        return <>{
             window.location.replace("https://todolist-cvwo.herokuapp.com/")
-        )</>;
+        }</>;
     } else {
         return(
             <div>
