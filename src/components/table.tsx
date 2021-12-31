@@ -22,7 +22,7 @@ interface TableProps{
 
 function Table({categories, categoryFilterValue, isInCategory, tableId, setListItem, setOriginalListItem, setIsInCategory, setTitle, setResult, setData, setSearch, listItem, title, search}: TableProps){
     
-    let number = 1;
+    let number = 0;
 
     async function updateListItems(){
         if (isInCategory) {
