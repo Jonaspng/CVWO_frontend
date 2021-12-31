@@ -76,7 +76,7 @@ function Sidebar({categories, setToLeft, setCategoryFilterValue, setIsInCategory
     }
 
     async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list item in the category will also be deleted");
+        categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list items in the category will also be deleted");
         if (categoryConfirmation) {
             let id = event.currentTarget.value
             await fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{

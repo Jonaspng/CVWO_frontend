@@ -9,24 +9,31 @@ function Carousel(){
                 <button type = "button" data-bs-target = "#carouselExampleCaptions" data-bs-slide-to = "4" aria-label = "Slide 5"></button>
             </div>
             <div className = "carousel-inner">
-            <div className = "carousel-item active">
-                <img src = "/add_item.jpg" className = "d-block w-100" alt = "..."/>
-                <div className = "carousel-caption d-none d-md-block">
-                    <h5>How do I add a new item?</h5>
-                    <p>Simply click the new item button circled in red!</p>
+                <div className = "carousel-item active">
+                    <img src = "/add_item.jpg" className = "d-block w-100" alt = "..."/>
+                    <div className = "carousel-caption d-none d-md-block">
+                        <h5>How do I add a new item?</h5>
+                        <p>Simply click the new item button circled in red!</p>
+                    </div>
                 </div>
-            </div>
-            <div className = "carousel-item">
-                <img src = "/add_category.jpg" className = "d-block w-100" alt = "..."/>
-                <div className = "carousel-caption d-none d-md-block">
-                    <h5>How do I organise my list?</h5>
-                    <p>You can use the add category button circled in red to create your personal category.</p>
+                <div className = "carousel-item active">
+                    <img src = "/edit_item.jpg" className = "d-block w-100" alt = "..."/>
+                    <div className = "carousel-caption d-none d-md-block">
+                        <h5>How do I edit the details of an existing item?</h5>
+                        <p>Simply click the button circled in red!</p>
+                    </div>
                 </div>
-            </div>
+                <div className = "carousel-item">
+                    <img src = "/add_category.jpg" className = "d-block w-100" alt = "..."/>
+                    <div className = "carousel-caption d-none d-md-block">
+                        <h5>How do I organise my list?</h5>
+                        <p>You can use the add category button circled in red to create your personal category.</p>
+                    </div>
+                </div>
             <div className = "carousel-item">
                 <img src = "/filter_category.jpg" className = "d-block w-100" alt = "..."/>
                 <div className = "carousel-caption d-none d-md-block">
-                    <h5>How do I filter my list according to catgory?</h5>
+                    <h5>How do I filter my list according to category?</h5>
                     <p>Click on the category that you want to view</p>
                 </div>
             </div>
