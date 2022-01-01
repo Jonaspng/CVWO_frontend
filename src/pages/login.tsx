@@ -24,8 +24,9 @@ function Login(){
         setTimeout(closeAlert, 3000);
         return(
             <Alert 
-                alertName = "alert alert-danger alert-dismissible fade show"
-                description = {x}
+            alertName = "alert alert-danger alert-dismissible d-flex align-items-center fade show"
+            description = {x} 
+            iconName = "#exclamation-triangle-fill"
             />
         );
     }

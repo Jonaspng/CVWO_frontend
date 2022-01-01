@@ -85,6 +85,10 @@ function Dashboard(){
         }
     }
 
+    function closeAlert(){
+        document.getElementById("alert-close")!.click()
+    }
+
     // updates auth, category, data and list items
     useEffect(() => {
         getAuth();
@@ -108,11 +112,13 @@ function Dashboard(){
     // If auth == "false" the user will be redirected to the home page as this means the user is not logged in
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
     if (auth === "true" && username !== ""){
+        setTimeout(closeAlert, 3000);
         return(
             <div id = "dashboard">
                 <Alert 
                     alertName = "alert alert-success alert-dismissible fade show"
                     description = {"Logged in as " + username}
+                    iconName = "#check-circle-fill"
                 />
                 <Navbar 
                     brand = "/dashboard"

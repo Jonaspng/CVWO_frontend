@@ -15,6 +15,10 @@ html,body,#root,.home-page{
     border-radius: 20px;
     border: transparent;
   }
+
+.alert-icon{
+    display: none;
+}
   
 .btn{
     margin: 10px;
