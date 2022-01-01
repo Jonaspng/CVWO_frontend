@@ -1,5 +1,3 @@
-import React from "react";
-
 interface NavbarProps{
   brand: string;
   link1?: string;
@@ -11,7 +9,7 @@ interface NavbarProps{
   logout?: string;
 }
 
-function Navbar({brand, link1, link2, link3, item1, item2, item3, logout}: NavbarProps) {
+function Navbar({ brand, link1, link2, link3, item1, item2, item3, logout }: NavbarProps) {
     return (
         <nav className = "navbar navbar-expand-lg navbar-dark bg-dark">
         <div className = "container-fluid">
@@ -37,7 +35,6 @@ function Navbar({brand, link1, link2, link3, item1, item2, item3, logout}: Navba
                   </form>
                 </li>
               </ul>
-
           </div>
         </div>
       </nav>

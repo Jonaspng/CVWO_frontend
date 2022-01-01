@@ -25,7 +25,7 @@ function Home(){
                     <p>
                         <Typewriter
                             options = {{
-                                cursor: '',
+                                cursor: "",
                                 autoStart: true,
                                 loop: true,
                             }}

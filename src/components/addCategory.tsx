@@ -1,6 +1,6 @@
 
 import { Dispatch, SetStateAction } from "react";
-import {Categories} from "./interface";
+import { Categories } from "./interface";
 
 
 interface AddCategoryProps{
@@ -8,17 +8,17 @@ interface AddCategoryProps{
     setData: Dispatch<SetStateAction<number[]>>;
 }
 
-function AddCategory({setCategories, setData}: AddCategoryProps){
+function AddCategory({ setCategories, setData }: AddCategoryProps){
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
@@ -34,8 +34,8 @@ function AddCategory({setCategories, setData}: AddCategoryProps){
         // post new category to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
-            mode: 'cors',
-            credentials: 'include',
+            mode: "cors",
+            credentials: "include",
             body:new FormData((document.getElementById("add-cat-form") as HTMLFormElement))});
         // resets the form for next use
         (document.getElementById("add-cat-form") as HTMLFormElement).reset();
@@ -63,7 +63,7 @@ function AddCategory({setCategories, setData}: AddCategoryProps){
                 </div>
             </div>
         </div>
-    )
+    );
 
 }
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Navbar from "../components/navbar";
 import Error from "../components/error"
 import Success from "../components/success"
@@ -33,22 +33,22 @@ function Profile(){
     const [click, setClick] = useState<boolean>(false);
 
     async function updateUserDetails(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((userDetails) => setUserDetails(userDetails.user));
     }
 
     async function updateErrors(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((error) => setError(error.error));
     }
 
     async function updateSuccess(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((success) => setSuccess(success.success));
-        }
+    }
 
     function getError(x: string){
         return(
@@ -76,8 +76,8 @@ function Profile(){
         } else{
             await fetch("https://todolist-backend-cvwo.herokuapp.com/users/" + userDetails.id,{ 
                 method:"PATCH",
-                mode: 'cors',
-                credentials: 'include',
+                mode: "cors",
+                credentials: "include",
                 body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
             updateUserDetails();
             updateErrors();

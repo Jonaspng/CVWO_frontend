@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import {useState} from "react"
 import {List, Categories} from "./interface"
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -26,14 +25,14 @@ function Table({categories, categoryFilterValue, isInCategory, tableId, setListI
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id == parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id == parseInt(categoryFilterValue)));
+                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -43,7 +42,7 @@ function Table({categories, categoryFilterValue, isInCategory, tableId, setListI
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: "include"})
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
@@ -59,8 +58,8 @@ function Table({categories, categoryFilterValue, isInCategory, tableId, setListI
     }
 
     function getCategoriesSidebar(x: List){
-        if (categories.filter((y: Categories) => y.id == x.category_id).length !== 0){
-            return categories.filter((y: Categories)=> y.id == x.category_id)[0].category
+        if (categories.filter((y: Categories) => y.id === x.category_id).length !== 0){
+            return categories.filter((y: Categories)=> y.id === x.category_id)[0].category
         }
     }
 
@@ -68,15 +67,15 @@ function Table({categories, categoryFilterValue, isInCategory, tableId, setListI
         let id = (event.target as HTMLTextAreaElement).value
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
             method:"DELETE",
-            mode: 'cors',
-            credentials: 'include'});
+            mode: "cors",
+            credentials: "include"});
         updateListItems();
         updateData();
     }
 
     function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         let id:number = parseInt(event.currentTarget.value);
-        setResult(listItem.filter((item: List) => item.id == id));
+        setResult(listItem.filter((item: List) => item.id === id));
     }
 
     function getItems(x: List){

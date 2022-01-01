@@ -1,4 +1,3 @@
-import { ChartConfiguration } from "chart.js";
 import {Pie} from "react-chartjs-2";
 import colorScheme from "../components/color";
 import {Categories} from "./interface";
@@ -19,7 +18,7 @@ function Chart({categories, data}: ChartProps){
         return label;
     }
 
-    var pieData = {
+    let pieData = {
         labels: appendLabel(),
         datasets: [{
             data: data,
@@ -27,7 +26,7 @@ function Chart({categories, data}: ChartProps){
         }],
     };
   
-    var options = {
+    let options = {
         legend: {
           position: "top",
           labels: {
@@ -42,9 +41,9 @@ function Chart({categories, data}: ChartProps){
 
     return (
         <div className = "chart">
-            {data.reduce((a: number, b: number) => a + b, 0) == 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
+            {data.reduce((a: number, b: number) => a + b, 0) === 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
         </div>
-    )
+    );
 
 }
 

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import {Categories, List, emptyList} from "./interface";
+import { Categories, List, emptyList } from "./interface";
 
 interface EditItemProps{
     result: List[];
@@ -11,24 +11,24 @@ interface EditItemProps{
     categoryFilterValue: string
 }
 
-function EditItem({result, categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue}: EditItemProps){
+function EditItem({ result, categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue }: EditItemProps){
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: "include"})
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id == parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id == parseInt(categoryFilterValue)));
+                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -50,7 +50,7 @@ function EditItem({result, categories, setData, setListItem, setOriginalListItem
 
     function getCategoriesEdit(){
         if (JSON.stringify(result) !== JSON.stringify(emptyList)){
-            return categories.filter(x => x.id == result[0].category_id)[0].category;
+            return categories.filter(x => x.id === result[0].category_id)[0].category;
         }
     }
 
@@ -59,8 +59,8 @@ function EditItem({result, categories, setData, setListItem, setOriginalListItem
         let id = (event.target as HTMLTextAreaElement).value;
         await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/"+id,{ 
             method:"PATCH",
-            mode: 'cors',
-            credentials: 'include',
+            mode: "cors",
+            credentials: "include",
             body:new FormData((document.getElementById("edit-form") as HTMLFormElement))});
         (document.getElementById("edit-form") as HTMLFormElement).reset();
         updateListItems();

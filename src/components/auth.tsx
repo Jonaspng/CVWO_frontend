@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 interface AuthProps{
     route: string;
@@ -8,7 +8,7 @@ interface AuthProps{
     btn: string;
 }
 
-function Auth({route, greetings, usernameInput, passwordValidation, btn}: AuthProps){
+function Auth({ route, greetings, usernameInput, passwordValidation, btn }: AuthProps){
 
     const [name, setName]  =  useState<string>("");
 

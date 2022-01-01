@@ -1,7 +1,7 @@
-import {Dispatch, SetStateAction, useState} from "react";
-import {Categories, List} from "./interface"
-import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Dispatch, SetStateAction, useState } from "react";
+import { Categories, List } from "./interface"
+import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 interface SidebarProps{
     categories: Categories[];
@@ -17,7 +17,7 @@ interface SidebarProps{
     categoryFilterValue: string;
 }
 
-function Sidebar({categories, setToLeft, setCategoryFilterValue, setIsInCategory, setTitle, isInCategory, setListItem, setData, setCategories, setOriginalListItem, categoryFilterValue}: SidebarProps){
+function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategory, setTitle, isInCategory, setListItem, setData, setCategories, setOriginalListItem, categoryFilterValue }: SidebarProps){
 
     const [tabStatus, setTabStatus] =  useState<boolean>(true);
 
@@ -26,27 +26,27 @@ function Sidebar({categories, setToLeft, setCategoryFilterValue, setIsInCategory
     let categoryConfirmation:boolean = false;
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id == parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id == parseInt(categoryFilterValue)));
+                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -81,8 +81,8 @@ function Sidebar({categories, setToLeft, setCategoryFilterValue, setIsInCategory
             let id = event.currentTarget.value
             await fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
                 method:"DELETE",
-                mode: 'cors',
-                credentials: 'include',
+                mode: "cors",
+                credentials: "include",
             });
             categoryConfirmation = false;
             updateCategory();

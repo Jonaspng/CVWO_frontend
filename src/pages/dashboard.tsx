@@ -1,4 +1,4 @@
-import {useState, useEffect, SetStateAction} from "react";
+import { useState, useEffect } from "react";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
 import {Categories, emptyCategory, List, emptyList} from "../components/interface"
@@ -37,45 +37,45 @@ function Dashboard(){
 
     const [auth, setAuth] = useState<string>("");
 
+    // fetch is used here to parse data to backend and fetch data from backend
+    // async functions with await helps make sure it finishes fetching information before moving on
+
     async function getAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: "include"})
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
     }
-        
-    // fetch is used here to parse data to backend and fetch data from backend
-    // async functions below with await help make sure it finish fetching information before moving on
 
     async function updateUsername(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include"})
                 .then((res) => res.json())
                 .then((username) => setUsername(username.user.username));
     }
 
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: "include"})
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: 'include'})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: "include"})
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id == parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id == parseInt(categoryFilterValue)));
+                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: 'include'})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -104,9 +104,9 @@ function Dashboard(){
     }, [search]);
     
     // It checks with backend to see whether the user is logged in 
-    // If auth == "false" the user will be redirected to the home page
+    // If auth == "false" the user will be redirected to the home page as this means the user is not logged in
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    if (auth == "true" && username != ""){
+    if (auth === "true" && username !== ""){
         return(
             <div id = "dashboard">
                 <Navbar 
@@ -122,60 +122,60 @@ function Dashboard(){
                 />
                 <div className = "below-chart">
                     <Sidebar 
-                        categories={categories}
-                        setToLeft={setToLeft}
-                        setCategoryFilterValue={setCategoryFilterValue}
-                        isInCategory={isInCategory}
-                        setTitle={setTitle}
-                        setListItem={setListItem}
-                        setData={setData}
-                        setCategories={setCategories}
-                        setOriginalListItem={setOriginalListItem}
-                        categoryFilterValue={categoryFilterValue} 
-                        setIsInCategory={setIsInCategory}              
+                        categories = {categories}
+                        setToLeft = {setToLeft}
+                        setCategoryFilterValue = {setCategoryFilterValue}
+                        isInCategory = {isInCategory}
+                        setTitle = {setTitle}
+                        setListItem = {setListItem}
+                        setData = {setData}
+                        setCategories = {setCategories}
+                        setOriginalListItem = {setOriginalListItem}
+                        categoryFilterValue = {categoryFilterValue} 
+                        setIsInCategory = {setIsInCategory}              
                     />
                     <Table 
-                        categories={categories} 
-                        categoryFilterValue={categoryFilterValue} 
-                        isInCategory={isInCategory} 
-                        tableId={toLeft} 
-                        setListItem={setListItem} 
-                        setOriginalListItem={setOriginalListItem} 
-                        setIsInCategory={setIsInCategory} 
-                        setTitle={setTitle} 
-                        setResult={setResult} 
-                        setData={setData} 
-                        setSearch={setSearch} 
-                        listItem={listItem} 
-                        title={title} 
-                        search={search}                    
+                        categories = {categories} 
+                        categoryFilterValue = {categoryFilterValue} 
+                        isInCategory = {isInCategory} 
+                        tableId = {toLeft} 
+                        setListItem = {setListItem} 
+                        setOriginalListItem = {setOriginalListItem} 
+                        setIsInCategory = {setIsInCategory} 
+                        setTitle = {setTitle} 
+                        setResult = {setResult} 
+                        setData = {setData} 
+                        setSearch = {setSearch} 
+                        listItem = {listItem} 
+                        title = {title} 
+                        search = {search}                    
                     />
                 </div>
                 <AddItem 
-                    categories={categories} 
-                    setData={setData} 
-                    setListItem={setListItem} 
-                    setOriginalListItem={setOriginalListItem} 
-                    isInCategory={isInCategory} 
-                    categoryFilterValue={categoryFilterValue} 
+                    categories = {categories} 
+                    setData = {setData} 
+                    setListItem = {setListItem} 
+                    setOriginalListItem = {setOriginalListItem} 
+                    isInCategory = {isInCategory} 
+                    categoryFilterValue = {categoryFilterValue} 
                 />
                 <EditItem 
-                    result={result} 
-                    categories={categories} 
-                    setData={setData} 
-                    setListItem={setListItem} 
-                    setOriginalListItem={setOriginalListItem} 
-                    isInCategory={isInCategory} 
-                    categoryFilterValue={categoryFilterValue}
+                    result = {result} 
+                    categories = {categories} 
+                    setData = {setData} 
+                    setListItem = {setListItem} 
+                    setOriginalListItem = {setOriginalListItem} 
+                    isInCategory = {isInCategory} 
+                    categoryFilterValue = {categoryFilterValue}
                 />
                 <AddCategory 
-                    setCategories={setCategories}
-                    setData={setData}
+                    setCategories = {setCategories}
+                    setData = {setData}
                 />
             </div>
                 
         );
-    } else if (auth == "false"){
+    } else if (auth === "false"){
         return <>{
             window.location.replace("https://todolist-cvwo.herokuapp.com/")
         }</>;

@@ -9,7 +9,7 @@ function Register(){
 
     // use to fetch possible errors from backend
     useEffect(()  => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{credentials: 'include'})
+        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
           .then((res)  => res.json())
           .then((error)  => setError(error.error));
       }, []);
