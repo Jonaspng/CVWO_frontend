@@ -50,9 +50,11 @@ function Profile(){
     }
 
     function closeAlert(){
-        document.getElementById("alert-close")!.click()
+        let listOfAlerts = document.getElementsByName("alert-close")!
+        for (let i = 0; i < listOfAlerts.length; i++) {
+            listOfAlerts[i].click();
+        }
     }
-
     function getError(x: string){
         setTimeout(closeAlert, 3000);
         return(

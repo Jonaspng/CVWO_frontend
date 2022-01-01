@@ -112,11 +112,11 @@ function Dashboard(){
     // If auth == "false" the user will be redirected to the home page as this means the user is not logged in
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
     if (auth === "true" && username !== ""){
-        setTimeout(closeAlert, 3000);
+        setTimeout(closeAlert, 2000);
         return(
             <div id = "dashboard">
                 <Alert 
-                    alertName = "alert alert-success alert-dismissible fade show"
+                    alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
                     description = {"Logged in as " + username}
                     iconName = "#check-circle-fill"
                 />

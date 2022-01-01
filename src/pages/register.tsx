@@ -8,7 +8,10 @@ function Register(){
     const [error,setError] = useState<string[]>([]);
 
     function closeAlert(){
-        document.getElementById("alert-close")!.click()
+        let listOfAlerts = document.getElementsByName("alert-close")!
+        for (let i = 0; i < listOfAlerts.length; i++) {
+            listOfAlerts[i].click();
+        }
     }
 
     function getMessage(x: string){
