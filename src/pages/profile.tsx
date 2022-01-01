@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Navbar from "../components/navbar";
-import Error from "../components/error"
-import Success from "../components/success"
+import Alert from "../components/alert";
 
 function Profile(){
 
@@ -50,16 +49,27 @@ function Profile(){
                         .then((success) => setSuccess(success.success));
     }
 
+    function closeAlert(){
+        document.getElementById("alert-close")!.click()
+    }
+
     function getError(x: string){
+        setTimeout(closeAlert, 3000);
         return(
-            <Error message = {x}/>
-        )
+            <Alert 
+                alertName = "alert alert-warning alert-dismissible fade show"
+                description={x}/>
+        );
     }
 
     function getSuccess(x: string){
+        setTimeout(closeAlert, 3000);
         return(
-            <Success message = {x}/>
-        )
+            <Alert 
+                alertName = "alert alert-success alert-dismissible fade show" 
+                description = {x}            
+            />
+        );
     }
 
     function getPassword(event: React.ChangeEvent<HTMLInputElement>){

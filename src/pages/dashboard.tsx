@@ -8,6 +8,7 @@ import Table from "../components/table";
 import AddItem from "../components/addItem";
 import EditItem from "../components/editItem";
 import AddCategory from "../components/addCategory";
+import Alert from "../components/alert";
 
 
 function Dashboard(){
@@ -95,7 +96,7 @@ function Dashboard(){
     
     // helps to filter list based on input in search bar
     useEffect(() => {
-        if (search == ""){
+        if (search === ""){
             updateListItems()
         } else{
             const filtered = originalListItem.filter((item: List)=> item.title!.toLowerCase().includes(search.toLowerCase()));
@@ -109,6 +110,10 @@ function Dashboard(){
     if (auth === "true" && username !== ""){
         return(
             <div id = "dashboard">
+                <Alert 
+                    alertName = "alert alert-success alert-dismissible fade show"
+                    description = {"Logged in as " + username}
+                />
                 <Navbar 
                     brand = "/dashboard"
                     item1 = {username}

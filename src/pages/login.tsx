@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import Navbar from "../components/navbar"
 import Auth2 from "../components/auth2"
-import Error from "../components/error"
+import Alert from "../components/alert";
 
 
 function Login(){
@@ -14,25 +14,33 @@ function Login(){
           .then((error) => setError(error.error));
       }, []);
 
+    
+    function closeAlert(){
+        document.getElementById("alert-close")!.click()
+    }
+
 
     function getMessage(x: string){
+        setTimeout(closeAlert, 3000);
         return(
-            <Error 
-                message = {x}/>
-            )
+            <Alert 
+                alertName = "alert alert-danger alert-dismissible fade show"
+                description = {x}
+            />
+        );
     }
 
     return(
         <div className="auth-page">
             <Navbar 
-                brand="/"
-                item1="Login"
-                link1="/login"
-                item2="Register"
-                link2="/register"
-                item3="Home"
-                link3="/"
-                logout="hidden"
+                brand = "/"
+                item1 = "Login"
+                link1 = "/login"
+                item2 = "Register"
+                link2 = "/register"
+                item3 = "Home"
+                link3 = "/"
+                logout = "hidden"
             />
 
             {error.map(getMessage)}

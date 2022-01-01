@@ -112,6 +112,12 @@ footer{
     margin-bottom: 40px;
 }
 
+.alert{
+    position: absolute;
+    top: 56px;
+    width: 100%;
+}
+
 .error-message{
     display:flex;
     position: absolute;

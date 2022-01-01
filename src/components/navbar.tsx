@@ -9,6 +9,7 @@ interface NavbarProps{
   logout?: string;
 }
 
+//Navbar from bootstrap
 function Navbar({ brand, link1, link2, link3, item1, item2, item3, logout }: NavbarProps) {
     return (
         <nav className = "navbar navbar-expand-lg navbar-dark bg-dark">

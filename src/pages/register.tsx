@@ -1,24 +1,32 @@
 import { useState,useEffect } from "react";
 import Navbar from "../components/navbar"
 import Auth from "../components/auth"
-import Error from "../components/error"
+import Alert from "../components/alert";
 
 function Register(){
     
     const [error,setError] = useState<string[]>([]);
 
-    // use to fetch possible errors from backend
-    useEffect(()  => {
+    function closeAlert(){
+        document.getElementById("alert-close")!.click()
+    }
+
+    function getMessage(x: string){
+        setTimeout(closeAlert, 3000);
+        return(
+            <Alert 
+                alertName = "alert alert-danger alert-dismissible fade show"
+                description = {x}
+            />
+        );
+    }
+
+     // use to fetch possible errors from backend
+     useEffect(()  => {
         fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
           .then((res)  => res.json())
           .then((error)  => setError(error.error));
-      }, []);
-
-    function getMessage(x: string){
-        return(
-            <Error message = {x}/>
-        )
-    }
+    }, []);
  
     return(
         <div className = "auth-page">
