@@ -120,15 +120,16 @@ function Profile(){
     return(
         <div className = "profile-page">
             <Navbar 
-            brand = "/dashboard"
-            item1 = {userDetails.username!}
-            item2 = "Dashboard"
-            link2 = "/dashboard"
-            logout = "logout"
-        />
-            {error.map(getError)}
-            {success.map(getSuccess)}
-
+                brand = "/dashboard"
+                item1 = {userDetails.username!}
+                item2 = "Dashboard"
+                link2 = "/dashboard"
+                logout = "logout"
+            />
+            <div className = "alert-bar">
+                {error.map(getError)}
+                {success.map(getSuccess)}
+            </div>
             <div className = "account-details">
                 <AccountCircleIcon style = {{ fontSize: 150 }} className="account-icon"/>
                 <h1>Edit Account Details</h1>

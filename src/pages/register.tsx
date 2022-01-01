@@ -44,9 +44,9 @@ function Register(){
                 link3 = "/"
                 logout = "hidden"
             />
-
-            {error.map(getMessage)}
-            
+            <div className = "alert-bar">
+                {error.map(getMessage)}
+            </div>
             <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth
                     route = "https://todolist-backend-cvwo.herokuapp.com/users"
@@ -56,9 +56,7 @@ function Register(){
                     btn = "Register"
                  />
             </div>
-            
         </div>
-        
     );
 }
 

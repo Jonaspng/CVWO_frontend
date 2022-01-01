@@ -86,7 +86,10 @@ function Dashboard(){
     }
 
     function closeAlert(){
-        document.getElementById("alert-close")!.click()
+        let listOfAlerts = document.getElementsByName("alert-close")!
+        for (let i = 0; i < listOfAlerts.length; i++) {
+            listOfAlerts[i].click();
+        }
     }
 
     // updates auth, category, data and list items
@@ -115,11 +118,6 @@ function Dashboard(){
         setTimeout(closeAlert, 2000);
         return(
             <div id = "dashboard">
-                <Alert 
-                    alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
-                    description = {"Logged in as " + username}
-                    iconName = "#check-circle-fill"
-                />
                 <Navbar 
                     brand = "/dashboard"
                     item1 = {username}
@@ -127,6 +125,13 @@ function Dashboard(){
                     link2 = "/profile"
                     logout = "logout"
                 />
+                <div className="alert-bar">
+                    <Alert 
+                        alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
+                        description = {"Logged in as " + username}
+                        iconName = "#check-circle-fill"
+                    />
+                </div>
                 <Chart 
                     categories = {categories} 
                     data = {data}

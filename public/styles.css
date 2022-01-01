@@ -117,8 +117,14 @@ footer{
 }
 
 .alert{
+    margin-bottom: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+.alert-bar{
     position: absolute;
-    top: 56px;
+    top: 56;
     width: 100%;
 }
 

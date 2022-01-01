@@ -45,9 +45,9 @@ function Login(){
                 link3 = "/"
                 logout = "hidden"
             />
-
-            {error.map(getMessage)}
-
+            <div className = "alert-bar">
+                {error.map(getMessage)}
+            </div>
             <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth2
                     route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
