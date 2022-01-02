@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
-import {Categories, emptyCategory, List, emptyList} from "../components/interface"
+import { Categories, emptyCategory, List, emptyList } from "../components/interface"
 import Chart from "../components/chart";
 import Sidebar from "../components/sidebar";
 import Table from "../components/table";
@@ -38,13 +38,17 @@ function Dashboard(){
 
     const [auth, setAuth] = useState<string>("");
 
-    const [hasAdded, setHasAdded] = useState<boolean>(false);
+    const [hasAddedItem, setHasAddedItem] = useState<boolean>(false);
+
+    const [hasAddedCategory, setHasAddedCategory] = useState<boolean>(false);
+
+    const [hasCategoryError, setHasCategoryError] = useState<boolean>(false);
 
     // fetch is used here to parse data to backend and fetch data from backend
     // async functions with await helps make sure it finishes fetching information before moving on
 
     async function getAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth",{credentials: "include"})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
     }
@@ -57,28 +61,28 @@ function Dashboard(){
 
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{credentials: "include"})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: "include"})
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
                     setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
                     setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -92,17 +96,30 @@ function Dashboard(){
         for (let i = 0; i < listOfAlerts.length; i++) {
             listOfAlerts[i].click();
         }
-        setHasAdded(false);
+        setHasAddedItem(false);
+
     }
 
-    function addAlert(){
+    function addAlert(alertName: string, title: string, description: string, iconName: string){
         setTimeout(closeAlert, 2000);
         return (
             <Alert 
-                alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
-                title = "Item Added Successfully!"
-                description = "Check the table below for the new list Item"
-                iconName = "#check-circle-fill"
+                alertName = {alertName}
+                title = {title}
+                description = {description}
+                iconName = {iconName}
+            />
+        );
+    }
+
+    function addErrorAlert(){
+        setTimeout(closeAlert, 2000);
+        return (
+            <Alert 
+                alertName = "alert alert-danger d-flex align-items-center alert-dismissible fade show"
+                title = "Category Already Exist!"
+                description = "Check the sidebar to see which categories have already been added"
+                iconName = "#exclamation-triangle-fill"
             />
         );
     }
@@ -146,7 +163,18 @@ function Dashboard(){
                         description = {"Logged in as " + username}
                         iconName = "#check-circle-fill"
                     />
-                    {hasAdded ? addAlert() : null}
+                    {hasAddedItem ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
+                                         "Item Added Successfully!",
+                                         "Check the table below for the new list Item",
+                                         "#check-circle-fill") : null}
+                    {hasAddedCategory ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
+                                         "Category Added Successfully!",
+                                         "Check the sidebar below for the new category",
+                                         "#check-circle-fill") : null}
+                    {hasCategoryError ? addAlert("alert alert-danger d-flex align-items-center alert-dismissible fade show",
+                                         "Category Already Exist!",
+                                         "Check the sidebar to see which categories have already been added",
+                                         "#exclamation-triangle-fill") : null}
                 </div>
                 <Chart 
                     categories = {categories} 
@@ -190,7 +218,7 @@ function Dashboard(){
                     setOriginalListItem = {setOriginalListItem} 
                     isInCategory = {isInCategory} 
                     categoryFilterValue = {categoryFilterValue}
-                    setHasAdded = {setHasAdded} 
+                    setHasAdded = {setHasAddedItem} 
                 />
                 <EditItem 
                     result = {result} 
@@ -203,7 +231,10 @@ function Dashboard(){
                 />
                 <AddCategory 
                     setCategories = {setCategories}
-                    setData = {setData}
+                    setData = {setData} 
+                    categories = {categories} 
+                    setHasAddedCategory = {setHasAddedCategory}
+                    setHasCategoryError = {setHasCategoryError}
                 />
             </div>
                 

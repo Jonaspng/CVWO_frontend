@@ -4,11 +4,14 @@ import { Categories } from "./interface";
 
 
 interface AddCategoryProps{
+    categories: Categories[];
     setCategories: Dispatch<SetStateAction<Categories[]>>;
     setData: Dispatch<SetStateAction<number[]>>;
+    setHasCategoryError: Dispatch<SetStateAction<boolean>>;
+    setHasAddedCategory: Dispatch<SetStateAction<boolean>>;
 }
 
-function AddCategory({ setCategories, setData }: AddCategoryProps){
+function AddCategory({ categories, setCategories, setData, setHasCategoryError, setHasAddedCategory }: AddCategoryProps){
 
     async function updateCategory(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
@@ -23,6 +26,12 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
             .then((data) => setData(data.data));
     }
 
+    function checkCategory(newCategory: Categories){
+        if (categories.filter(x => x.category === newCategory.category) === []){
+            setHasCategoryError(true);
+        }
+    }
+
     function HandleAddCategoryForm(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         document.getElementById("add-cat-btn")!.click();
@@ -31,6 +40,7 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
     async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
+        checkCategory((document.getElementById("add-category") as HTMLFormElement).value)
         // post new category to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
@@ -41,6 +51,7 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
         (document.getElementById("add-cat-form") as HTMLFormElement).reset();
         updateCategory();
         updateData();
+        setHasAddedCategory(true);
     }
 
     return (
@@ -54,7 +65,7 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
                     <div className = "modal-body">
                         <form id = "add-cat-form" onSubmit = {HandleAddCategoryForm}>
                             <p className = "add-form-description">Category Name</p>
-                            <input className = "form-control" name = "category" placeholder = "Category Name"/>                           
+                            <input id = "new-category" className = "form-control" name = "category" placeholder = "Category Name"/>                           
                         </form>
                     </div>
                     <div className = "modal-footer">
