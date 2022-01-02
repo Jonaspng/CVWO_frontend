@@ -96,10 +96,10 @@ function Dashboard(){
     }
 
     function addAlert(){
-        setTimeout(closeAlert, 1000);
+        setTimeout(closeAlert, 2000);
         return (
             <Alert 
-                alertName = "alert alert2 alert-success d-flex align-items-center alert-dismissible fade show"
+                alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
                 title = "Item Added Successfully!"
                 description = "Check the table below for the new list Item"
                 iconName = "#check-circle-fill"
