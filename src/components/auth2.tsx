@@ -14,7 +14,7 @@ function Auth2({greetings, btn}: Auth2Props){
                 body:new FormData((document.getElementById("login-form") as HTMLFormElement))})
                 .catch(error => {
                     console.log(error);
-                })
+                });
     }
 
     function handleLoginForm(event: React.FormEvent<HTMLFormElement>){
