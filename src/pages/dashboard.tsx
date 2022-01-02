@@ -114,7 +114,7 @@ function Dashboard(){
     // It checks with backend to see whether the user is logged in 
     // If auth == "false" the user will be redirected to the home page as this means the user is not logged in
     // checking if username !== "",makes sure that the dashboard page finishes fetching all information before rendering
-    // if (auth === "true" && username !== ""){
+    if (auth === "true" && username !== ""){
         setTimeout(closeAlert, 2000);
         return(
             <div id = "dashboard">
@@ -191,18 +191,18 @@ function Dashboard(){
             </div>
                 
         );
-    // } else if (auth === "false"){
-    //     return <>{
-    //         window.location.replace("https://todolist-cvwo.herokuapp.com/")
-    //     }</>;
-    // } else {
-    //     return(
-    //         <div>
-    //             <TopProgressBar />
-    //             <h1 className = "loading">Loading User Information</h1>
-    //         </div>
-    //     );
-    // }
+    } else if (auth === "false"){
+        return <>{
+            window.location.replace("https://todolist-cvwo.herokuapp.com/")
+        }</>;
+    } else {
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
+            </div>
+        );
+    }
 }
 
 export default Dashboard;
