@@ -97,7 +97,8 @@ function Dashboard(){
             listOfAlerts[i].click();
         }
         setHasAddedItem(false);
-
+        setHasCategoryError(false);
+        setHasAddedCategory(false);
     }
 
     function addAlert(alertName: string, title: string, description: string, iconName: string){
