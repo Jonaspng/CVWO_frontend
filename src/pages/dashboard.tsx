@@ -38,6 +38,8 @@ function Dashboard(){
 
     const [auth, setAuth] = useState<string>("");
 
+    const [hasAdded, setHasAdded] = useState<boolean>(false);
+
     // fetch is used here to parse data to backend and fetch data from backend
     // async functions with await helps make sure it finishes fetching information before moving on
 
@@ -90,6 +92,19 @@ function Dashboard(){
         for (let i = 0; i < listOfAlerts.length; i++) {
             listOfAlerts[i].click();
         }
+        setHasAdded(false);
+    }
+
+    function addAlert(){
+        setTimeout(closeAlert, 1000);
+        return (
+            <Alert 
+                alertName = "alert alert2 alert-success d-flex align-items-center alert-dismissible fade show"
+                title = "Item Added Successfully!"
+                description = "Check the table below for the new list Item"
+                iconName = "#check-circle-fill"
+            />
+        );
     }
 
     // updates auth, category, data and list items
@@ -131,6 +146,7 @@ function Dashboard(){
                         description = {"Logged in as " + username}
                         iconName = "#check-circle-fill"
                     />
+                    {hasAdded ? addAlert() : null}
                 </div>
                 <Chart 
                     categories = {categories} 
@@ -173,7 +189,8 @@ function Dashboard(){
                     setListItem = {setListItem} 
                     setOriginalListItem = {setOriginalListItem} 
                     isInCategory = {isInCategory} 
-                    categoryFilterValue = {categoryFilterValue} 
+                    categoryFilterValue = {categoryFilterValue}
+                    setHasAdded = {setHasAdded} 
                 />
                 <EditItem 
                     result = {result} 

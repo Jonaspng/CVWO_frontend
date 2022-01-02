@@ -8,10 +8,11 @@ interface AddItemProps{
     setListItem: Dispatch<SetStateAction<List[]>>;
     setOriginalListItem: Dispatch<SetStateAction<List[]>>;
     isInCategory: boolean;
-    categoryFilterValue: string
+    categoryFilterValue: string;
+    setHasAdded: Dispatch<SetStateAction<boolean>>;
 }
 
-function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue }: AddItemProps){
+function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue, setHasAdded }: AddItemProps){
 
     async function updateData(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
@@ -48,13 +49,6 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
         );
     }
 
-    function closeAlert(){
-        let listOfAlerts = document.getElementsByName("alert-close")!
-        for (let i = 0; i < listOfAlerts.length; i++) {
-            listOfAlerts[i].click();
-        }
-    }
-
     async function HandleAddItemClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
@@ -66,17 +60,9 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
             body:new FormData((document.getElementById("add-form") as HTMLFormElement))});
         // resets the form for next use
         (document.getElementById("add-form") as HTMLFormElement).reset();
+        setHasAdded(true);
         updateListItems();
         updateData();
-        setTimeout(closeAlert, 10000);
-        return (
-            <Alert 
-                alertName = "alert alert2 alert-success d-flex align-items-center alert-dismissible fade show"
-                title = "Item Added Successfully!"
-                description = "Check the table below for the new list Item"
-                iconName = "#check-circle-fill"
-            />
-        );
     }
 
     return (
