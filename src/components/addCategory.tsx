@@ -30,6 +30,8 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
         if (categories.filter(x => x.category === newCategory) !== []){
             setHasCategoryError(true);
             return true;
+        } else {
+            return false;
         }
     }
 
