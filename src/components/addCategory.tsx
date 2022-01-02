@@ -40,7 +40,7 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
     async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
-        checkCategory((document.getElementById("add-category") as HTMLFormElement).value)
+        checkCategory((document.getElementById("new-category") as HTMLFormElement).value)
         // post new category to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",
