@@ -122,6 +122,13 @@ footer{
     width: 100%;
 }
 
+.alert2{
+    z-index: 10;
+    position: absolute;
+    top: 56px;
+    width: 100%;
+}
+
 .alert-bar{
     position: absolute;
     top: 56;

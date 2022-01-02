@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import Alert from "./alert";
 import { Categories, List } from "./interface";
 
 interface AddItemProps{
@@ -47,6 +48,13 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
         );
     }
 
+    function closeAlert(){
+        let listOfAlerts = document.getElementsByName("alert-close")!
+        for (let i = 0; i < listOfAlerts.length; i++) {
+            listOfAlerts[i].click();
+        }
+    }
+
     async function HandleAddItemClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
         event.preventDefault();
@@ -60,6 +68,15 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
         (document.getElementById("add-form") as HTMLFormElement).reset();
         updateListItems();
         updateData();
+        setTimeout(closeAlert, 10000);
+        return (
+            <Alert 
+                alertName = "alert alert2 alert-success d-flex align-items-center alert-dismissible fade show"
+                title = "Item Added Successfully!"
+                description = "Check the table below for the new list Item"
+                iconName = "#check-circle-fill"
+            />
+        );
     }
 
     return (
