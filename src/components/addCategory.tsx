@@ -27,7 +27,7 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
     }
 
     function checkCategory(newCategory: string){
-        if (categories.filter(x => x.category === newCategory) !== []){
+        if (categories.filter(x => x.category === newCategory).length !== 0){
             console.log(categories.filter(x => x.category === newCategory));
             setHasCategoryError(true);
             return true;
