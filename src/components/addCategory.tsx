@@ -58,7 +58,7 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
                         </form>
                     </div>
                     <div className = "modal-footer">
-                        <button id = "add-cat-btn"onClick = {HandleAddCategoryClick}     type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+                        <button id = "add-cat-btn" onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
                     </div>
                 </div>
             </div>

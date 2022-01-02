@@ -128,33 +128,6 @@ footer{
     width: 100%;
 }
 
-.error-message{
-    display:flex;
-    position: absolute;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 20px;
-    z-index: 2;
-    top: 56px;
-    background-color:pink;
-    width: 100%;
-    border-bottom: black solid;
-    border-bottom-width: 1px;
-}
-
-.success-message{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 20px;
-    z-index: 2;
-    top: 56px;
-    background-color:lightgreen;
-    width: 100%;
-    border-bottom: black solid;
-    border-bottom-width: 1px;
-}
-
 
 .validation-fail{
     border-color: red;

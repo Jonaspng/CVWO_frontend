@@ -1,13 +1,29 @@
 interface Auth2Props{
-    route: string;
     greetings: string;
     btn: string;
 }
 
-function Auth2({route, greetings, btn}: Auth2Props){
+function Auth2({greetings, btn}: Auth2Props){
+
+    async function authentication(){
+        await fetch("https://todolist-backend-cvwo.herokuapp.com/api/login",{ 
+                method:"POST",
+                mode: "cors",
+                credentials: "include",
+                body:new FormData((document.getElementById("login-form") as HTMLFormElement))})
+                .catch(error => {
+                    console.log(error);
+                })
+    }
+
+    function handleLoginForm(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        document.getElementById("login-btn")!.click();
+    }
+    
     return(
         <div className = "card mx-auto">
-            <form action = {route} method = "POST">
+            <form id = "login-form" onSubmit = {handleLoginForm}>
                 <div className = "card-body">
                     <h3 className = "card-title">{greetings}</h3>
                     <div className = "form-floating">
@@ -18,7 +34,7 @@ function Auth2({route, greetings, btn}: Auth2Props){
                         <input name = "password" type = "password" className = "form-control" placeholder = "Password" id = "floatingPassword" />
                         <label htmlFor = "floatingPassword">Password</label>
                     </div>
-                    <button className = "btn btn-primary" type = "submit" name = "button">{btn}</button>
+                    <button id = "login-btn" className = "btn btn-primary" onClick = {authentication} type = "submit">{btn}</button>
                 </div>
             </form>
         </div>
