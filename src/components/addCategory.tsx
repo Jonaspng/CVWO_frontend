@@ -23,12 +23,14 @@ function AddCategory({ setCategories, setData }: AddCategoryProps){
             .then((data) => setData(data.data));
     }
 
-    function HandleAddCategoryForm(){
+    function HandleAddCategoryForm(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault();
         document.getElementById("add-cat-btn")!.click();
     }
 
-    async function HandleAddCategoryClick(){
+    async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
+        event.preventDefault();
         // post new category to database which then save it 
         await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
             method:"POST",

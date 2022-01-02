@@ -6,7 +6,6 @@ interface Auth2Props{
 function Auth2({greetings, btn}: Auth2Props){
 
     async function authentication(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        event.preventDefault();
         await fetch("https://todolist-backend-cvwo.herokuapp.com/api/login",{ 
                 method:"POST",
                 mode: "cors",
@@ -18,7 +17,6 @@ function Auth2({greetings, btn}: Auth2Props){
     }
 
     function handleLoginForm(event: React.FormEvent<HTMLFormElement>){
-        event.preventDefault();
         document.getElementById("login-btn")!.click();
     }
     
