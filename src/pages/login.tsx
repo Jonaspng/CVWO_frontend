@@ -52,11 +52,14 @@ function Login(){
             <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth
                     route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
-                    greetings = "Welcome Back!"
-                    btn = "Login" 
+                    greetings= "Welcome Back!"
+                    btn = "Login"
                     usernameInput = "hidden"
                     passwordValidation = "hidden"
-                    click = {false}                 
+                    click = {false}
+                    validation = "form-control" 
+                    emailInputName = "email"
+                    passwordInputName = "password"               
                 />
             </div>
         </div>

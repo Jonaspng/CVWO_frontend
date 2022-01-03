@@ -9,12 +9,14 @@ interface AuthProps{
     setName?: Dispatch<SetStateAction<string>>;
     setPassword?: Dispatch<SetStateAction<string>>;
     setConfirmPassword?: Dispatch<SetStateAction<string>>;
-    click: boolean;
+    click?: boolean;
     name?: string;
-    validation?: string;
+    validation: string;
+    emailInputName: string;
+    passwordInputName: string;
 }
 
-function Auth({ route, greetings, usernameInput, passwordValidation, btn, setName, setPassword, setConfirmPassword, click, name, validation }: AuthProps){
+function Auth({ route, greetings, usernameInput, passwordValidation, btn, setName, setPassword, setConfirmPassword, click, name, validation, emailInputName, passwordInputName }: AuthProps){
 
     function getName(event: React.ChangeEvent<HTMLInputElement>){
         setName!(event.target.value);
@@ -44,11 +46,11 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn, setNam
                         <label htmlFor = "floatingInput">Username</label>
                     </div>
                     <div className = "form-floating">
-                        <input name = "user[email]" type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "off"/>
+                        <input name = {emailInputName} type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "off"/>
                         <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">
-                        <input name = "user[password]"  onChange = {getPassword} type = "password" className = {validation} placeholder = "Password" id = "floatingPassword" />
+                        <input name = {passwordInputName}  onChange = {getPassword} type = "password" className = {validation} placeholder = "Password" id = "floatingPassword" />
                         <label htmlFor = "floatingPassword">Password</label>
                     </div>
                     <div className = {passwordValidation}>

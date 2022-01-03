@@ -80,7 +80,9 @@ function Register(){
                     setConfirmPassword = {setConfirmPassword}
                     click = {click} 
                     name = {name}
-                    validation = {validation}               
+                    validation = {validation}
+                    emailInputName = "user[email]"
+                    passwordInputName = "user[password]"      
                 />
             </div>
         </div>
