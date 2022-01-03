@@ -113,18 +113,6 @@ function Dashboard(){
         );
     }
 
-    function addErrorAlert(){
-        setTimeout(closeAlert, 2000);
-        return (
-            <Alert 
-                alertName = "alert alert-danger d-flex align-items-center alert-dismissible fade show"
-                title = "Category Already Exist!"
-                description = "Check the sidebar to see which categories have already been added"
-                iconName = "#exclamation-triangle-fill"
-            />
-        );
-    }
-
     // updates auth, category, data and list items
     useEffect(() => {
         getAuth();

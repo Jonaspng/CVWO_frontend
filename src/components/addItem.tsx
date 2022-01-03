@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import Alert from "./alert";
 import { Categories, List } from "./interface";
 
 interface AddItemProps{

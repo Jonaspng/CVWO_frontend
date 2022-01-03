@@ -1,6 +1,5 @@
 import { useState,useEffect } from "react";
 import Navbar from "../components/navbar"
-import Auth2 from "../components/auth2"
 import Alert from "../components/alert";
 import Auth from "../components/auth";
 

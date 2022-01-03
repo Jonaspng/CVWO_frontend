@@ -1,5 +1,3 @@
-import { NoEncryption } from "@material-ui/icons";
-
 interface AlertProps{
     alertName: string;
     iconName: string;
