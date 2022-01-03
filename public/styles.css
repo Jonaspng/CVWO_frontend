@@ -181,8 +181,6 @@ footer{
     overflow-y: scroll;
 }
 
-/* symbol: > */
-
 .sidebar-btn{
     border-radius: 50%;
     color: #777;
@@ -337,13 +335,8 @@ footer{
 
 .show{
     visibility: visible;
-
 }
 
 .hidden{
-    visibility: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-
+    display: none;
 }

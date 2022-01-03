@@ -7,6 +7,16 @@ function Register(){
     
     const [error,setError] = useState<string[]>([]);
 
+    const [name, setName]  =  useState<string>("");
+
+    const [password, setPassword]  =  useState<string>("");
+
+    const [confirmPassword, setConfirmPassword]  =  useState<string>("");
+
+    const [validation, setValidation]  =  useState<string>("form-control");
+
+    const [click, setClick]  =  useState<boolean>(false);
+
     function closeAlert(){
         let listOfAlerts = document.getElementsByName("alert-close")!
         for (let i = 0; i < listOfAlerts.length; i++) {
@@ -14,7 +24,7 @@ function Register(){
         }
     }
 
-    function getMessage(x: string){
+    function getAlert(x: string){
         setTimeout(closeAlert, 3000);
         return(
             <Alert 
@@ -31,6 +41,17 @@ function Register(){
           .then((res)  => res.json())
           .then((error)  => setError(error.error));
     }, []);
+
+    
+    useEffect(() => {
+        if (password !==  confirmPassword){
+            setValidation("form-control validation-fail");
+            setClick(true);
+        } else{
+            setValidation("form-control"); 
+            setClick(false);        
+        }
+      }, [confirmPassword, password]);
  
     return(
         <div className = "auth-page">
@@ -45,7 +66,7 @@ function Register(){
                 logout = "hidden"
             />
             <div className = "alert-bar">
-                {error.map(getMessage)}
+                {error.map(getAlert)}
             </div>
             <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                 <Auth
@@ -53,8 +74,14 @@ function Register(){
                     greetings = "Hello"
                     usernameInput = "form-floating"
                     passwordValidation = "form-floating"
-                    btn = "Register"
-                 />
+                    btn = "Register" 
+                    setName = {setName}
+                    setPassword = {setPassword}
+                    setConfirmPassword = {setConfirmPassword}
+                    click = {click} 
+                    name = {name}
+                    validation = {validation}               
+                />
             </div>
         </div>
     );

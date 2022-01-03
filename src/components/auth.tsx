@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { SetStateAction, Dispatch } from "react";
 
 interface AuthProps{
     route: string;
@@ -6,30 +6,26 @@ interface AuthProps{
     usernameInput: string;
     passwordValidation: string;
     btn: string;
+    setName?: Dispatch<SetStateAction<string>>;
+    setPassword?: Dispatch<SetStateAction<string>>;
+    setConfirmPassword?: Dispatch<SetStateAction<string>>;
+    click: boolean;
+    name?: string;
+    validation?: string;
 }
 
-function Auth({ route, greetings, usernameInput, passwordValidation, btn }: AuthProps){
-
-    const [name, setName]  =  useState<string>("");
-
-    const [password, setPassword]  =  useState<string>("");
-
-    const [confirmPassword, setConfirmPassword]  =  useState<string>("");
-
-    const [validation, setValidation]  =  useState<string>("form-control");
-
-    const [click, setClick]  =  useState<boolean>(false);
+function Auth({ route, greetings, usernameInput, passwordValidation, btn, setName, setPassword, setConfirmPassword, click, name, validation }: AuthProps){
 
     function getName(event: React.ChangeEvent<HTMLInputElement>){
-        setName(event.target.value);
+        setName!(event.target.value);
     }
 
     function getPassword(event: React.ChangeEvent<HTMLInputElement>){
-        setPassword(event.target.value);
+        setPassword!(event.target.value);
     }
 
     function getConfirmPassword(event: React.ChangeEvent<HTMLInputElement>){
-        setConfirmPassword(event.target.value);
+        setConfirmPassword!(event.target.value);
     }
     
     function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
@@ -37,16 +33,6 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn }: Auth
             event.preventDefault();
         }
     }
-
-    useEffect(() => {
-        if (password !==  confirmPassword){
-            setValidation("form-control validation-fail");
-            setClick(true);
-        } else{
-            setValidation("form-control"); 
-            setClick(false);        
-        }
-      }, [confirmPassword, password]);
    
     return(
         <div className = "card mx-auto">

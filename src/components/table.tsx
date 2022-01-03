@@ -19,7 +19,7 @@ interface TableProps{
     search: string;
 }
 
-function Table({categories, categoryFilterValue, isInCategory, tableId, setListItem, setOriginalListItem, setIsInCategory, setTitle, setResult, setData, setSearch, listItem, title, search}: TableProps){
+function Table({ categories, categoryFilterValue, isInCategory, tableId, setListItem, setOriginalListItem, setIsInCategory, setTitle, setResult, setData, setSearch, listItem, title, search }: TableProps){
     
     let number = 0;
 
@@ -105,7 +105,7 @@ function Table({categories, categoryFilterValue, isInCategory, tableId, setListI
                         <h3 className = "title">{title}</h3>
                     </div>
                     <div className="col-sm-5 above-table">
-                        <input value = {search} onChange = {getSearchValue} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <input value = {search} onChange = {getSearchValue} className="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search"></input>
                     </div>
                     <div className="col-sm-2 above-table">
                         <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>

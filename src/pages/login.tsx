@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import Navbar from "../components/navbar"
 import Auth2 from "../components/auth2"
 import Alert from "../components/alert";
+import Auth from "../components/auth";
 
 
 function Login(){
@@ -49,11 +50,14 @@ function Login(){
                 {error.map(getMessage)}
             </div>
             <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
-                <Auth2
+                <Auth
                     route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
                     greetings = "Welcome Back!"
-                    btn = "Login"
-                 />
+                    btn = "Login" 
+                    usernameInput = "hidden"
+                    passwordValidation = "hidden"
+                    click = {false}                 
+                />
             </div>
         </div>
     );
