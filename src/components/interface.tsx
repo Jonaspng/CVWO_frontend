@@ -14,7 +14,6 @@ export const emptyCategory:Categories[] = [{
     updated_at: null
 }];
 
-
 export interface List{
     id: number | null;
     title: string | null;
@@ -36,3 +35,15 @@ export const emptyList:List[] = [{
     created_at: null,
     updated_at: null
 }];
+
+export interface UserDetails{
+    id: number | null;
+    username: string | null;
+    email: string | null;
+}
+
+export const emptyUserDetails: UserDetails = {
+    id: null,
+    username: null,
+    email:null
+}

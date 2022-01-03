@@ -2,20 +2,11 @@ import React, {useEffect, useState} from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Navbar from "../components/navbar";
 import Alert from "../components/alert";
+import TopProgressBar from "react-topbar-progress-indicator";
+import { UserDetails, emptyUserDetails } from "../components/interface";
+
 
 function Profile(){
-
-    interface UserDetails{
-        id: number | null;
-        username: string | null;
-        email: string | null;
-    }
-
-    const emptyUserDetails: UserDetails = {
-        id: null,
-        username: null,
-        email:null
-    }
 
     const [userDetails, setUserDetails] = useState<UserDetails>(emptyUserDetails);
 
@@ -30,6 +21,14 @@ function Profile(){
     const [validation, setValidation] = useState<string>("form-control");
 
     const [click, setClick] = useState<boolean>(false);
+
+    const [auth, setAuth] = useState<string>("");
+
+    async function getAuth(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
+                    .then((res) => res.json())
+                    .then((auth) => setAuth(auth.auth))
+    }
 
     async function updateUserDetails(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
@@ -55,6 +54,7 @@ function Profile(){
             listOfAlerts[i].click();
         }
     }
+
     function getError(x: string){
         setTimeout(closeAlert, 3000);
         return(
@@ -105,56 +105,70 @@ function Profile(){
         updateUserDetails();
         updateErrors();
         updateSuccess();
+        getAuth();
     }, []);
 
     useEffect(() => {
         if (password !== confirmPassword){
             setValidation("form-control validation-fail");
             setClick(true);
-        }else{
+        } else{
             setValidation("form-control"); 
             setClick(false);        
         }
-        }, [confirmPassword, password]);
+    }, [confirmPassword, password]);
 
-    return(
-        <div className = "profile-page">
-            <Navbar 
-                brand = "/dashboard"
-                item1 = {userDetails.username!}
-                item2 = "Dashboard"
-                link2 = "/dashboard"
-                logout = "logout"
-            />
-            <div className = "alert-bar">
-                {error.map(getError)}
-                {success.map(getSuccess)}
+    if (auth === "false"){
+        return <>{
+            window.location.replace("https://todolist-cvwo.herokuapp.com/")
+        }</>
+    } else if (auth === "true") {
+        return(
+            <div className = "profile-page">
+                <Navbar 
+                    brand = "/dashboard"
+                    item1 = {userDetails.username!}
+                    item2 = "Dashboard"
+                    link2 = "/dashboard"
+                    logout = "logout"
+                />
+                <div className = "alert-bar">
+                    {error.map(getError)}
+                    {success.map(getSuccess)}
+                </div>
+                <div className = "account-details">
+                    <AccountCircleIcon style = {{ fontSize: 150 }} className="account-icon"/>
+                    <h1>Edit Account Details</h1>
+                    <form id = "edit-details-form" >
+                        <div className = "form-floating">
+                            <input name = "user[username]" type = "text" defaultValue = {userDetails.username!} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
+                            <label htmlFor = "floatingInput">Username</label>
+                        </div> 
+                        <div className = "form-floating">
+                            <input name = "user[email]" type = "email" defaultValue = {userDetails.email!} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
+                            <label htmlFor = "floatingInput">Email address</label>
+                        </div>
+                        <div className = "form-floating">
+                            <input name = "user[password]" onChange = {getPassword} type = "password" className = {validation} placeholder = "New Password" id = "floatingPassword" />
+                            <label htmlFor = "floatingPassword">New Password</label>
+                        </div>
+                        <div className="form-floating">
+                            <input name = "user[password2]" onChange = {getConfirmPassword} type="password" className = {validation} placeholder = "Confirm New Password" id = "floatingPassword" />
+                            <label htmlFor = "floatingPassword">Confirm New Password</label>
+                        </div>
+                    </form>
+                    <button type = "button" onClick = {handleClick} className = "btn btn-primary">Change Account details</button>                              
+                </div>
             </div>
-            <div className = "account-details">
-                <AccountCircleIcon style = {{ fontSize: 150 }} className="account-icon"/>
-                <h1>Edit Account Details</h1>
-                <form id = "edit-details-form" >
-                    <div className = "form-floating">
-                        <input name = "user[username]" type = "text" defaultValue = {userDetails.username!} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
-                        <label htmlFor = "floatingInput">Username</label>
-                    </div> 
-                    <div className = "form-floating">
-                        <input name = "user[email]" type = "email" defaultValue = {userDetails.email!} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
-                        <label htmlFor = "floatingInput">Email address</label>
-                    </div>
-                    <div className = "form-floating">
-                        <input name = "user[password]" onChange = {getPassword} type = "password" className = {validation} placeholder = "New Password" id = "floatingPassword" />
-                        <label htmlFor = "floatingPassword">New Password</label>
-                    </div>
-                    <div className="form-floating">
-                        <input name = "user[password2]" onChange = {getConfirmPassword} type="password" className = {validation} placeholder = "Confirm New Password" id = "floatingPassword" />
-                        <label htmlFor = "floatingPassword">Confirm New Password</label>
-                    </div>
-                </form>
-                <button type = "button" onClick = {handleClick} className = "btn btn-primary">Change Account details</button>                              
+        );
+    } else{
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Profile;
