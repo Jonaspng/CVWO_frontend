@@ -46,7 +46,7 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn, setNam
                         <label htmlFor = "floatingInput">Username</label>
                     </div>
                     <div className = "form-floating">
-                        <input name = {emailInputName} type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "off"/>
+                        <input name = {emailInputName} type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
                         <label htmlFor = "floatingInput">Email address</label>
                     </div>
                     <div className = "form-floating">
