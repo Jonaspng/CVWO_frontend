@@ -5,6 +5,11 @@ import Auth from "../components/auth";
 
 
 function Login(){
+    
+    //react hooks
+
+    // the below password hook is just to make sure the console does not have any error
+    const [password, setPassword] = useState<string>("");
 
     const [error, setError] = useState<string[]>([])
 
@@ -59,7 +64,8 @@ function Login(){
                     validation = "form-control" 
                     emailInputName = "email"
                     passwordInputName = "password"
-                    validationMessageClass = "hidden"            
+                    validationMessageClass = "hidden"
+                    setPassword = {setPassword}           
                 />
             </div>
         </div>

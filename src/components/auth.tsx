@@ -7,7 +7,7 @@ interface AuthProps{
     passwordValidation: string;
     btn: string;
     setName?: Dispatch<SetStateAction<string>>;
-    setPassword?: Dispatch<SetStateAction<string>>;
+    setPassword: Dispatch<SetStateAction<string>>;
     setConfirmPassword?: Dispatch<SetStateAction<string>>;
     click?: boolean;
     name?: string;
