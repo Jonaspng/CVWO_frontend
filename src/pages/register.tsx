@@ -15,6 +15,8 @@ function Register(){
 
     const [validation, setValidation]  =  useState<string>("form-control");
 
+    const [validationMessageClass, setValidationMessageClass] = useState<string>("hidden");
+
     const [click, setClick]  =  useState<boolean>(false);
 
     function closeAlert(){
@@ -46,12 +48,14 @@ function Register(){
     useEffect(() => {
         if (password !==  confirmPassword){
             setValidation("form-control validation-fail");
+            setValidationMessageClass("password-validation-message");
             setClick(true);
         } else{
-            setValidation("form-control"); 
+            setValidation("form-control");
+            setValidationMessageClass("hidden");
             setClick(false);        
         }
-      }, [confirmPassword, password]);
+      }, [confirmPassword, password, validationMessageClass]);
  
     return(
         <div className = "auth-page">
@@ -74,15 +78,16 @@ function Register(){
                     greetings = "Hello"
                     usernameInput = "form-floating"
                     passwordValidation = "form-floating"
-                    btn = "Register" 
+                    btn = "Register"
                     setName = {setName}
                     setPassword = {setPassword}
                     setConfirmPassword = {setConfirmPassword}
-                    click = {click} 
+                    click = {click}
                     name = {name}
                     validation = {validation}
                     emailInputName = "user[email]"
-                    passwordInputName = "user[password]"      
+                    passwordInputName  ="user[password]" 
+                    validationMessageClass = {validationMessageClass}
                 />
             </div>
         </div>

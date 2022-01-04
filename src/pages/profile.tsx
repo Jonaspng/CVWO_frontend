@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Navbar from "../components/navbar";
 import Alert from "../components/alert";
 import TopProgressBar from "react-topbar-progress-indicator";
 import { UserDetails, emptyUserDetails } from "../components/interface";
+import EditUser from "../components/editUser";
 
 
 function Profile(){
@@ -19,6 +19,8 @@ function Profile(){
     const [confirmPassword,setConfirmPassword] = useState<string>("");
 
     const [validation, setValidation] = useState<string>("form-control");
+
+    const [validationMessageClass, setValidationMessageClass] = useState<string>("hidden");
 
     const [click, setClick] = useState<boolean>(false);
 
@@ -77,30 +79,6 @@ function Profile(){
         );
     }
 
-    function getPassword(event: React.ChangeEvent<HTMLInputElement>){
-        setPassword(event.target.value);
-    }
-
-    function getConfirmPassword(event: React.ChangeEvent<HTMLInputElement>){
-        setConfirmPassword(event.target.value);
-    }
-    
-    async function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        if (click){
-            event.preventDefault();
-        } else{
-            await fetch("https://todolist-backend-cvwo.herokuapp.com/users/" + userDetails.id,{ 
-                method:"PATCH",
-                mode: "cors",
-                credentials: "include",
-                body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
-            updateUserDetails();
-            updateErrors();
-            updateSuccess();
-            (document.getElementById("edit-details-form") as HTMLFormElement).reset();
-        }
-    }
-
     useEffect(() => {
         updateUserDetails();
         updateErrors();
@@ -111,9 +89,11 @@ function Profile(){
     useEffect(() => {
         if (password !== confirmPassword){
             setValidation("form-control validation-fail");
+            setValidationMessageClass("password-validation-message");
             setClick(true);
         } else{
-            setValidation("form-control"); 
+            setValidation("form-control");
+            setValidationMessageClass("hidden");
             setClick(false);        
         }
     }, [confirmPassword, password]);
@@ -136,29 +116,17 @@ function Profile(){
                     {error.map(getError)}
                     {success.map(getSuccess)}
                 </div>
-                <div className = "account-details">
-                    <AccountCircleIcon style = {{ fontSize: 150 }} className="account-icon"/>
-                    <h1>Edit Account Details</h1>
-                    <form id = "edit-details-form" >
-                        <div className = "form-floating">
-                            <input name = "user[username]" type = "text" defaultValue = {userDetails.username!} className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "on"/>
-                            <label htmlFor = "floatingInput">Username</label>
-                        </div> 
-                        <div className = "form-floating">
-                            <input name = "user[email]" type = "email" defaultValue = {userDetails.email!} className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
-                            <label htmlFor = "floatingInput">Email address</label>
-                        </div>
-                        <div className = "form-floating">
-                            <input name = "user[password]" onChange = {getPassword} type = "password" className = {validation} placeholder = "New Password" id = "floatingPassword" />
-                            <label htmlFor = "floatingPassword">New Password</label>
-                        </div>
-                        <div className="form-floating">
-                            <input name = "user[password2]" onChange = {getConfirmPassword} type="password" className = {validation} placeholder = "Confirm New Password" id = "floatingPassword" />
-                            <label htmlFor = "floatingPassword">Confirm New Password</label>
-                        </div>
-                    </form>
-                    <button type = "button" onClick = {handleClick} className = "btn btn-primary">Change Account details</button>                              
-                </div>
+                <EditUser 
+                    setPassword = {setPassword}
+                    setConfirmPassword = {setConfirmPassword}
+                    userDetails = {userDetails} 
+                    validation = {validation} 
+                    click = {click}
+                    setUserDetails = {setUserDetails}
+                    setError = {setError}
+                    setSuccess = {setSuccess}
+                    validationMessageClass = {validationMessageClass}
+                />          
             </div>
         );
     } else{

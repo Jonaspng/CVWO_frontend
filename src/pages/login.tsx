@@ -58,7 +58,8 @@ function Login(){
                     click = {false}
                     validation = "form-control" 
                     emailInputName = "email"
-                    passwordInputName = "password"               
+                    passwordInputName = "password"
+                    validationMessageClass = "hidden"            
                 />
             </div>
         </div>

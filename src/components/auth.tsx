@@ -14,9 +14,10 @@ interface AuthProps{
     validation: string;
     emailInputName: string;
     passwordInputName: string;
+    validationMessageClass: string;
 }
 
-function Auth({ route, greetings, usernameInput, passwordValidation, btn, setName, setPassword, setConfirmPassword, click, name, validation, emailInputName, passwordInputName }: AuthProps){
+function Auth({ route, greetings, usernameInput, passwordValidation, btn, setName, setPassword, setConfirmPassword, click, name, validation, emailInputName, passwordInputName, validationMessageClass }: AuthProps){
 
     function getName(event: React.ChangeEvent<HTMLInputElement>){
         setName!(event.target.value);
@@ -57,6 +58,7 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn, setNam
                         <input name = "user[password2]" onChange = {getConfirmPassword} type = "password" className = {validation} placeholder = "Confirm Password" id = "floatingPassword" />
                         <label htmlFor = "floatingPassword">Confirm Password</label>
                     </div>
+                    <p className = {validationMessageClass}>Passwords do not match!</p>
                     <button onClick = {handleClick} className = "btn btn-primary" type = "submit" name = "button">{btn}</button>
                 </div>
             </form>
