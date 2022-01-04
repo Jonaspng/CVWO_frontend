@@ -177,7 +177,7 @@ footer{
 }
 
 .below-chart{
-    height: 63%;
+    height: 67%;
     overflow-y: scroll;
 }
 
@@ -327,6 +327,7 @@ footer{
 #delete-form{
     display: inline-block;
 }
+
 .edit-icon{
     float: right;
     border: 0;
