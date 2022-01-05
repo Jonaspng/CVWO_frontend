@@ -10,7 +10,7 @@
   <img src = "https://img.shields.io/github/last-commit/Jonaspng/CVWO_frontend?logo=Github"/>
   <img src = "https://img.shields.io/github/forks/Jonaspng/cvwo_frontend?logo=Github"/>
   <img src = "https://img.shields.io/github/repo-size/Jonaspng/cvwo_frontend?logo=Github"/>
-  <img alt="Website" src="https://img.shields.io/website?style=plastic&url=https%3A%2F%2Ftodolist-cvwo.herokuapp.com%2F">
+  <img alt="Website status" src="https://img.shields.io/website?style=plastic&url=https%3A%2F%2Ftodolist-cvwo.herokuapp.com%2F"/>
 </p>
 
 <p align = "center">

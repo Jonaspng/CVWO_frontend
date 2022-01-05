@@ -30,7 +30,7 @@ function Home(){
                                 loop: true,
                             }}
                             onInit = {(typewriter) => {
-                                typewriter.changeDelay(80).typeString("Quick and easy solution to a digital to do list.").start().pauseFor(3500);
+                                typewriter.changeDelay(80).typeString("Quick and easy solution to a digital ToDoList.").start().pauseFor(3500);
                             }}
                         />
                     </p>
