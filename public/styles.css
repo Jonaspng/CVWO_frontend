@@ -1,3 +1,4 @@
+/* General Style */
 html,body,#root,.home-page{
     height: 100%;
 }
@@ -24,6 +25,15 @@ html,body,#root,.home-page{
     margin: 10px;
 }
 
+.show{
+    visibility: visible;
+}
+
+.hidden{
+    display: none;
+}
+
+/* Carousel Component */
 .carousel-section{
     padding: 20px 70px;
     text-align: center;
@@ -52,6 +62,7 @@ html,body,#root,.home-page{
     color: black;
 }
 
+/* Homepage */
 .home-content{
     width: 100%;
     text-align: center;
@@ -85,6 +96,7 @@ footer{
     padding: 20px;
 }
 
+/* Login and register page */
 .auth-page{
     height: inherit;
 }
@@ -116,6 +128,19 @@ footer{
     margin-bottom: 40px;
 }
 
+.validation-fail{
+    border-color: red;
+}
+
+.validation-pass{
+    border-color: green;
+}
+
+.password-validation-message{
+    color: red;
+}
+
+/* Alerts */
 .alert{
     margin-bottom: 0;
     z-index: 10;
@@ -135,17 +160,7 @@ footer{
     width: 100%;
 }
 
-.validation-fail{
-    border-color: red;
-}
-
-.validation-pass{
-    border-color: green;
-}
-
-.password-validation-message{
-    color: red;
-}
+/* Dashboard */
 .loading{
     text-align: center;
 }
@@ -331,12 +346,4 @@ footer{
     float: right;
     border: 0;
     background: transparent;
-}
-
-.show{
-    visibility: visible;
-}
-
-.hidden{
-    display: none;
 }
