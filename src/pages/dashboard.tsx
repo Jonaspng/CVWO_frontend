@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from "../components/navbar";
 import { Categories, emptyCategory, List, emptyList } from "../components/interface"
@@ -12,6 +13,8 @@ import Alert from "../components/alert";
 
 
 function Dashboard(){
+
+    let navigate = useNavigate();
 
     // react hooks
     const [search, setSearch] = useState<string>("");
@@ -229,9 +232,11 @@ function Dashboard(){
                 
         );
     } else if (auth === "false"){
-        return <>{
-            window.location.replace("https://todolist-cvwo.herokuapp.com/")
-        }</>;
+        return (
+            <>
+                {navigate("/")}
+            </>
+        );
     } else {
         return(
             <div>
