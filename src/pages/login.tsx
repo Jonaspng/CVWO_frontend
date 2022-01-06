@@ -39,36 +39,38 @@ function Login(){
     }
 
     return(
-        <div className="auth-page">
-            <Navbar 
-                brand = "/"
-                item1 = "Login"
-                link1 = "/login"
-                item2 = "Register"
-                link2 = "/register"
-                item3 = "Home"
-                link3 = "/"
-                logout = "hidden"
-            />
-            <div className = "alert-bar">
-                {error.map(getMessage)}
-            </div>
-            <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
-                <Auth
-                    route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
-                    greetings= "Welcome Back!"
-                    btn = "Login"
-                    usernameInput = "hidden"
-                    passwordValidation = "hidden"
-                    click = {false}
-                    validation = "form-control" 
-                    emailInputName = "email"
-                    passwordInputName = "password"
-                    validationMessageClass = "hidden"
-                    setPassword = {setPassword}           
+        <>
+            <div className="auth-page">
+                <Navbar 
+                    brand = "/"
+                    item1 = "Login"
+                    link1 = "/login"
+                    item2 = "Register"
+                    link2 = "/register"
+                    item3 = "Home"
+                    link3 = "/"
+                    logout = "hidden"
                 />
+                <div className = "alert-bar">
+                    {error.map(getMessage)}
+                </div>
+                <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
+                    <Auth
+                        route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
+                        greetings= "Welcome Back!"
+                        btn = "Login"
+                        usernameInput = "hidden"
+                        passwordValidation = "hidden"
+                        click = {false}
+                        validation = "form-control" 
+                        emailInputName = "email"
+                        passwordInputName = "password"
+                        validationMessageClass = "hidden"
+                        setPassword = {setPassword}           
+                    />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

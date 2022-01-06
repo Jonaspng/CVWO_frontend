@@ -81,58 +81,62 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
     function getItems(x: List){
         number += 1;
         return(
-            <tr key = {x.id} >
-                <td>{number}</td>
-                <td>{x.title}</td>
-                <td>{getCategoriesSidebar(x)}</td>
-                <td>{x.deadline}</td>
-                <td>
-                <form id = "delete-form">
-                    <div className = "form-check form-switch">
-                        <input name = "id" value = {x.id!} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
-                    </div>
-                </form>
-                    <button onClick = {handleEditClick} value = {x.id!} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
-                </td>
-            </tr>
-        )
+            <>
+                <tr key = {x.id} >
+                    <td>{number}</td>
+                    <td>{x.title}</td>
+                    <td>{getCategoriesSidebar(x)}</td>
+                    <td>{x.deadline}</td>
+                    <td>
+                    <form id = "delete-form">
+                        <div className = "form-check form-switch">
+                            <input name = "id" value = {x.id!} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
+                        </div>
+                    </form>
+                        <button onClick = {handleEditClick} value = {x.id!} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
+                    </td>
+                </tr>
+            </>
+        );
     }
     return (
-        <div id = {tableId}>
-            <div>
-                <div className="row">
-                    <div className="col-3">
-                        <h3 className = "title">{title}</h3>
-                    </div>
-                    <div className="col-sm-5 above-table">
-                        <input value = {search} onChange = {getSearchValue} className="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search"></input>
-                    </div>
-                    <div className="col-sm-2 above-table">
-                        <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
-                    </div>
-                    <div className="col-sm-2 above-table">
-                        <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
+        <>
+            <div id = {tableId}>
+                <div>
+                    <div className="row">
+                        <div className="col-3">
+                            <h3 className = "title">{title}</h3>
+                        </div>
+                        <div className="col-sm-5 above-table">
+                            <input value = {search} onChange = {getSearchValue} className="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search"></input>
+                        </div>
+                        <div className="col-sm-2 above-table">
+                            <button onClick = {handleShowAllClick} type = "button" className = "btn btn-dark">Show All</button>
+                        </div>
+                        <div className="col-sm-2 above-table">
+                            <button type = "button" className = "btn btn-primary btn-add" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
+                        </div>
                     </div>
                 </div>
+                <div>
+                    <table className = "table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listItem.map(getItems)}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div>
-                <table className = "table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listItem.map(getItems)}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    )
+        </>
+    );
 }
 
 export default Table;

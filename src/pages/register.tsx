@@ -58,39 +58,41 @@ function Register(){
       }, [confirmPassword, password, validationMessageClass]);
  
     return(
-        <div className = "auth-page">
-            <Navbar 
-                brand = "/"
-                item1 = "Login"
-                link1 = "/login"
-                item2 = "Register"
-                link2 = "/register"
-                item3 = "Home"
-                link3 = "/"
-                logout = "hidden"
-            />
-            <div className = "alert-bar">
-                {error.map(getAlert)}
-            </div>
-            <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
-                <Auth
-                    route = "https://todolist-backend-cvwo.herokuapp.com/users"
-                    greetings = "Hello"
-                    usernameInput = "form-floating"
-                    passwordValidation = "form-floating"
-                    btn = "Register"
-                    setName = {setName}
-                    setPassword = {setPassword}
-                    setConfirmPassword = {setConfirmPassword}
-                    click = {click}
-                    name = {name}
-                    validation = {validation}
-                    emailInputName = "user[email]"
-                    passwordInputName  ="user[password]" 
-                    validationMessageClass = {validationMessageClass}
+        <>
+            <div className = "auth-page">
+                <Navbar 
+                    brand = "/"
+                    item1 = "Login"
+                    link1 = "/login"
+                    item2 = "Register"
+                    link2 = "/register"
+                    item3 = "Home"
+                    link3 = "/"
+                    logout = "hidden"
                 />
+                <div className = "alert-bar">
+                    {error.map(getAlert)}
+                </div>
+                <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
+                    <Auth
+                        route = "https://todolist-backend-cvwo.herokuapp.com/users"
+                        greetings = "Hello"
+                        usernameInput = "form-floating"
+                        passwordValidation = "form-floating"
+                        btn = "Register"
+                        setName = {setName}
+                        setPassword = {setPassword}
+                        setConfirmPassword = {setConfirmPassword}
+                        click = {click}
+                        name = {name}
+                        validation = {validation}
+                        emailInputName = "user[email]"
+                        passwordInputName  ="user[password]" 
+                        validationMessageClass = {validationMessageClass}
+                    />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

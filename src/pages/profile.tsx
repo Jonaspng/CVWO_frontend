@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Alert from "../components/alert";
 import TopProgressBar from "react-topbar-progress-indicator";
@@ -8,6 +9,10 @@ import EditUser from "../components/editUser";
 
 function Profile(){
 
+    let navigate = useNavigate();
+    
+    // React hooks
+    
     const [userDetails, setUserDetails] = useState<UserDetails>(emptyUserDetails);
 
     const [error,setError] = useState<string[]>([]);
@@ -99,9 +104,11 @@ function Profile(){
     }, [confirmPassword, password]);
 
     if (auth === "false"){
-        return <>{
-            window.location.replace("https://todolist-cvwo.herokuapp.com/")
-        }</>
+        return (
+            <>
+                {navigate("/")}
+            </>
+        );
     } else if (auth === "true") {
         return(
             <div className = "profile-page">

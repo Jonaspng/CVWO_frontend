@@ -141,95 +141,96 @@ function Dashboard(){
     if (auth === "true" && username !== ""){
         setTimeout(closeAlert, 2000);
         return(
-            <div id = "dashboard">
-                <Navbar 
-                    brand = "/dashboard"
-                    item1 = {username}
-                    item2 = "Profile"
-                    link2 = "/profile"
-                    logout = "logout"
-                />
-                <div className="alert-bar">
-                    <Alert 
-                        alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
-                        description = {"Logged in as " + username}
-                        iconName = "#check-circle-fill"
+            <>
+                <div id = "dashboard">
+                    <Navbar 
+                        brand = "/dashboard"
+                        item1 = {username}
+                        item2 = "Profile"
+                        link2 = "/profile"
+                        logout = "logout"
                     />
-                    {hasAddedItem ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
-                                         "Item Added Successfully!",
-                                         "Check the table below for the new list Item",
-                                         "#check-circle-fill") : null}
-                    {hasAddedCategory ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
-                                         "Category Added Successfully!",
-                                         "Check the sidebar below for the new category",
-                                         "#check-circle-fill") : null}
-                    {hasCategoryError ? addAlert("alert alert-danger d-flex align-items-center alert-dismissible fade show",
-                                         "Category Already Exist!",
-                                         "Check the sidebar to see which categories have already been added",
-                                         "#exclamation-triangle-fill") : null}
-                </div>
-                <Chart 
-                    categories = {categories} 
-                    data = {data}
-                />
-                <div className = "below-chart">
-                    <Sidebar 
-                        categories = {categories}
-                        setToLeft = {setToLeft}
-                        setCategoryFilterValue = {setCategoryFilterValue}
-                        isInCategory = {isInCategory}
-                        setTitle = {setTitle}
-                        setListItem = {setListItem}
-                        setData = {setData}
-                        setCategories = {setCategories}
-                        setOriginalListItem = {setOriginalListItem}
-                        categoryFilterValue = {categoryFilterValue} 
-                        setIsInCategory = {setIsInCategory}              
-                    />
-                    <Table 
+                    <div className="alert-bar">
+                        <Alert 
+                            alertName = "alert alert-success d-flex align-items-center alert-dismissible fade show"
+                            description = {"Logged in as " + username}
+                            iconName = "#check-circle-fill"
+                        />
+                        {hasAddedItem ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
+                                            "Item Added Successfully!",
+                                            "Check the table below for the new list Item",
+                                            "#check-circle-fill") : null}
+                        {hasAddedCategory ? addAlert("alert alert-success d-flex align-items-center alert-dismissible fade show", 
+                                            "Category Added Successfully!",
+                                            "Check the sidebar below for the new category",
+                                            "#check-circle-fill") : null}
+                        {hasCategoryError ? addAlert("alert alert-danger d-flex align-items-center alert-dismissible fade show",
+                                            "Category Already Exist!",
+                                            "Check the sidebar to see which categories have already been added",
+                                            "#exclamation-triangle-fill") : null}
+                    </div>
+                    <Chart 
                         categories = {categories} 
-                        categoryFilterValue = {categoryFilterValue} 
-                        isInCategory = {isInCategory} 
-                        tableId = {toLeft} 
+                        data = {data}
+                    />
+                    <div className = "below-chart">
+                        <Sidebar 
+                            categories = {categories}
+                            setToLeft = {setToLeft}
+                            setCategoryFilterValue = {setCategoryFilterValue}
+                            isInCategory = {isInCategory}
+                            setTitle = {setTitle}
+                            setListItem = {setListItem}
+                            setData = {setData}
+                            setCategories = {setCategories}
+                            setOriginalListItem = {setOriginalListItem}
+                            categoryFilterValue = {categoryFilterValue} 
+                            setIsInCategory = {setIsInCategory}              
+                        />
+                        <Table 
+                            categories = {categories} 
+                            categoryFilterValue = {categoryFilterValue} 
+                            isInCategory = {isInCategory} 
+                            tableId = {toLeft} 
+                            setListItem = {setListItem} 
+                            setOriginalListItem = {setOriginalListItem} 
+                            setIsInCategory = {setIsInCategory} 
+                            setTitle = {setTitle} 
+                            setResult = {setResult} 
+                            setData = {setData} 
+                            setSearch = {setSearch} 
+                            listItem = {listItem} 
+                            title = {title} 
+                            search = {search}                    
+                        />
+                    </div>
+                    <AddItem 
+                        categories = {categories} 
+                        setData = {setData} 
                         setListItem = {setListItem} 
                         setOriginalListItem = {setOriginalListItem} 
-                        setIsInCategory = {setIsInCategory} 
-                        setTitle = {setTitle} 
-                        setResult = {setResult} 
+                        isInCategory = {isInCategory} 
+                        categoryFilterValue = {categoryFilterValue}
+                        setHasAdded = {setHasAddedItem} 
+                    />
+                    <EditItem 
+                        result = {result} 
+                        categories = {categories} 
                         setData = {setData} 
-                        setSearch = {setSearch} 
-                        listItem = {listItem} 
-                        title = {title} 
-                        search = {search}                    
+                        setListItem = {setListItem} 
+                        setOriginalListItem = {setOriginalListItem} 
+                        isInCategory = {isInCategory} 
+                        categoryFilterValue = {categoryFilterValue}
+                    />
+                    <AddCategory 
+                        setCategories = {setCategories}
+                        setData = {setData} 
+                        categories = {categories} 
+                        setHasAddedCategory = {setHasAddedCategory}
+                        setHasCategoryError = {setHasCategoryError}
                     />
                 </div>
-                <AddItem 
-                    categories = {categories} 
-                    setData = {setData} 
-                    setListItem = {setListItem} 
-                    setOriginalListItem = {setOriginalListItem} 
-                    isInCategory = {isInCategory} 
-                    categoryFilterValue = {categoryFilterValue}
-                    setHasAdded = {setHasAddedItem} 
-                />
-                <EditItem 
-                    result = {result} 
-                    categories = {categories} 
-                    setData = {setData} 
-                    setListItem = {setListItem} 
-                    setOriginalListItem = {setOriginalListItem} 
-                    isInCategory = {isInCategory} 
-                    categoryFilterValue = {categoryFilterValue}
-                />
-                <AddCategory 
-                    setCategories = {setCategories}
-                    setData = {setData} 
-                    categories = {categories} 
-                    setHasAddedCategory = {setHasAddedCategory}
-                    setHasCategoryError = {setHasCategoryError}
-                />
-            </div>
-                
+            </>                
         );
     } else if (auth === "false"){
         return (
@@ -239,10 +240,12 @@ function Dashboard(){
         );
     } else {
         return(
-            <div>
-                <TopProgressBar />
-                <h1 className = "loading">Loading User Information</h1>
-            </div>
+            <>
+                <div>
+                    <TopProgressBar />
+                    <h1 className = "loading">Loading User Information</h1>
+                </div>
+            </>
         );
     }
 }

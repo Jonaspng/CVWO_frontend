@@ -65,33 +65,35 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
     }
 
     return (
-        <div className = "modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel" aria-hidden = "true">
-            <div className = "modal-dialog">
-                <div className = "modal-content">
-                    <div className = "modal-header">
-                        <h5 className = "modal-title" id = "staticBackdropLabel">Add Item</h5>
-                        <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
-                    </div>
-                    <div className = "modal-body">
-                        <form id = "add-form" onSubmit = {HandleAddItemForm}>
-                            <p className = "add-form-description">Title</p>
-                            <input className = "form-control" name = "item[title]" placeholder = "Title"/>
-                            <p className = "add-form-description">Description</p>
-                            <textarea name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
-                            <p className = "add-form-description">Deadline</p>
-                            <input className = "form-control" name = "item[deadline]" type = "date"></input>
-                            <p className = "add-form-description">Category</p>
-                            <select name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                {categories.map(getCategoriesOption)}
-                            </select>                             
-                        </form>
-                    </div>
-                    <div className = "modal-footer">
-                        <button id = "add-item-btn" onClick = {HandleAddItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
+        <>
+            <div className = "modal fade" id = "staticBackdrop" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel" aria-hidden = "true">
+                <div className = "modal-dialog">
+                    <div className = "modal-content">
+                        <div className = "modal-header">
+                            <h5 className = "modal-title" id = "staticBackdropLabel">Add Item</h5>
+                            <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                        </div>
+                        <div className = "modal-body">
+                            <form id = "add-form" onSubmit = {HandleAddItemForm}>
+                                <p className = "add-form-description">Title</p>
+                                <input className = "form-control" name = "item[title]" placeholder = "Title"/>
+                                <p className = "add-form-description">Description</p>
+                                <textarea name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
+                                <p className = "add-form-description">Deadline</p>
+                                <input className = "form-control" name = "item[deadline]" type = "date"></input>
+                                <p className = "add-form-description">Category</p>
+                                <select name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                    {categories.map(getCategoriesOption)}
+                                </select>                             
+                            </form>
+                        </div>
+                        <div className = "modal-footer">
+                            <button id = "add-item-btn" onClick = {HandleAddItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Item</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>      
+            </div>      
+        </>
     );
 }
 

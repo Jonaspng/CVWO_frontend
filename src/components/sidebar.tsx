@@ -96,27 +96,30 @@ function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategor
 
     function getCategories(x: Categories){
         return(
-            <li className = "category-list" key = {x.id}>
-                <button name = {x.category!} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id!}>{x.category}</button>
-                <button type = "button" value = {x.id!} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
-            </li>
+            <>
+                <li className = "category-list" key = {x.id}>
+                    <button name = {x.category!} className = "category-btn" onClick = {handleCategoryFilterClick} value = {x.id!}>{x.category}</button>
+                    <button type = "button" value = {x.id!} onClick = {handleCategoryDeleteClick} className = "delete-icon"><DeleteIcon /></button>            
+                </li>
+            </>
         );
     }
 
     return(
-        <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
-            <button className = "sidebar-btn" onClick = {handleSidebarClick}><i className = {btnsymbol}></i></button>
-            <div className ="offcanvas1-header">
-                <h5 className="offcanvas1-title">Categories</h5>
-                <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
+        <>
+            <div className = {tabStatus ? "offcanvas1 offcanvas-start1 show" : "offcanvas1 offcanvas-start1"}>
+                <button className = "sidebar-btn" onClick = {handleSidebarClick}><i className = {btnsymbol}></i></button>
+                <div className ="offcanvas1-header">
+                    <h5 className="offcanvas1-title">Categories</h5>
+                    <button className = "add-icon" data-bs-toggle = "modal" data-bs-target = "#exampleModalCenter"><AddIcon/></button>
+                </div>
+                <div className = "offcanvas1-body">
+                    <ul>
+                        {categories.filter((x: Categories) => x.category !== "Null").map(getCategories)}
+                    </ul>                      
+                </div>
             </div>
-            <div className = "offcanvas1-body">
-                <ul>
-                    {categories.filter((x: Categories) => x.category !== "Null").map(getCategories)}
-                </ul>                      
-            </div>
-        </div>
-
+        </>
     );
 }
 

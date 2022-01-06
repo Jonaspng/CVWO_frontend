@@ -68,34 +68,36 @@ function EditItem({ result, categories, setData, setListItem, setOriginalListIte
     }
 
     return (
-        <div className = "modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
-            <div className = "modal-dialog">
-                <div className = "modal-content">
-                    <div className = "modal-header">
-                        <h5 className = "modal-title" id = "staticBackdropLabel">Edit Item</h5>
-                        <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
-                    </div>
-                    <div className = "modal-body">
-                        <form id = "edit-form" onSubmit = {HandleUpdateItemForm} >
-                            <p className = "add-form-description">Title</p>
-                            <input defaultValue = {result[0].title!} className = "form-control" name = "item[title]" placeholder = "Title"/>
-                            <p className = "add-form-description">Description</p>
-                            <textarea defaultValue = {result[0].description!} name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
-                            <p className = "add-form-description">Deadline</p>
-                            <input defaultValue = {result[0].deadline!} className = "form-control" name = "item[deadline]" type = "date"></input>
-                            <p className = "add-form-description">Category</p>
-                            <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
-                                <option value = {result[0].category_id!}>{getCategoriesEdit()}</option>
-                                {categories.map(getCategoriesOption)}
-                            </select>                             
-                        </form>
-                    </div>
-                    <div className = "modal-footer">
-                        <button id = "edit-item-btn" value = {result[0].id!} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
+        <>
+            <div className = "modal fade" id = "staticBackdrop2" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "staticBackdropLabel2" aria-hidden = "true">
+                <div className = "modal-dialog">
+                    <div className = "modal-content">
+                        <div className = "modal-header">
+                            <h5 className = "modal-title" id = "staticBackdropLabel">Edit Item</h5>
+                            <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                        </div>
+                        <div className = "modal-body">
+                            <form id = "edit-form" onSubmit = {HandleUpdateItemForm} >
+                                <p className = "add-form-description">Title</p>
+                                <input defaultValue = {result[0].title!} className = "form-control" name = "item[title]" placeholder = "Title"/>
+                                <p className = "add-form-description">Description</p>
+                                <textarea defaultValue = {result[0].description!} name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
+                                <p className = "add-form-description">Deadline</p>
+                                <input defaultValue = {result[0].deadline!} className = "form-control" name = "item[deadline]" type = "date"></input>
+                                <p className = "add-form-description">Category</p>
+                                <select  name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
+                                    <option value = {result[0].category_id!}>{getCategoriesEdit()}</option>
+                                    {categories.map(getCategoriesOption)}
+                                </select>                             
+                            </form>
+                        </div>
+                        <div className = "modal-footer">
+                            <button id = "edit-item-btn" value = {result[0].id!} onClick = {HandleUpdateItemClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Edit Item</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>       
+            </div>       
+        </>
     );
 }
 

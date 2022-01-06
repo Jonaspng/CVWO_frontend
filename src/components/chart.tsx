@@ -40,9 +40,11 @@ function Chart({categories, data}: ChartProps){
     };
 
     return (
-        <div className = "chart">
-            {data.reduce((a: number, b: number) => a + b, 0) === 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
-        </div>
+        <>
+            <div className = "chart">
+                {data.reduce((a: number, b: number) => a + b, 0) === 0 ? <h1 className="chart-h1">Woo Hoo! You have no item to complete!</h1>:<Pie data={pieData} width = {"100"} height={"100"} options = {options}/>}
+            </div>
+        </>
     );
 
 }

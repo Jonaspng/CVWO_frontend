@@ -1,7 +1,5 @@
-
 import { Dispatch, SetStateAction } from "react";
 import { Categories } from "./interface";
-
 
 interface AddCategoryProps{
     categories: Categories[];
@@ -62,25 +60,27 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
     }
 
     return (
-        <div className = "modal fade" id = "exampleModalCenter" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "exampleModalCenterTitle" aria-hidden="true">
-            <div className = "modal-dialog modal-dialog-centered">
-                <div className = "modal-content">
-                    <div className = "modal-header">
-                        <h5 className = "modal-title" id = "staticBackdropLabel">Add Category</h5>
-                        <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
-                    </div>
-                    <div className = "modal-body">
-                        <form id = "add-cat-form" onSubmit = {HandleAddCategoryForm}>
-                            <p className = "add-form-description">Category Name</p>
-                            <input id = "new-category" className = "form-control" name = "category" placeholder = "Category Name"/>                           
-                        </form>
-                    </div>
-                    <div className = "modal-footer">
-                        <button id = "add-cat-btn" onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+        <>
+            <div className = "modal fade" id = "exampleModalCenter" data-bs-backdrop = "static" data-bs-keyboard = "false" tabIndex = {-1} aria-labelledby = "exampleModalCenterTitle" aria-hidden="true">
+                <div className = "modal-dialog modal-dialog-centered">
+                    <div className = "modal-content">
+                        <div className = "modal-header">
+                            <h5 className = "modal-title" id = "staticBackdropLabel">Add Category</h5>
+                            <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                        </div>
+                        <div className = "modal-body">
+                            <form id = "add-cat-form" onSubmit = {HandleAddCategoryForm}>
+                                <p className = "add-form-description">Category Name</p>
+                                <input id = "new-category" className = "form-control" name = "category" placeholder = "Category Name"/>                           
+                            </form>
+                        </div>
+                        <div className = "modal-footer">
+                            <button id = "add-cat-btn" onClick = {HandleAddCategoryClick} type = "submit" className = "btn btn-primary" data-bs-dismiss = "modal">Add Category</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 
 }
