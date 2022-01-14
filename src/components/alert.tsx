@@ -24,7 +24,7 @@ function Alert({ alertName, iconName, title, description }: AlertProps){
                 <div>
                     <strong>{title}</strong> {description}
                 </div>
-                <button name = "alert-close hidden" type = "button" className = "btn-close" data-bs-dismiss = "alert" aria-label = "Close"></button>
+                <button name = "alert-close" type = "button" className = "btn-close hidden" data-bs-dismiss = "alert" aria-label = "Close"></button>
             </div>
         </>
     );
