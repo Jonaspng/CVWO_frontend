@@ -32,4 +32,3 @@ function Alert({ alertName, iconName, title, description }: AlertProps){
 
 export default Alert;
 
-//"alert alert- alert-dismissible fade show"
