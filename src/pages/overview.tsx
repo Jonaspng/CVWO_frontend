@@ -63,7 +63,7 @@ function Overview(){
         if (numberOfDeadline !== 0) {
             return (
                 <div className = 'calendar-deadline-tile'>
-                    <p className = 'deadline-tag'>{numberOfDeadline === 1 ? "1 Task Due" : {numberOfDeadline} + " Task due"}</p>
+                    <p className = 'deadline-tag'>{numberOfDeadline === 1 ? "1 Task Due" : numberOfDeadline + " Task due"}</p>
                 </div>
             );            
         } else {
