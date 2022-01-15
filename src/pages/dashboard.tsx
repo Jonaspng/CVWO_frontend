@@ -146,8 +146,8 @@ function Dashboard(){
                     <Navbar 
                         brand = "/dashboard"
                         item1 = {username}
-                        item2 = "Overview"
-                        link2 = "/overview"
+                        item2 = "Calendar"
+                        link2 = "/calendar"
                         item3 = "Profile"
                         link3 = "/profile"
                         logout = "logout"

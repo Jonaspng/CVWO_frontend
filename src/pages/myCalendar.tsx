@@ -10,7 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
 
 
-function Overview(){
+function MyCalendar(){
 
     let navigate = useNavigate();
 
@@ -125,4 +125,4 @@ function Overview(){
     }
 }
 
-export default Overview;
+export default MyCalendar;

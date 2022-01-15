@@ -117,8 +117,8 @@ function Profile(){
                     item1 = {userDetails.username!}
                     item2 = "Dashboard"
                     link2 = "/dashboard"
-                    item3 = "Overview"
-                    link3 = "/overview"
+                    item3 = "Calendar"
+                    link3 = "/calendar"
                     logout = "logout"
                 />
                 <div className = "alert-bar">

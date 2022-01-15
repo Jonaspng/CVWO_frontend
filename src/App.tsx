@@ -4,7 +4,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
-import Overview from "./pages/overview";
+import MyCalendar from "./pages/myCalendar";
 
 function App(){
     return (
@@ -15,7 +15,7 @@ function App(){
                 <Route path = "/register" element = {<Register />} />
                 <Route path = "/dashboard" element = {<Dashboard />} />
                 <Route path = "/profile" element = {<Profile />} />
-                <Route path = "/overview" element = {<Overview />} />
+                <Route path = "/calendar" element = {<MyCalendar />} />
                 <Route
                     path = "*"
                     element = {
