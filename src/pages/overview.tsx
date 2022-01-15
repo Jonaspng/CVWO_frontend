@@ -94,7 +94,7 @@ function Overview(){
                     item2 = "Dashboard"
                     link2 = "/dashboard"
                     item3 = "Profile"
-                    link3 = "/dashboard"
+                    link3 = "/profile"
                     logout = "logout"
                 />
                 <button id = "day-show" type = "button" className = "hidden" data-bs-toggle = "modal" data-bs-target = "#day"></button>

@@ -146,10 +146,10 @@ function Dashboard(){
                     <Navbar 
                         brand = "/dashboard"
                         item1 = {username}
-                        item2 = "Profile"
-                        link2 = "/profile"
-                        item3 = "Overview"
-                        link3 = "/overview"
+                        item2 = "Overview"
+                        link2 = "/overview"
+                        item3 = "Profile"
+                        link3 = "/profile"
                         logout = "logout"
                     />
                     <div className="alert-bar">
