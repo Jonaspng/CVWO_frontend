@@ -75,9 +75,6 @@ function Overview(){
         updateCategory();
     }, [dateChosen, dateChosenForComparison]);
 
-    useEffect(() => {
-
-    },[dateChosen, dateChosenForComparison]);
 
     if (auth === "false") {
         return (

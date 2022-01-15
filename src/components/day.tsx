@@ -18,7 +18,7 @@ function Day({date, listItems, deadline, categories}: DayProps){
                 <tr key = {item.id} >
                     <td>{number}</td>
                     <td>{item.title}</td>
-                    <td>{categories.filter((category: Categories) => category.id === item.category_id)[0]}</td>
+                    <td>{categories.filter((category: Categories) => category.id === item.category_id)[0].category}</td>
                 </tr>
             </>
         );
