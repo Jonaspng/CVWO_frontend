@@ -8,7 +8,7 @@
 .calendar-card{
     margin-top: 3%;
     width: 70%;
-    height: 70%;
+    height: auto;
     padding: 2%;
     background-color: lightgrey;
 }
@@ -16,4 +16,24 @@
 .date-underline{
     border-color: red;
     background-color: red;
+}
+
+.calendar-deadline-tile{
+    background-color: lightpink;
+    position: relative;
+    padding: 2px;
+    border-radius: 5%;
+}
+
+.react-calendar button{
+    display: flex;
+    flex-direction: column;
+}
+
+.react-calendar__tile{
+    min-height: 50px;
+}
+
+.deadline-tag{
+    margin: 0;
 }

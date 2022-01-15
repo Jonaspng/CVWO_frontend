@@ -148,6 +148,8 @@ function Dashboard(){
                         item1 = {username}
                         item2 = "Profile"
                         link2 = "/profile"
+                        item3 = "Overview"
+                        link3 = "/overview"
                         logout = "logout"
                     />
                     <div className="alert-bar">

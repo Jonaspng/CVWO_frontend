@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Calendar, { CalendarTileProperties } from 'react-calendar';
 import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from '../components/navbar';
-import 'react-calendar/dist/Calendar.css';
-import './calendar.css';
 import Day from '../components/day';
 import { format } from "date-fns";
 import { Categories, emptyCategory, List } from "../components/interface";
+import 'react-calendar/dist/Calendar.css';
+import './calendar.css';
 
 
 function Overview(){
@@ -59,9 +59,12 @@ function Overview(){
     }
 
     function checkForDeadlines({activeStartDate, date, view}: CalendarTileProperties){
-        if (listItem.filter((item: List) => item.deadline === format(date, "yyyy-MM-dd")).length !== 0) {
+        let numberOfDeadline:number = listItem.filter((item: List) => item.deadline === format(date, "yyyy-MM-dd")).length;
+        if (numberOfDeadline !== 0) {
             return (
-                <hr className = 'date-underline'></hr>
+                <div className = 'calendar-deadline-tile'>
+                    <p className = 'deadline-tag'>{numberOfDeadline === 1 ? "1 Task Due" : {numberOfDeadline} + " Task due"}</p>
+                </div>
             );            
         } else {
             return null;
