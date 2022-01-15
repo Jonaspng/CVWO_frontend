@@ -52,9 +52,9 @@ function Overview(){
     }
 
     function handleDayClick(value: Date, event:React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        document.getElementById("day-show")?.click();
         setDateChosen(format(value, "dd-MMMM-yyyy"));
         setDatechosenForComparison(format(value, "yyyy-MM-dd"));
+        document.getElementById("day-show")?.click();
         console.log(dateChosenForComparison);
     }
 
@@ -74,6 +74,10 @@ function Overview(){
         updateListItems();
         updateCategory();
     }, [dateChosen, dateChosenForComparison]);
+
+    useEffect(() => {
+
+    },[dateChosen, dateChosenForComparison]);
 
     if (auth === "false") {
         return (
