@@ -1,0 +1,19 @@
+
+.calendar{
+    width: 100%;
+    border: none;
+    background: transparent;
+}
+
+.calendar-card{
+    margin-top: 3%;
+    width: 70%;
+    height: 70%;
+    padding: 2%;
+    background-color: lightgrey;
+}
+
+.date-underline{
+    border-color: red;
+    background-color: red;
+}
