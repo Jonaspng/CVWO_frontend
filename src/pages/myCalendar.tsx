@@ -5,9 +5,10 @@ import TopProgressBar from "react-topbar-progress-indicator";
 import Navbar from '../components/navbar';
 import Day from '../components/day';
 import { format } from "date-fns";
-import { Categories, emptyCategory, List } from "../components/interface";
+import { Categories, emptyCategory, emptyList, List } from "../components/interface";
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
+import EditItem from '../components/editItem';
 
 
 function MyCalendar(){
@@ -24,7 +25,13 @@ function MyCalendar(){
 
     const [listItem, setListItem] = useState<List[]>([]);
 
+    const [originalListItem, setOriginalListItem] = useState<List[]>([]);
+
     const [categories, setCategories] = useState<Categories[]>(emptyCategory);
+
+    const [result, setResult] = useState<List[]>(emptyList);
+
+    const [data, setData] = useState<number[]>([]);
     
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
@@ -107,10 +114,21 @@ function MyCalendar(){
                 </div>
                 <Day 
                     date = {dateChosen}
-                    listItems = {listItem}
+                    listItem = {listItem}
                     deadline = {dateChosenForComparison}
                     categories = {categories}
-                />      
+                    setListItem = {setListItem}
+                    setResult = {setResult}
+                />
+                <EditItem 
+                    result = {result} 
+                    categories = {categories} 
+                    setData = {setData}
+                    setListItem = {setListItem}
+                    setOriginalListItem= {setOriginalListItem}
+                    isInCategory = {false} 
+                    categoryFilterValue = {''}                
+                />
             </>
         );
     } else{

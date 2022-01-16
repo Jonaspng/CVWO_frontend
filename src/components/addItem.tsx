@@ -9,9 +9,10 @@ interface AddItemProps{
     isInCategory: boolean;
     categoryFilterValue: string;
     setHasAdded: Dispatch<SetStateAction<boolean>>;
+    dateValue?: string;
 }
 
-function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue, setHasAdded }: AddItemProps){
+function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue, setHasAdded, dateValue }: AddItemProps){
 
     async function updateData(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
@@ -80,7 +81,7 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
                                 <p className = "add-form-description">Description</p>
                                 <textarea name = "item[description]" placeholder = "Description" className = "form-control"></textarea>
                                 <p className = "add-form-description">Deadline</p>
-                                <input className = "form-control" name = "item[deadline]" type = "date"></input>
+                                <input className = "form-control" defaultValue = {dateValue} name = "item[deadline]" type = "date"></input>
                                 <p className = "add-form-description">Category</p>
                                 <select name = "item[category_id]" className = "form-select form-select-sm" aria-label = ".form-select-sm example">
                                     {categories.map(getCategoriesOption)}

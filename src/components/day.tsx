@@ -1,15 +1,39 @@
 import { List, Categories } from "./interface";
+import EditIcon from "@material-ui/icons/Edit";
+import { Dispatch, SetStateAction } from "react";
 
 interface DayProps {
     date: string;
-    listItems: List[];
+    listItem: List[];
     deadline: string;
     categories: Categories[];
+    setListItem: Dispatch<SetStateAction<List[]>>;
+    setResult: Dispatch<SetStateAction<List[]>>;
 }
 
-function Day({date, listItems, deadline, categories}: DayProps){
+function Day({ date, listItem, deadline, categories, setListItem, setResult }: DayProps){
 
     let number = 0;
+
+    async function updateListItems(){
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
+            .then(res => res.json())
+            .then((listItem) => setListItem(listItem.items));
+    }
+
+    async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
+        let id = (event.target as HTMLTextAreaElement).value
+        await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
+            method:"DELETE",
+            mode: "cors",
+            credentials: "include"});
+        updateListItems();
+    }
+
+    function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        let id:number = parseInt(event.currentTarget.value);
+        setResult(listItem.filter((item: List) => item.id === id));
+    }
     
     function getDeadlines(item: List) {
         number += 1;
@@ -19,7 +43,16 @@ function Day({date, listItems, deadline, categories}: DayProps){
                     <td>{number}</td>
                     <td>{item.title}</td>
                     <td>{categories.filter((category: Categories) => category.id === item.category_id)[0].category}</td>
+                    <td>
+                        <form id = "delete-form">
+                            <div className = "form-check form-switch">
+                                <input name = "id" value = {item.id!} onClick = {handleItemDeleteClick} className = "form-check-input" type = "checkbox" id = "flexSwitchCheckDefault"/>
+                            </div>
+                        </form>
+                            <button onClick = {handleEditClick} value = {item.id!} className = "edit-icon" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop2"><EditIcon /></button>
+                    </td>
                 </tr>
+                
             </>
         );
     }
@@ -42,10 +75,11 @@ function Day({date, listItems, deadline, categories}: DayProps){
                                         <th>#</th>
                                         <th>Title</th>
                                         <th>Category</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                             <tbody>
-                                {listItems.filter((item:List) => item.deadline === deadline).map(getDeadlines)}
+                                {listItem.filter((item:List) => item.deadline === deadline).map(getDeadlines)}
                             </tbody>
                         </table>
                         </div>
