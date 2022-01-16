@@ -49,4 +49,7 @@
 
 .add-item{
     float: right;
+    margin: 0 0 10px 0;
+    width: 110px;
+    padding: 3px;
 }
