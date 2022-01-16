@@ -44,11 +44,11 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn, setNam
                     <div className = "card-body">
                         <h3 className = "card-title">{greetings} {name}</h3>
                         <div className = {usernameInput}>
-                            <input value = {name} onChange = {getName} name = "user[username]" type = "text" className = "form-control" id = "floatingInput" placeholder = "Username" autoComplete = "off" />
+                            <input value = {name} onChange = {getName} name = "user[username]" type = "text" className = "form-control" placeholder = "Username" autoComplete = "off" />
                             <label htmlFor = "floatingInput">Username</label>
                         </div>
                         <div className = "form-floating">
-                            <input name = {emailInputName} type = "email" className = "form-control" id = "floatingInput" placeholder = "Email address" autoComplete = "on"/>
+                            <input name = {emailInputName} type = "email" className = "form-control" placeholder = "Email address" autoComplete = "on"/>
                             <label htmlFor = "floatingInput">Email address</label>
                         </div>
                         <div className = "form-floating">
