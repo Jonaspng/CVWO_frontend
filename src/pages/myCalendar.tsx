@@ -9,6 +9,7 @@ import { Categories, emptyCategory, emptyList, List } from "../components/interf
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
 import EditItem from '../components/editItem';
+import AddItem from '../components/addItem';
 
 
 function MyCalendar(){
@@ -32,6 +33,8 @@ function MyCalendar(){
     const [result, setResult] = useState<List[]>(emptyList);
 
     const [data, setData] = useState<number[]>([]);
+
+    const [hasAddedItem, setHasAddedItem] = useState<boolean>(false);
     
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
@@ -128,6 +131,16 @@ function MyCalendar(){
                     setOriginalListItem= {setOriginalListItem}
                     isInCategory = {false} 
                     categoryFilterValue = {''}                
+                />
+                <AddItem 
+                    categories = {categories} 
+                    setData = {setData}
+                    setListItem = {setListItem}
+                    setOriginalListItem = {setOriginalListItem}
+                    isInCategory = {false}
+                    categoryFilterValue = {''}
+                    setHasAdded = {setHasAddedItem}
+                    dateValue = {dateChosenForComparison}
                 />
             </>
         );

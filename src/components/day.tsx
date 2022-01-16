@@ -67,7 +67,8 @@ function Day({ date, listItem, deadline, categories, setListItem, setResult }: D
                             <button type = "button" className = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
                         </div>
                         <div className = "modal-body">
-                            <h5>Tasks that are due today</h5>
+                            <h5 className = "day-modal-title">Tasks that are due today</h5>
+                            <button className = "btn btn-primary add-item" data-bs-toggle = "modal" data-bs-target = "#staticBackdrop">+ New Item</button>
                             <p></p>
                             <table className = "table table-striped table-hover">
                                 <thead>

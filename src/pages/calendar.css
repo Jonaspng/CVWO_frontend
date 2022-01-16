@@ -42,3 +42,11 @@
     margin: 0;
     color: red;
 }
+
+.day-modal-title{
+    float: left;
+}
+
+.add-item{
+    float: right;
+}
