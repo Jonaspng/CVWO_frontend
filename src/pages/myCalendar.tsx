@@ -14,7 +14,11 @@ import AddItem from '../components/addItem';
 
 function MyCalendar(){
 
+    // used to redirect users
+
     let navigate = useNavigate();
+
+    //react hooks
 
     const [auth, setAuth] = useState<string>("");
 
@@ -26,16 +30,18 @@ function MyCalendar(){
 
     const [listItem, setListItem] = useState<List[]>([]);
 
-    const [originalListItem, setOriginalListItem] = useState<List[]>([]);
-
     const [categories, setCategories] = useState<Categories[]>(emptyCategory);
 
     const [result, setResult] = useState<List[]>(emptyList);
+    
+    // the below hooks are just to make sure there are no errors
+    // this is because i am reusing some components and some functions are not need in calendar
+    const [originalListItem, setOriginalListItem] = useState<List[]>([]);
 
     const [data, setData] = useState<number[]>([]);
 
     const [hasAddedItem, setHasAddedItem] = useState<boolean>(false);
-    
+
     async function getAuth(){
         return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
                     .then((res) => res.json())

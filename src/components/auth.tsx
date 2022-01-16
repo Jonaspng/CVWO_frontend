@@ -52,11 +52,11 @@ function Auth({ route, greetings, usernameInput, passwordValidation, btn, setNam
                             <label htmlFor = "floatingInput">Email address</label>
                         </div>
                         <div className = "form-floating">
-                            <input name = {passwordInputName}  onChange = {getPassword} type = "password" className = {validation} placeholder = "Password" id = "floatingPassword" />
+                            <input name = {passwordInputName}  onChange = {getPassword} type = "password" className = {validation} placeholder = "Password" />
                             <label htmlFor = "floatingPassword">Password</label>
                         </div>
                         <div className = {passwordValidation}>
-                            <input name = "user[password2]" onChange = {getConfirmPassword} type = "password" className = {validation} placeholder = "Confirm Password" id = "floatingPassword" />
+                            <input name = "user[password2]" onChange = {getConfirmPassword} type = "password" className = {validation} placeholder = "Confirm Password" />
                             <label htmlFor = "floatingPassword">Confirm Password</label>
                         </div>
                         <p className = {validationMessageClass}>Passwords do not match!</p>

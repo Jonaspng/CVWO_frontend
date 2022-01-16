@@ -9,6 +9,8 @@ import EditUser from "../components/editUser";
 
 function Profile(){
 
+    // used to redirect users
+
     let navigate = useNavigate();
     
     // React hooks

@@ -4,6 +4,7 @@ import Carousel from "../components/carousel";
 
 function Home(){
 
+    // to get year for copyright 
     let year =  new Date().getFullYear();
 
     return(
@@ -43,7 +44,6 @@ function Home(){
                     <h1>How do I use Express ToDoList?</h1>
                     <Carousel />
                 </section>
-                
                 <footer>
                     <p>© Jonas Png, {year}</p>
                     <p>Background Photo by <a href = "https://unsplash.com/@jessbaileydesigns?utm_source = unsplash&utm_medium = referral&utm_content = creditCopyText">Jess Bailey</a> on <a href = "https://unsplash.com/s/photos/office-desk?utm_source = unsplash&utm_medium = referral&utm_content = creditCopyText">Unsplash</a></p>

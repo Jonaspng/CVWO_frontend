@@ -14,6 +14,8 @@ import Alert from "../components/alert";
 
 function Dashboard(){
 
+    // used to redirect users
+
     let navigate = useNavigate();
 
     // react hooks
