@@ -332,6 +332,7 @@ footer{
     border: 0;
 }
 
+/* profile page style */
 .profile-page{
     width: 100%;
 }
@@ -341,6 +342,13 @@ footer{
     margin: 0 auto 0 auto;
     text-align: center;    
 }
+
+@media (max-width: 400px) {
+    .account-details{
+        width: inherit;
+    }
+}
+
 
 #delete-form{
     display: inline-block;
