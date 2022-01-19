@@ -44,6 +44,12 @@ html,body,#root,.home-page{
     background-color: #A0937D;
 }
 
+@media (max-width: 500px) {
+    .carousel-section {
+        display: none;
+    }
+}
+
 #carouselExampleCaptions{
     margin-top: 20px;
 }
@@ -85,6 +91,7 @@ html,body,#root,.home-page{
 
 #home-hr{
     width: 400px;
+    max-width: 80%;
     color: black;
     margin: 0 auto 0 auto;
 }
@@ -348,7 +355,6 @@ footer{
         width: inherit;
     }
 }
-
 
 #delete-form{
     display: inline-block;
