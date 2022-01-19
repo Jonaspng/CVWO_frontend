@@ -33,6 +33,10 @@ html,body,#root,.home-page{
     display: none;
 }
 
+.navbar-dark .navbar-nav .nav-link.disabled {
+    color: #969e98;
+}
+
 /* Carousel Component */
 .carousel-section{
     padding: 20px 70px;

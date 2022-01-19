@@ -116,11 +116,11 @@ function Profile(){
             <div className = "profile-page">
                 <Navbar 
                     brand = "/dashboard"
-                    item1 = {userDetails.username!}
-                    item2 = "Dashboard"
-                    link2 = "/dashboard"
-                    item3 = "Calendar"
-                    link3 = "/calendar"
+                    username = {userDetails.username!}
+                    item1 = "Dashboard"
+                    link1 = "/dashboard"
+                    item2 = "Calendar"
+                    link2 = "/calendar"
                     logout = "logout"
                 />
                 <div className = "alert-bar">

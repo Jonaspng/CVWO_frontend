@@ -147,11 +147,11 @@ function Dashboard(){
                 <div id = "dashboard">
                     <Navbar 
                         brand = "/dashboard"
-                        item1 = {username}
-                        item2 = "Calendar"
-                        link2 = "/calendar"
-                        item3 = "Profile"
-                        link3 = "/profile"
+                        username = {username}
+                        item1 = "Calendar"
+                        link1 = "/calendar"
+                        item2 = "Profile"
+                        link2 = "/profile"
                         logout = "logout"
                     />
                     <div className="alert-bar">

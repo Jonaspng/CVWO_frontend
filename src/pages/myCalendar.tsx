@@ -106,11 +106,11 @@ function MyCalendar(){
             <>
                  <Navbar 
                     brand = "/dashboard"
-                    item1 = {username}
-                    item2 = "Dashboard"
-                    link2 = "/dashboard"
-                    item3 = "Profile"
-                    link3 = "/profile"
+                    username = {username}
+                    item1 = "Dashboard"
+                    link1 = "/dashboard"
+                    item2 = "Profile"
+                    link2 = "/profile"
                     logout = "logout"
                 />
                 <button id = "day-show" type = "button" className = "hidden" data-bs-toggle = "modal" data-bs-target = "#day"></button>
