@@ -105,13 +105,13 @@ function Profile(){
         }
     }, [confirmPassword, password]);
 
-    // if (auth === "false"){
-    //     return (
-    //         <>
-    //             {navigate("/")}
-    //         </>
-    //     );
-    // } else if (auth === "true") {
+    if (auth === "false"){
+        return (
+            <>
+                {navigate("/")}
+            </>
+        );
+    } else if (auth === "true") {
         return(
             <div className = "profile-page">
                 <Navbar 
@@ -141,14 +141,14 @@ function Profile(){
             </div>
         );
     } 
-    // else{
-    //     return(
-    //         <div>
-    //             <TopProgressBar />
-    //             <h1 className = "loading">Loading User Information</h1>
-    //         </div>
-    //     );
-    // }
-// }
+    else{
+        return(
+            <div>
+                <TopProgressBar />
+                <h1 className = "loading">Loading User Information</h1>
+            </div>
+        );
+    }
+}
 
 export default Profile;
