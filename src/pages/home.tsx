@@ -46,6 +46,10 @@ function Home(){
                 </section>
                 <footer>
                     <p>© Jonas Png, {year}</p>
+                    <p>Built with React frontend and Ruby on Rails Backend</p>
+                    <p>
+                        <a href = "https://github.com/Jonaspng/CVWO_frontend">Frontend Source Code</a> | <a href = "https://github.com/Jonaspng/CVWO_backend">Backend Source code</a>
+                    </p>
                     <p>Background Photo by <a href = "https://unsplash.com/@jessbaileydesigns?utm_source = unsplash&utm_medium = referral&utm_content = creditCopyText">Jess Bailey</a> on <a href = "https://unsplash.com/s/photos/office-desk?utm_source = unsplash&utm_medium = referral&utm_content = creditCopyText">Unsplash</a></p>
                     <a target="_blank" href="https://icons8.com/icon/JWpT8cAn8G0V/memo" rel="noopener noreferrer">Memo</a> icon by <a target="_blank" rel="noopener noreferrer" href="https://icons8.com">Icons8</a>
                 </footer>
