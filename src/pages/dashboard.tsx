@@ -134,12 +134,17 @@ function Dashboard(){
     
     // helps to filter list based on input in search bar
     useEffect(() => {
-        if (search === ""){
-            updateListItems()
-        } else{
-            const filtered = originalListItem.filter((item: List)=> item.title!.toLowerCase().includes(search.toLowerCase()));
-            setListItem(filtered);
+        try {
+            if (search === ""){
+                updateListItems()
+            } else{
+                const filtered = originalListItem.filter((item: List)=> item.title!.toLowerCase().includes(search.toLowerCase()));
+                setListItem(filtered);
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }, [search]);
     
     // It checks with backend to see whether the user is logged in 

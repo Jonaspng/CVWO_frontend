@@ -99,15 +99,20 @@ function Profile(){
     }, []);
 
     useEffect(() => {
-        if (password !== confirmPassword){
-            setValidation("form-control validation-fail");
-            setValidationMessageClass("password-validation-message");
-            setClick(true);
-        } else{
-            setValidation("form-control");
-            setValidationMessageClass("hidden");
-            setClick(false);        
+        try {
+            if (password !== confirmPassword){
+                setValidation("form-control validation-fail");
+                setValidationMessageClass("password-validation-message");
+                setClick(true);
+            } else{
+                setValidation("form-control");
+                setValidationMessageClass("hidden");
+                setClick(false);        
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }, [confirmPassword, password]);
 
     if (auth === "false"){
