@@ -60,9 +60,14 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
             body:new FormData((document.getElementById("add-form") as HTMLFormElement))});
         // resets the form for next use
         (document.getElementById("add-form") as HTMLFormElement).reset();
-        setHasAdded(true);
-        updateListItems();
-        updateData();
+        try {
+            setHasAdded(true);
+            updateListItems();
+            updateData();
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     return (

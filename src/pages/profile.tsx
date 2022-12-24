@@ -92,8 +92,8 @@ function Profile(){
             updateErrors();
             updateSuccess();
             getAuth();
-        } catch {
-            console.log("Connection error");
+        } catch(error) {
+            console.log(error);
         }
         
     }, []);

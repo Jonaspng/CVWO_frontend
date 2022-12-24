@@ -93,8 +93,8 @@ function MyCalendar(){
             updateUsername();
             updateListItems();
             updateCategory();
-        } catch {
-            console.log("Connection Error");
+        } catch(error) {
+            console.log(error);
         }
         
     }, [dateChosen, dateChosenForComparison]);

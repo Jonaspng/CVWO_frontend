@@ -18,7 +18,7 @@ function Login(){
             fetch("https://cvwobackend-production.up.railway.app/api/error",{credentials: "include"})
             .then((res) => res.json())
             .then((error) => setError(error.error));
-        } catch {
+        } catch(error) {
             console.log("Connection Error");
         }
         

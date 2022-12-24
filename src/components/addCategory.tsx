@@ -12,21 +12,30 @@ interface AddCategoryProps{
 function AddCategory({ categories, setCategories, setData, setHasCategoryError, setHasAddedCategory }: AddCategoryProps){
 
     async function updateCategory(){
-        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
+        } catch(error) {
+            console.log(error);
+        }
+        
 
     }
 
     async function updateData(){
-        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function checkCategory(newCategory: string){
         if (categories.filter(x => x.category === newCategory).length !== 0){
-            console.log(categories.filter(x => x.category === newCategory));
             setHasCategoryError(true);
             return true;
         } else {

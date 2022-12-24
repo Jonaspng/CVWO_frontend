@@ -39,22 +39,32 @@ function Register(){
 
      // use to fetch possible errors from backend
      useEffect(()  => {
-        fetch("https://cvwobackend-production.up.railway.app/register/error",{ credentials: "include" })
-          .then((res)  => res.json())
-          .then((error)  => setError(error.error));
+        try {
+            fetch("https://cvwobackend-production.up.railway.app/register/error",{ credentials: "include" })
+            .then((res)  => res.json())
+            .then((error)  => setError(error.error));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }, []);
 
     
     useEffect(() => {
-        if (password !==  confirmPassword){
-            setValidation("form-control validation-fail");
-            setValidationMessageClass("password-validation-message");
-            setClick(true);
-        } else{
-            setValidation("form-control");
-            setValidationMessageClass("hidden");
-            setClick(false);        
+        try {
+            if (password !==  confirmPassword){
+                setValidation("form-control validation-fail");
+                setValidationMessageClass("password-validation-message");
+                setClick(true);
+            } else{
+                setValidation("form-control");
+                setValidationMessageClass("hidden");
+                setClick(false);        
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
       }, [confirmPassword, password, validationMessageClass]);
  
     return(

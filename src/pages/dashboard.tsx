@@ -126,8 +126,8 @@ function Dashboard(){
             updateData();
             updateListItems();
             updateUsername();
-        } catch {
-            console.log("Connection Error");
+        } catch(error) {
+            console.log(error);
         }
         
     }, [isInCategory, categoryFilterValue]);

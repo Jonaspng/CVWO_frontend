@@ -16,18 +16,28 @@ function Day({ date, listItem, deadline, categories, setListItem, setResult }: D
     let number = 0;
 
     async function updateListItems(){
-        return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
             .then(res => res.json())
             .then((listItem) => setListItem(listItem.items));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
-        let id = (event.target as HTMLTextAreaElement).value
-        await fetch("https://cvwobackend-production.up.railway.app/list_items/" + id,{ 
-            method:"DELETE",
-            mode: "cors",
-            credentials: "include"});
-        updateListItems();
+        try {
+            let id = (event.target as HTMLTextAreaElement).value
+            await fetch("https://cvwobackend-production.up.railway.app/list_items/" + id,{ 
+                method:"DELETE",
+                mode: "cors",
+                credentials: "include"});
+            updateListItems();
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
