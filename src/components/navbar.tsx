@@ -35,7 +35,7 @@ function Navbar({ brand, username, link1, link2, link3, item1, item2, item3, log
                                 <a className = "nav-link active" href = {link3} aria-current = "page">{item3}</a>
                             </li>
                             <li className = "nav-item">
-                                <form className = {logout} action = "https://todolist-backend-cvwo.herokuapp.com/api/logout" method = "POST">
+                                <form className = {logout} action = "https://cvwobackend-production.up.railway.app/api/logout" method = "POST">
                                     <button name = "button" type = "submit" className = "btn btn-outline-danger">Logout</button>
                                 </form>
                             </li>

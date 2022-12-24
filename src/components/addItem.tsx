@@ -15,21 +15,21 @@ interface AddItemProps{
 function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCategory, categoryFilterValue, setHasAdded, dateValue }: AddItemProps){
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
                     setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
                     setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -53,7 +53,7 @@ function AddItem({ categories, setData, setListItem, setOriginalListItem, isInCa
         // prevent page from reloading after clicking the button
         event.preventDefault();
         // post new item to database which then save it 
-        await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ 
+        await fetch("https://cvwobackend-production.up.railway.app/list_items",{ 
             method:"POST",
             mode: "cors",
             credentials: "include",

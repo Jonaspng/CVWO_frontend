@@ -26,27 +26,27 @@ function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategor
     let categoryConfirmation:boolean = false;
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
                     setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
                     setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -79,7 +79,7 @@ function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategor
         categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list items in the category will also be deleted");
         if (categoryConfirmation) {
             let id = event.currentTarget.value
-            await fetch("https://todolist-backend-cvwo.herokuapp.com/categories/" + id,{
+            await fetch("https://cvwobackend-production.up.railway.app/categories/" + id,{
                 method:"DELETE",
                 mode: "cors",
                 credentials: "include",

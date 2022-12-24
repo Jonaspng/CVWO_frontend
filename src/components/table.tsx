@@ -25,14 +25,14 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
                 .then(res => res.json())
                 .then((listItem) => {
                     setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
                     setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{credentials: "include"})
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);
@@ -42,7 +42,7 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{credentials: "include"})
+        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{credentials: "include"})
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
@@ -65,7 +65,7 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
 
     async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
         let id = (event.target as HTMLTextAreaElement).value
-        await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items/" + id,{ 
+        await fetch("https://cvwobackend-production.up.railway.app/list_items/" + id,{ 
             method:"DELETE",
             mode: "cors",
             credentials: "include"});

@@ -12,14 +12,14 @@ interface AddCategoryProps{
 function AddCategory({ categories, setCategories, setData, setHasCategoryError, setHasAddedCategory }: AddCategoryProps){
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
@@ -46,7 +46,7 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
             (document.getElementById("add-cat-form") as HTMLFormElement).reset();
         } else {
             // post new category to database which then save it 
-            await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ 
+            await fetch("https://cvwobackend-production.up.railway.app/categories",{ 
                 method:"POST",
                 mode: "cors",
                 credentials: "include",

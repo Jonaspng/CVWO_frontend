@@ -53,41 +53,41 @@ function Dashboard(){
     // async functions with await helps make sure it finishes fetching information before moving on
 
     async function getAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
     }
 
     async function updateUsername(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include"})
+        return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include"})
                 .then((res) => res.json())
                 .then((username) => setUsername(username.user.username));
     }
 
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateData(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/chart",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
     }
 
     async function updateListItems(){
         if (isInCategory) {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
                     setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
                     setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
                 });
         } else {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
             .then(res => res.json())
             .then((listItem) => {
                 setListItem(listItem.items);

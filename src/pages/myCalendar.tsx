@@ -43,26 +43,26 @@ function MyCalendar(){
     const [hasAddedItem, setHasAddedItem] = useState<boolean>(false);
 
     async function getAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
     }
 
     async function updateCategory(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/categories",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
 
     }
 
     async function updateUsername(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include"})
+        return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include"})
                 .then((res) => res.json())
                 .then((username) => setUsername(username.user.username));
     }
 
     async function updateListItems(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/list_items",{ credentials: "include" })
+        return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                     .then(res => res.json())
                     .then((listItem) => setListItem(listItem.items));
     }

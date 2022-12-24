@@ -14,7 +14,7 @@ function Login(){
     const [error, setError] = useState<string[]>([])
 
     useEffect(() => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/api/error",{credentials: "include"})
+        fetch("https://cvwobackend-production.up.railway.app/api/error",{credentials: "include"})
           .then((res) => res.json())
           .then((error) => setError(error.error));
       }, []);
@@ -56,7 +56,7 @@ function Login(){
                 </div>
                 <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                     <Auth
-                        route = "https://todolist-backend-cvwo.herokuapp.com/api/login"
+                        route = "https://cvwobackend-production.up.railway.app/api/login"
                         greetings= "Welcome Back!"
                         btn = "Login"
                         usernameInput = "hidden"

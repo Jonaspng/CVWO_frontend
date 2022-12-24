@@ -39,7 +39,7 @@ function Register(){
 
      // use to fetch possible errors from backend
      useEffect(()  => {
-        fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
+        fetch("https://cvwobackend-production.up.railway.app/register/error",{ credentials: "include" })
           .then((res)  => res.json())
           .then((error)  => setError(error.error));
     }, []);
@@ -75,7 +75,7 @@ function Register(){
                 </div>
                 <div className = "auth-content" style = {{backgroundImage: "url(/Clean-Desk.jpg)"}}>
                     <Auth
-                        route = "https://todolist-backend-cvwo.herokuapp.com/users"
+                        route = "https://cvwobackend-production.up.railway.app/users"
                         greetings = "Hello"
                         usernameInput = "form-floating"
                         passwordValidation = "form-floating"
