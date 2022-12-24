@@ -10,11 +10,11 @@
   <img src = "https://img.shields.io/github/last-commit/Jonaspng/CVWO_frontend?logo=Github"/>
   <img src = "https://img.shields.io/github/forks/Jonaspng/cvwo_frontend?logo=Github"/>
   <img src = "https://img.shields.io/github/repo-size/Jonaspng/cvwo_frontend?logo=Github"/>
-  <img alt="Website status" src="https://img.shields.io/website?style=plastic&url=https%3A%2F%2Ftodolist-cvwo.herokuapp.com%2F"/>
+  <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fcvwo-todolist.vercel.app%2F">
 </p>
 
 <p align = "center">
-  <a href = "https://todolist-cvwo.herokuapp.com/">
+  <a href = "https://cvwo-todolist.vercel.app//">
     <img src = "https://raw.githubusercontent.com/Jonaspng/CVWO_frontend/main/public/homepage.png"/>    
   </a>
 </p>
@@ -33,5 +33,5 @@ Matriculation Number: **A0233271N**
 
 ## Link to application
 
-Click [here](https://todolist-cvwo.herokuapp.com/) to access the web application!
+Click [here](https://cvwo-todolist.vercel.app//) to access the web application!
 
