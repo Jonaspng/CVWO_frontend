@@ -88,10 +88,15 @@ function MyCalendar(){
     }
 
     useEffect(() => {
-        getAuth();
-        updateUsername();
-        updateListItems();
-        updateCategory();
+        try {
+            getAuth();
+            updateUsername();
+            updateListItems();
+            updateCategory();
+        } catch {
+            console.log("Connection Error");
+        }
+        
     }, [dateChosen, dateChosenForComparison]);
 
 
