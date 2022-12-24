@@ -26,33 +26,48 @@ function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategor
     let categoryConfirmation:boolean = false;
 
     async function updateCategory(){
-        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
+        } catch(error) {
+            console.log(error);
+        }
+        
 
     }
     async function updateData(){
-        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateListItems(){
-        if (isInCategory) {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
+        try {
+            if (isInCategory) {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
+                    .then(res => res.json())
+                    .then((listItem) => {
+                        setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                        setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    });
+            } else {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    setListItem(listItem.items);
+                    setOriginalListItem(listItem.items);
                 });
-        } else {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
-            .then(res => res.json())
-            .then((listItem) => {
-                setListItem(listItem.items);
-                setOriginalListItem(listItem.items);
-            });
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
     // this function settles the category side bar movements 
     function handleSidebarClick(){
@@ -76,21 +91,26 @@ function Sidebar({ categories, setToLeft, setCategoryFilterValue, setIsInCategor
     }
 
     async function handleCategoryDeleteClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list items in the category will also be deleted");
-        if (categoryConfirmation) {
-            let id = event.currentTarget.value
-            await fetch("https://cvwobackend-production.up.railway.app/categories/" + id,{
-                method:"DELETE",
-                mode: "cors",
-                credentials: "include",
-            });
-            categoryConfirmation = false;
-            updateCategory();
-            updateData();
-            updateListItems();
-        } else {
-            event.preventDefault();
+        try {
+            categoryConfirmation = window.confirm("Are you sure you want to delete the category? All list items in the category will also be deleted");
+            if (categoryConfirmation) {
+                let id = event.currentTarget.value
+                await fetch("https://cvwobackend-production.up.railway.app/categories/" + id,{
+                    method:"DELETE",
+                    mode: "cors",
+                    credentials: "include",
+                });
+                categoryConfirmation = false;
+                updateCategory();
+                updateData();
+                updateListItems();
+            } else {
+                event.preventDefault();
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
 
 

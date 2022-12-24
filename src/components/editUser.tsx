@@ -17,21 +17,36 @@ interface EditUserProps{
 function EditUser({ setPassword, setConfirmPassword, userDetails, validation, click, setUserDetails, setError, setSuccess,validationMessageClass }: EditUserProps){
 
     async function updateUserDetails(){
-        return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((userDetails) => setUserDetails(userDetails.user));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateErrors(){
-        return await fetch("https://cvwobackend-production.up.railway.app/register/error",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/register/error",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((error) => setError(error.error));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateSuccess(){
-        return await fetch("https://cvwobackend-production.up.railway.app/register/success",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/register/success",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((success) => setSuccess(success.success));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function getPassword(event: React.ChangeEvent<HTMLInputElement>){
@@ -43,19 +58,24 @@ function EditUser({ setPassword, setConfirmPassword, userDetails, validation, cl
     }
 
     async function handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        if (click){
-            event.preventDefault();
-        } else{
-            await fetch("https://cvwobackend-production.up.railway.app/users/" + userDetails.id,{ 
-                method:"PATCH",
-                mode: "cors",
-                credentials: "include",
-                body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
-            updateUserDetails();
-            updateErrors();
-            updateSuccess();
-            (document.getElementById("edit-details-form") as HTMLFormElement).reset();
+        try {
+            if (click){
+                event.preventDefault();
+            } else{
+                await fetch("https://cvwobackend-production.up.railway.app/users/" + userDetails.id,{ 
+                    method:"PATCH",
+                    mode: "cors",
+                    credentials: "include",
+                    body:new FormData((document.getElementById("edit-details-form") as HTMLFormElement))});
+                updateUserDetails();
+                updateErrors();
+                updateSuccess();
+                (document.getElementById("edit-details-form") as HTMLFormElement).reset();
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
     
     return (

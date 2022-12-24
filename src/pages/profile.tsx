@@ -34,27 +34,45 @@ function Profile(){
     const [auth, setAuth] = useState<string>("");
 
     async function getAuth(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/api/auth", {credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
+        } catch(error) {
+            console.log(error);        
+        }
     }
 
     async function updateUserDetails(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
+        try {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((userDetails) => setUserDetails(userDetails.user));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateErrors(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
+        try {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((error) => setError(error.error));
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     async function updateSuccess(){
-        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{ credentials: "include" })
+        try {
+            return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{ credentials: "include" })
                         .then((res) => res.json())
                         .then((success) => setSuccess(success.success));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function closeAlert(){

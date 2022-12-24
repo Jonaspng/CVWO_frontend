@@ -24,27 +24,37 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
     let number = 0;
 
     async function updateListItems(){
-        if (isInCategory) {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
+        try {
+            if (isInCategory) {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
+                    .then(res => res.json())
+                    .then((listItem) => {
+                        setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                        setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    });
+            } else {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    setListItem(listItem.items);
+                    setOriginalListItem(listItem.items);
                 });
-        } else {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{credentials: "include"})
-            .then(res => res.json())
-            .then((listItem) => {
-                setListItem(listItem.items);
-                setOriginalListItem(listItem.items);
-            });
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
 
     async function updateData(){
-        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{credentials: "include"})
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{credentials: "include"})
             .then(res => res.json())
             .then((data) => setData(data.data));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function getSearchValue(event: React.ChangeEvent<HTMLInputElement>){
@@ -64,13 +74,18 @@ function Table({ categories, categoryFilterValue, isInCategory, tableId, setList
     }
 
     async function handleItemDeleteClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>){
-        let id = (event.target as HTMLTextAreaElement).value
-        await fetch("https://cvwobackend-production.up.railway.app/list_items/" + id,{ 
-            method:"DELETE",
-            mode: "cors",
-            credentials: "include"});
-        updateListItems();
-        updateData();
+        try {
+            let id = (event.target as HTMLTextAreaElement).value
+            await fetch("https://cvwobackend-production.up.railway.app/list_items/" + id,{ 
+                method:"DELETE",
+                mode: "cors",
+                credentials: "include"});
+            updateListItems();
+            updateData();
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     function handleEditClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){

@@ -50,22 +50,27 @@ function AddCategory({ categories, setCategories, setData, setHasCategoryError, 
 
     async function HandleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         // prevent page from reloading after clicking the button
-        event.preventDefault();
-        if (checkCategory((document.getElementById("new-category") as HTMLFormElement).value)){
-            (document.getElementById("add-cat-form") as HTMLFormElement).reset();
-        } else {
-            // post new category to database which then save it 
-            await fetch("https://cvwobackend-production.up.railway.app/categories",{ 
-                method:"POST",
-                mode: "cors",
-                credentials: "include",
-                body:new FormData((document.getElementById("add-cat-form") as HTMLFormElement))});
-            // resets the form for next use
-            (document.getElementById("add-cat-form") as HTMLFormElement).reset();
-            updateCategory();
-            updateData();
-            setHasAddedCategory(true);
+        try {
+            event.preventDefault();
+            if (checkCategory((document.getElementById("new-category") as HTMLFormElement).value)){
+                (document.getElementById("add-cat-form") as HTMLFormElement).reset();
+            } else {
+                // post new category to database which then save it 
+                await fetch("https://cvwobackend-production.up.railway.app/categories",{ 
+                    method:"POST",
+                    mode: "cors",
+                    credentials: "include",
+                    body:new FormData((document.getElementById("add-cat-form") as HTMLFormElement))});
+                // resets the form for next use
+                (document.getElementById("add-cat-form") as HTMLFormElement).reset();
+                updateCategory();
+                updateData();
+                setHasAddedCategory(true);
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
 
     return (

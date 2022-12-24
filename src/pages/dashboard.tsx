@@ -53,47 +53,69 @@ function Dashboard(){
     // async functions with await helps make sure it finishes fetching information before moving on
 
     async function getAuth(){
-        return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
                     .then((res) => res.json())
                     .then((auth) => setAuth(auth.auth))
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateUsername(){
-        return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include"})
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/users",{ credentials: "include"})
                 .then((res) => res.json())
                 .then((username) => setUsername(username.user.username));
+        } catch(error) {
+            console.log(error);
+        }
     }
 
 
     async function updateCategory(){
-        return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/categories",{ credentials: "include" })
             .then(res => res.json())
             .then((categories) => setCategories(categories.categories));
-
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     async function updateData(){
-        return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
+        try {
+            return await fetch("https://cvwobackend-production.up.railway.app/api/chart",{ credentials: "include" })
             .then(res => res.json())
             .then((data) => setData(data.data));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     async function updateListItems(){
-        if (isInCategory) {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
+        try {
+            if (isInCategory) {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
+                    .then(res => res.json())
+                    .then((listItem) => {
+                        setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
+                        setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    });
+            } else {
+                return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
                 .then(res => res.json())
                 .then((listItem) => {
-                    setListItem((listItem.items).filter((x: List) => x.category_id === parseInt(categoryFilterValue)));
-                    setOriginalListItem((listItem.items).filter((x: List)  => x.category_id === parseInt(categoryFilterValue)));
+                    setListItem(listItem.items);
+                    setOriginalListItem(listItem.items);
                 });
-        } else {
-            return await fetch("https://cvwobackend-production.up.railway.app/list_items",{ credentials: "include" })
-            .then(res => res.json())
-            .then((listItem) => {
-                setListItem(listItem.items);
-                setOriginalListItem(listItem.items);
-            });
+            }
+        } catch(error) {
+            console.log(error);
         }
+        
     }
 
     function closeAlert(){
