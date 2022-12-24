@@ -14,9 +14,14 @@ function Login(){
     const [error, setError] = useState<string[]>([])
 
     useEffect(() => {
-        fetch("https://cvwobackend-production.up.railway.app/api/error",{credentials: "include"})
-          .then((res) => res.json())
-          .then((error) => setError(error.error));
+        try {
+            fetch("https://cvwobackend-production.up.railway.app/api/error",{credentials: "include"})
+            .then((res) => res.json())
+            .then((error) => setError(error.error));
+        } catch {
+            console.log("Connection Error");
+        }
+        
       }, []);
 
     

@@ -120,11 +120,16 @@ function Dashboard(){
 
     // updates auth, category, data and list items
     useEffect(() => {
-        getAuth();
-        updateCategory();
-        updateData();
-        updateListItems();
-        updateUsername();
+        try {
+            getAuth();
+            updateCategory();
+            updateData();
+            updateListItems();
+            updateUsername();
+        } catch {
+            console.log("Connection Error");
+        }
+        
     }, [isInCategory, categoryFilterValue]);
     
     // helps to filter list based on input in search bar
