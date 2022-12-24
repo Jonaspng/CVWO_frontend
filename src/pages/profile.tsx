@@ -34,45 +34,28 @@ function Profile(){
     const [auth, setAuth] = useState<string>("");
 
     async function getAuth(){
-        try {
-            return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
-                    .then((res) => res.json())
-                    .then((auth) => setAuth(auth.auth))
-        } catch(error) {
-            console.log(error);        
-        }
+        return await fetch("https://cvwobackend-production.up.railway.app/api/auth", {credentials: "include" })
+                .then((res) => res.json())
+                .then((auth) => setAuth(auth.auth))
+     
     }
 
     async function updateUserDetails(){
-        try {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
-                        .then((res) => res.json())
-                        .then((userDetails) => setUserDetails(userDetails.user));
-        } catch(error) {
-            console.log(error);
-        }
-        
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/users",{ credentials: "include" })
+                    .then((res) => res.json())
+                    .then((userDetails) => setUserDetails(userDetails.user));        
     }
 
     async function updateErrors(){
-        try {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
-                        .then((res) => res.json())
-                        .then((error) => setError(error.error));
-        } catch(error) {
-            console.log(error);
-        }
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/error",{ credentials: "include" })
+                    .then((res) => res.json())
+                    .then((error) => setError(error.error));
     }
 
     async function updateSuccess(){
-        try {
-            return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{ credentials: "include" })
-                        .then((res) => res.json())
-                        .then((success) => setSuccess(success.success));
-        } catch(error) {
-            console.log(error);
-        }
-        
+        return await fetch("https://todolist-backend-cvwo.herokuapp.com/register/success",{ credentials: "include" })
+                    .then((res) => res.json())
+                    .then((success) => setSuccess(success.success));        
     }
 
     function closeAlert(){
@@ -105,32 +88,22 @@ function Profile(){
     }
 
     useEffect(() => {
-        try {
-            updateUserDetails();
-            updateErrors();
-            updateSuccess();
-            getAuth();
-        } catch(error) {
-            console.log(error);
-        }
-        
+        updateUserDetails();
+        updateErrors();
+        updateSuccess();
+        getAuth();        
     }, []);
 
     useEffect(() => {
-        try {
-            if (password !== confirmPassword){
-                setValidation("form-control validation-fail");
-                setValidationMessageClass("password-validation-message");
-                setClick(true);
-            } else{
-                setValidation("form-control");
-                setValidationMessageClass("hidden");
-                setClick(false);        
-            }
-        } catch(error) {
-            console.log(error);
+        if (password !== confirmPassword){
+            setValidation("form-control validation-fail");
+            setValidationMessageClass("password-validation-message");
+            setClick(true);
+        } else{
+            setValidation("form-control");
+            setValidationMessageClass("hidden");
+            setClick(false);        
         }
-        
     }, [confirmPassword, password]);
 
     if (auth === "false"){
